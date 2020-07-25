@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>单例模式 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="饿汉模式（静态常量）优点：实现起来简单，没有多线程同步问题。缺点：java加载时就初始化了静态变量instance，如果没有被使用就占用了内存空间 12345678910111213public class Singleton &amp;#123;    &#x2F;&#x2F; 将自身实例化对象设置为一个属性，并用static、final修饰    private static final Singleton instan">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单例模式">
+<meta property="og:url" content="http://yoursite.com/2020/05/23/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="饿汉模式（静态常量）优点：实现起来简单，没有多线程同步问题。缺点：java加载时就初始化了静态变量instance，如果没有被使用就占用了内存空间 12345678910111213public class Singleton &amp;#123;    &#x2F;&#x2F; 将自身实例化对象设置为一个属性，并用static、final修饰    private static final Singleton instan">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-23T12:30:32.000Z">
+<meta property="article:modified_time" content="2020-05-30T04:15:14.336Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-单例模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/23/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="article-date">
+  <time datetime="2020-05-23T12:30:32.000Z" itemprop="datePublished">2020-05-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      单例模式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="饿汉模式（静态常量）"><a href="#饿汉模式（静态常量）" class="headerlink" title="饿汉模式（静态常量）"></a>饿汉模式（静态常量）</h3><p>优点：实现起来简单，没有多线程同步问题。<br>缺点：java加载时就初始化了静态变量instance，如果没有被使用就占用了内存空间</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    // 将自身实例化对象设置为一个属性，并用static、final修饰</span><br><span class="line">    private static final Singleton instance = new Singleton();</span><br><span class="line">    </span><br><span class="line">    // 构造方法私有化</span><br><span class="line">    private <span class="function"><span class="title">Singleton</span></span>() &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    // 公有静态方法返回该实例</span><br><span class="line">    public static Singleton <span class="function"><span class="title">getInstance</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="饿汉模式（静态代码块）"><a href="#饿汉模式（静态代码块）" class="headerlink" title="饿汉模式（静态代码块）"></a>饿汉模式（静态代码块）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    // 将自身实例化对象设置为一个属性，并用static、final修饰</span><br><span class="line">    private static final Singleton instance;</span><br><span class="line">    static &#123;</span><br><span class="line">    	instance = new Singleton();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 构造方法私有化</span><br><span class="line">    private <span class="function"><span class="title">Singleton</span></span>() &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    // 公有静态方法返回该实例</span><br><span class="line">    public static Singleton <span class="function"><span class="title">getInstance</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>初始化类的实例。优 缺点和上面是一样的。 2) 结论：这种单例模式可用，但是可能造成内存浪费</p>
+<h3 id="懒汉模式-延迟加载"><a href="#懒汉模式-延迟加载" class="headerlink" title="懒汉模式/延迟加载"></a>懒汉模式/延迟加载</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    // 将自身实例化对象设置为一个属性，并用static修饰</span><br><span class="line">    private static Singleton instance;</span><br><span class="line">    </span><br><span class="line">    // 构造方法私有化</span><br><span class="line">    private <span class="function"><span class="title">Singleton</span></span>() &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    // 静态方法返回该实例</span><br><span class="line">    public static Singleton <span class="function"><span class="title">getInstance</span></span>() &#123;</span><br><span class="line">        <span class="keyword">if</span>(instance == null) &#123;</span><br><span class="line">            instance = new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>优点 实现了单例模式<br>缺点 存在于多线程不安全</p>
+<h3 id="线程安全的“懒汉模式”"><a href="#线程安全的“懒汉模式”" class="headerlink" title="线程安全的“懒汉模式”"></a>线程安全的“懒汉模式”</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    // 将自身实例化对象设置为一个属性，并用static修饰</span><br><span class="line">    private static Singleton instance;</span><br><span class="line">    </span><br><span class="line">    // 构造方法私有化</span><br><span class="line">    private <span class="function"><span class="title">Singleton</span></span>() &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    // 静态方法返回该实例，加synchronized关键字实现同步</span><br><span class="line">    public static synchronized Singleton <span class="function"><span class="title">getInstance</span></span>() &#123;</span><br><span class="line">        <span class="keyword">if</span>(instance == null) &#123;</span><br><span class="line">            instance = new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>优点 实现多线程安全 单列<br>缺点 每个线程进来都要同步getInstance() 同步锁耗费性能 导致效率低</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="懒汉模式-线程安全"><a href="#懒汉模式-线程安全" class="headerlink" title="懒汉模式 线程安全"></a>懒汉模式 线程安全</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    // 将自身实例化对象设置为一个属性，并用static修饰</span><br><span class="line">    private static Singleton instance;</span><br><span class="line">    </span><br><span class="line">    // 构造方法私有化</span><br><span class="line">    private <span class="function"><span class="title">Singleton</span></span>() &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    // 静态方法返回该实例</span><br><span class="line">    public static Singleton <span class="function"><span class="title">getInstance</span></span>() &#123;</span><br><span class="line">        // 第一次检查instance是否被实例化出来，如果没有进入<span class="keyword">if</span>块</span><br><span class="line">        <span class="keyword">if</span>(instance == null) &#123;</span><br><span class="line">            synchronized (Singleton.class) &#123;</span><br><span class="line">                // 某个线程取得了类锁，实例化对象前第二次检查instance是否已经被实例化出来，如果没有，才最终实例出对象</span><br><span class="line">                <span class="keyword">if</span> (instance == null) &#123;</span><br><span class="line">                    instance = new Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>内存占用率高，效率高，线程安全，多线程</p>
+<h3 id="懒汉模式内部类"><a href="#懒汉模式内部类" class="headerlink" title="懒汉模式内部类"></a>懒汉模式内部类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">	private <span class="function"><span class="title">Singleton</span></span>()&#123;&#125;</span><br><span class="line"></span><br><span class="line">	private statc class SingletonInstance&#123;</span><br><span class="line">		private static final Singleton singleton = new Singleton();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static Singleton <span class="function"><span class="title">getInstance</span></span>()&#123;</span><br><span class="line">		<span class="built_in">return</span> SingletonInstance.singleton</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>静态内部类方式在Singleton类被装载时并不会立即实例化，而是在需要实例化 时，调用getInstance方法，才会装载SingletonInstance类，从而完成Singleton的 实例化。</p>
+<p>类的静态属性只会在第一次加载类的时候初始化，所以在这里，JVM帮助我们 保证了线程的安全性，在类进行初始化时，别的线程是无法进入的。</p>
+<p>优点：避免了线程不安全，利用静态内部类特点实现延迟加载，效率高 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/23/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" data-id="ckd18ej7y000idoud9m8t4wr9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/30/Batis/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Mybatis
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/14/io%E6%B5%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">io流</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/21/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">十进制转换</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/04/SringBoot/">SringBoot</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/09/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/">建造者模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/31/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/">抽象工厂</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/30/Batis/">Mybatis</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

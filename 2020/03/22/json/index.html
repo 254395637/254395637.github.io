@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>json | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="请求类型为JSONarray [{“name”:”123”,”groos”:}]12345678910111213@RequestBody JSONarray obj&#x2F;&#x2F;List&lt;Object&gt; get &#x3D; new ArrayList&lt;&gt;();这里获取的集合类 可以写成person类在里面定义好 循环person类设置属性再添加到集合里Map&lt;String,Objec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="json">
+<meta property="og:url" content="http://yoursite.com/2020/03/22/json/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="请求类型为JSONarray [{“name”:”123”,”groos”:}]12345678910111213@RequestBody JSONarray obj&#x2F;&#x2F;List&lt;Object&gt; get &#x3D; new ArrayList&lt;&gt;();这里获取的集合类 可以写成person类在里面定义好 循环person类设置属性再添加到集合里Map&lt;String,Objec">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-22T07:39:55.000Z">
+<meta property="article:modified_time" content="2020-05-12T07:13:20.878Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-json" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/22/json/" class="article-date">
+  <time datetime="2020-03-22T07:39:55.000Z" itemprop="datePublished">2020-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      json
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="请求类型为JSONarray-“name”-”123”-”groos”"><a href="#请求类型为JSONarray-“name”-”123”-”groos”" class="headerlink" title="请求类型为JSONarray [{“name”:”123”,”groos”:}]"></a>请求类型为JSONarray [{“name”:”123”,”groos”:}]</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@RequestBody JSONarray obj</span><br><span class="line"></span><br><span class="line">//List&lt;Object&gt; get = new ArrayList&lt;&gt;();</span><br><span class="line">这里获取的集合类 可以写成person类在里面定义好 循环person类设置属性再添加到集合里</span><br><span class="line">Map&lt;String,Object&gt; map = new HashMap&lt;&gt;();</span><br><span class="line"><span class="keyword">for</span>(int i =0;i&lt;obj.size();i++)&#123;</span><br><span class="line">    //获取第一组&#123;&#125;</span><br><span class="line">    JSONObject jsonObject=obj.getJSONObject(i);</span><br><span class="line">    //get.add(jsonObject.getString(<span class="string">"name"</span>));</span><br><span class="line">    //get.add(jsonObject.getString(<span class="string">"date"</span>));</span><br><span class="line">    map.put(jsonObject.getString(<span class="string">"date"</span>),jsonObject.getString(<span class="string">"name"</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="存放json"><a href="#存放json" class="headerlink" title="存放json"></a>存放json</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var <span class="variable">$lists</span> = new Array();</span><br><span class="line"></span><br><span class="line">var <span class="variable">$list</span> = &#123;</span><br><span class="line">    <span class="string">"name"</span>:Number($(this).siblings(<span class="string">".id"</span>).text()),</span><br><span class="line">    <span class="string">"date"</span>:$(this).siblings(<span class="string">".data"</span>).text()</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable">$lists</span>.push(<span class="variable">$list</span>)</span><br><span class="line"></span><br><span class="line">存储id</span><br><span class="line">var <span class="variable">$lists</span> = new Array();</span><br><span class="line"></span><br><span class="line"><span class="variable">$lists</span>.push(Number($(this).siblings(<span class="string">".id"</span>).text()));</span><br><span class="line"></span><br><span class="line">[1,2,3,4,5]</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="循环遍历json数据"><a href="#循环遍历json数据" class="headerlink" title="循环遍历json数据"></a>循环遍历json数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">var $lists &#x3D; new Array();</span><br><span class="line">$(&quot;.list_check&quot;).each(function (index,ele) &#123;</span><br><span class="line">    if($(ele).attr(&quot;class&quot;).indexOf(&quot;list_checked&quot;)!&#x3D;-1)&#123;</span><br><span class="line">        var $list &#x3D; &#123;</span><br><span class="line">            &quot;name&quot;:Number($(this).siblings(&quot;.id&quot;).text()),</span><br><span class="line">            &quot;date&quot;:$(this).siblings(&quot;.data&quot;).text()</span><br><span class="line">        &#125;;</span><br><span class="line">        $lists.push($list)</span><br><span class="line">        &#x2F;&#x2F;$lists.push(Number($(this).siblings(&quot;.id&quot;).text()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">var json &#x3D; JSON.stringify($lists);</span><br><span class="line">console.log(json);</span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    type:&quot;post&quot;,</span><br><span class="line">    url:&quot;DeleteId&quot;,</span><br><span class="line">    data:json,</span><br><span class="line">    dataType: &quot;json&quot;,</span><br><span class="line">    contentType: &quot;application&#x2F;json;charset&#x3D;UTF-8&quot;,</span><br><span class="line">    cache:false,</span><br><span class="line">    async:false,</span><br><span class="line">    success:function (data) &#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="请求json出现的问题"><a href="#请求json出现的问题" class="headerlink" title="请求json出现的问题"></a>请求json出现的问题</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">端口415 查看请求头</span><br><span class="line"></span><br><span class="line">contentType: <span class="string">"application/json;charset=UTF-8"</span></span><br><span class="line"></span><br><span class="line">端口400错误检查 查看后端请求参数</span><br><span class="line"></span><br><span class="line">当请求json的时候,它会去查看你data的是什么东西 并且设置response响应头 text/html application/json</span><br><span class="line"></span><br><span class="line">当出现text/html 传的是json 那么响应头需要是application/json</span><br><span class="line"></span><br><span class="line">dataType: <span class="string">"json"</span>, 接收参数类型 默认接收是任意类型</span><br><span class="line">设置请求头 contentType: <span class="string">"application/json;charset=UTF-8"</span>, 默认的话是 x-什么。。。</span><br><span class="line"></span><br><span class="line">请求通过到后端 Srping mvc 有@RequestPram(<span class="string">"id"</span>) String id 这种的话相当于 Request.getparam...获取值 data&#123;id:<span class="string">"name"</span>&#125;</span><br><span class="line"></span><br><span class="line">@RequestBody JSONarray array 这种注解它会自动将data里面全部json数据转换成java对象 所以不用String 去接收属性</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取json字符串"><a href="#获取json字符串" class="headerlink" title="获取json字符串"></a>获取json字符串</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">var myObj = &#123;</span><br><span class="line">    <span class="string">"name"</span>:<span class="string">"w3cschool"</span>,</span><br><span class="line">    <span class="string">"alexa"</span>:8000,</span><br><span class="line">    <span class="string">"sites"</span>:[ &#123;</span><br><span class="line">        <span class="string">"site1"</span>:[&#123;</span><br><span class="line">            <span class="string">"name"</span>:<span class="string">"2"</span>,</span><br><span class="line">            <span class="string">"age"</span>:<span class="string">"3"</span></span><br><span class="line">        &#125;],</span><br><span class="line">        <span class="string">"site2"</span>:<span class="string">"m.w3cschool"</span>,</span><br><span class="line">        <span class="string">"site3"</span>:<span class="string">"www.w3cschool111111"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"site1"</span>:[&#123;</span><br><span class="line">            <span class="string">"name"</span>:<span class="string">"222"</span>,</span><br><span class="line">            <span class="string">"age"</span>:<span class="string">"5"</span></span><br><span class="line">        &#125;],</span><br><span class="line">        <span class="string">"site2"</span>:<span class="string">"m.cainiao.cn"</span>,</span><br><span class="line">        <span class="string">"site3"</span>:<span class="string">"www.cainiao.cn/json/"</span></span><br><span class="line">    &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line">$.each(myObj, <span class="keyword">function</span>(k,v) &#123;</span><br><span class="line">    console.log(k);</span><br><span class="line">    //将v的数组json打印 如不是json数组将忽略</span><br><span class="line">    $.each($(v),<span class="keyword">function</span>(ele,index)&#123;</span><br><span class="line">        //数组内</span><br><span class="line">        $.each(index.site1,<span class="keyword">function</span>(ele,index)&#123;</span><br><span class="line">            console.log(index.age)</span><br><span class="line">            console.log(index.name)</span><br><span class="line">        &#125;)</span><br><span class="line">        console.log(index)</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">    console.log(v);</span><br><span class="line">    </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Requestbody"><a href="#Requestbody" class="headerlink" title="@Requestbody"></a>@Requestbody</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">          url:<span class="string">"PreviousArticle"</span>,</span><br><span class="line">          <span class="built_in">type</span>:<span class="string">"post"</span>,</span><br><span class="line">          data:JSON.stringify(&#123;<span class="string">"id"</span>:id&#125;),</span><br><span class="line">          cache:<span class="literal">false</span>,</span><br><span class="line">          async:<span class="literal">false</span>,</span><br><span class="line">          dataType:<span class="string">'json'</span>,</span><br><span class="line">          contentType:<span class="string">"application/json"</span>,</span><br><span class="line">          success:<span class="keyword">function</span>(data)&#123;</span><br><span class="line">              console.log(data)</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line">@RequestMapping(<span class="string">"/PreviousArticle"</span>)</span><br><span class="line">@ResponseBody</span><br><span class="line">public String PreviousArticle(@RequestBody JSONObject json)&#123;</span><br><span class="line">    System.out.println(json.get(<span class="string">"id"</span>));</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/22/json/" data-id="ckd18ej7u000cdoud8tsscuit" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/22/%E5%8A%A8%E6%80%81sql/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          动态sql
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/13/io%E6%B5%81%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">io流新建文章</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/21/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">十进制转换</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/04/SringBoot/">SringBoot</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/09/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/">建造者模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/31/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/">抽象工厂</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/30/Batis/">Mybatis</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

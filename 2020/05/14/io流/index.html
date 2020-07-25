@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>io流 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="InputStream类FileOutputStream(File file)FileOutputStream(String name) 123456FileOutputStream outputStream &#x3D; new FileOutputStream(&quot;a.txt&quot;);OutputStream outputStream &#x3D; new FileOutputStream(&quot;a.txt&quot;);它的父类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="io流">
+<meta property="og:url" content="http://yoursite.com/2020/05/14/io%E6%B5%81/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="InputStream类FileOutputStream(File file)FileOutputStream(String name) 123456FileOutputStream outputStream &#x3D; new FileOutputStream(&quot;a.txt&quot;);OutputStream outputStream &#x3D; new FileOutputStream(&quot;a.txt&quot;);它的父类">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-14T08:19:51.000Z">
+<meta property="article:modified_time" content="2020-07-20T13:18:22.220Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-io流" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/14/io%E6%B5%81/" class="article-date">
+  <time datetime="2020-05-14T08:19:51.000Z" itemprop="datePublished">2020-05-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      io流
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="InputStream类"><a href="#InputStream类" class="headerlink" title="InputStream类"></a>InputStream类</h3><p>FileOutputStream(File file)<br>FileOutputStream(String name)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FileOutputStream outputStream = new FileOutputStream(<span class="string">"a.txt"</span>);</span><br><span class="line">OutputStream outputStream = new FileOutputStream(<span class="string">"a.txt"</span>);它的父类 加参数<span class="literal">true</span>为追加 不加置为覆盖</span><br><span class="line"></span><br><span class="line">outputStream.write(<span class="string">""</span>.getBytes()) </span><br><span class="line"></span><br><span class="line">outputStream.close() 关闭流</span><br></pre></td></tr></table></figure>
+<p>通过字节流<br>public void write(int b) ask码<br>public void write(byte[] b) 字节<br>public void write(byte[] b,int off,int len)</p>
+<p>byte[] bys={97,98,99,100,101};<br>outputStream.write(bys,1,3); 文本中出现bcd</p>
+<h3 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream inputStream = new FileInputStream(<span class="string">"a.txt"</span>);</span><br><span class="line">//读一个字节</span><br><span class="line">int by = 0;</span><br><span class="line"><span class="keyword">while</span> ((by=inputStream.read())!=-1)&#123;</span><br><span class="line">      System.out.println((char)by);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//读一个字节数组，一般是1024大小</span><br><span class="line">int len = 0 ;</span><br><span class="line">byte[] bys = new byte[1024];</span><br><span class="line"><span class="keyword">while</span> ((len = inputStream.read(bys)) != -1) &#123;</span><br><span class="line">    System.out.println(new String(bys,0,len));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>两个read的返回值略有不同，read()返回读取的字节，读到末尾返回-1，read(byte[] b)返回的是读到的字节个数，读到的字节放在了bytes字节数组里，读到末尾没数据了返回-1。</p>
+<h3 id="下载文件"><a href="#下载文件" class="headerlink" title="下载文件"></a>下载文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream inputStream = new FileInputStream(<span class="string">"a.txt"</span>);</span><br><span class="line">FileOutputStream outputStream = new FileOutputStream(<span class="string">"E:\\古月.jpg"</span>);</span><br><span class="line"></span><br><span class="line">//读一个字节数组，一般是1024大小</span><br><span class="line">int len = 0 ;</span><br><span class="line">byte[] bys = new byte[1024];</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> ((len = inputStream.read(bys)) != -1) &#123;</span><br><span class="line">    outputStream.write(bys,0,len);</span><br><span class="line">&#125;</span><br><span class="line">inputStream.close();</span><br><span class="line">outputStream.close();</span><br></pre></td></tr></table></figure>
+
+<h3 id="缓冲流"><a href="#缓冲流" class="headerlink" title="缓冲流"></a>缓冲流</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(<span class="string">"E:\\modern-java.pdf"</span>));</span><br><span class="line">BufferedInputStream bis = new BufferedInputStream(new FileInputStream(<span class="string">"F:\\汤包\\慕课大巴\\modern-java.pdf"</span>));</span><br><span class="line">int len = 0;</span><br><span class="line">byte[] bytes =new byte[1024];</span><br><span class="line"><span class="keyword">while</span> ((len=bis.read(bytes)) != -1) &#123;</span><br><span class="line">    bos.write(bytes,0,len);</span><br><span class="line">&#125;</span><br><span class="line">bis.close();</span><br><span class="line">bos.close();</span><br></pre></td></tr></table></figure>
+
+<h3 id="将字节流转换为字符串"><a href="#将字节流转换为字符串" class="headerlink" title="将字节流转换为字符串"></a>将字节流转换为字符串</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">File file&#x3D;new File(realPath);</span><br><span class="line">FileInputStream in &#x3D; new FileInputStream(file);	&#x2F;&#x2F;文件读取</span><br><span class="line">String str &#x3D; &quot;&quot;;</span><br><span class="line">int size&#x3D;in.available();&#x2F;&#x2F;获取文件流</span><br><span class="line">byte[] buffer&#x3D;new byte[size];&#x2F;&#x2F;初始化byte 字节大小</span><br><span class="line">in.read(buffer);&#x2F;&#x2F;将文件读一次流</span><br><span class="line">in.close();</span><br><span class="line">str&#x3D;new String(buffer,&quot;ISO-8859-1&quot;);将字符串赋值为buffer 并且设置编码</span><br><span class="line">good.setStrimg(str);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> File file &#x3D; new File(path);&#x2F;&#x2F;获取路径文件</span><br><span class="line">if(!file.exists())&#123;判断文件是否存在</span><br><span class="line">    System.out.println(&quot;&#x2F;加载中&quot;);</span><br><span class="line">    byte[] bys &#x3D; article.getStrimg().getBytes(&quot;ISO-8859-1&quot;);&#x2F;&#x2F;将string以xxx编码初始化为bys大小</span><br><span class="line">    FileOutputStream outputStream &#x3D; new FileOutputStream(file);&#x2F;&#x2F;写入文件</span><br><span class="line">    InputStream is &#x3D; new ByteArrayInputStream(bys);&#x2F;&#x2F;将bys读取</span><br><span class="line">    int len &#x3D; 0;</span><br><span class="line">    byte[] buff &#x3D; new byte[1024];</span><br><span class="line">    while((len &#x3D; is.read(buff))!&#x3D;-1) &#123;</span><br><span class="line">        outputStream.write(buff, 0, len);&#x2F;&#x2F;写入文件</span><br><span class="line">    &#125;</span><br><span class="line">    is.close();</span><br><span class="line">    outputStream.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>文件的编码默认为ISO-8859-1</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/14/io%E6%B5%81/" data-id="ckd18ej7r0009douddhrda06m" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/23/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          单例模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/12/LinkedList/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">LineList</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/21/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">十进制转换</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/04/SringBoot/">SringBoot</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/09/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/">建造者模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/31/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/">抽象工厂</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/30/Batis/">Mybatis</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

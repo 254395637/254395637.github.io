@@ -5,13 +5,17 @@
   
 
   
-  <title>Archives: 2020/7 | Hexo</title>
+  <title>关于session错误 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2020/07/index.html">
+  <meta name="description" content="使用spring mvc进行Java web开发时，如果同时使用@SessionAttributes 和@ResponseBody注解，就会出现 “java.lang.IllegalStateException: Cannot create a session after the response has been committed ”这个错误。这是为什么呢，因为我们在创建session前，已经">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于session错误">
+<meta property="og:url" content="http://yoursite.com/2020/03/31/%E5%85%B3%E4%BA%8Esession%E9%94%99%E8%AF%AF/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="使用spring mvc进行Java web开发时，如果同时使用@SessionAttributes 和@ResponseBody注解，就会出现 “java.lang.IllegalStateException: Cannot create a session after the response has been committed ”这个错误。这是为什么呢，因为我们在创建session前，已经">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-31T02:52:31.000Z">
+<meta property="article:modified_time" content="2020-03-31T02:53:24.285Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -62,59 +66,88 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/07/21/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/" class="archive-article-date">
-  <time datetime="2020-07-21T07:37:02.000Z" itemprop="datePublished">Jul 21</time>
+        <section id="main"><article id="post-关于session错误" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/31/%E5%85%B3%E4%BA%8Esession%E9%94%99%E8%AF%AF/" class="article-date">
+  <time datetime="2020-03-31T02:52:31.000Z" itemprop="datePublished">2020-03-31</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/21/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">十进制转换</a>
+    <h1 class="article-title" itemprop="name">
+      关于session错误
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/07/04/SringBoot/" class="archive-article-date">
-  <time datetime="2020-07-04T08:05:27.000Z" itemprop="datePublished">Jul 4</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/04/SringBoot/">SringBoot</a>
-    </h1>
-  
+        <p>使用spring mvc进行Java web开发时，如果同时使用@SessionAttributes 和@ResponseBody注解，就会出现</p>
+<p>“java.lang.IllegalStateException: Cannot create a session after the response has been committed ”这个错误。这是为什么呢，因为我们在创建session前，已经将response进行了提交。</p>
+<p>下面通过一个例子进行说明：</p>
+<p>@Controller<br>@RequestMapping(“/“)<br>@SessionAttributes(value = {“user”})<br>public class UserController {</p>
+<pre><code>@ResponseBody
+@RequestMapping(&quot;add&quot;)
+public String method1(ModelMap map) {
 
-    </header>
+    User user = new User();
+    map.addAttribute(&quot;user&quot;, user);
+    return &quot;success&quot;;
+}
+
+@ResponseBody
+@RequestMapping(&quot;update&quot;)
+public String method2(ModelMap map ) {
+    System.out.println(map.get(&quot;user&quot;));
+    return &quot;success&quot;;
+}</code></pre><p>}</p>
+<p>当访问method1时，就会报上面错误。原因是@SessionAttributes中定义了ModelMap中哪些属性将要存入session中。因为这个存入session的动作是在method1方法结束后发生的，而return 语句一结束，response就会立即被返回，因此就会造成</p>
+<p>“Cannot not create session after response has been committed”。</p>
+<p>解决方法：</p>
+<p>在return之前，创建自己的session，即将上面的method1变成如下：</p>
+<p>@ResponseBody<br>    @RequestMapping(“add”)<br>    public String method1(ModelMap map， HttpSession session) {</p>
+<pre><code>    User user = new User();
+    map.addAttribute(&quot;user&quot;, user);
+    return &quot;success&quot;;
+}</code></pre><p>这样就能保证在return之前，session已将被创建。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/31/%E5%85%B3%E4%BA%8Esession%E9%94%99%E8%AF%AF/" data-id="ckd18ej7w000fdoudhw30h0xa" class="article-share-link">Share</a>
+      
+      
+    </footer>
   </div>
-</article>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/16/input%E7%84%A6%E7%82%B9/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          input焦点
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2020/03/28/%E5%85%B3%E4%BA%8E%E5%89%8D%E5%8F%B0%E4%BC%A0%E5%80%BC%E5%88%B0%E5%90%8E%E5%8F%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">关于前台传值到后台</div>
+    </a>
   
+</nav>
 
+  
+</article>
 
 </section>
         

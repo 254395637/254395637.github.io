@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-关于session错误" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/31/%E5%85%B3%E4%BA%8Esession%E9%94%99%E8%AF%AF/" class="article-date">
+  <time datetime="2020-03-31T02:52:31.000Z" itemprop="datePublished">2020-03-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/31/%E5%85%B3%E4%BA%8Esession%E9%94%99%E8%AF%AF/">关于session错误</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用spring mvc进行Java web开发时，如果同时使用@SessionAttributes 和@ResponseBody注解，就会出现</p>
+<p>“java.lang.IllegalStateException: Cannot create a session after the response has been committed ”这个错误。这是为什么呢，因为我们在创建session前，已经将response进行了提交。</p>
+<p>下面通过一个例子进行说明：</p>
+<p>@Controller<br>@RequestMapping(“/“)<br>@SessionAttributes(value = {“user”})<br>public class UserController {</p>
+<pre><code>@ResponseBody
+@RequestMapping(&quot;add&quot;)
+public String method1(ModelMap map) {
+
+    User user = new User();
+    map.addAttribute(&quot;user&quot;, user);
+    return &quot;success&quot;;
+}
+
+@ResponseBody
+@RequestMapping(&quot;update&quot;)
+public String method2(ModelMap map ) {
+    System.out.println(map.get(&quot;user&quot;));
+    return &quot;success&quot;;
+}</code></pre><p>}</p>
+<p>当访问method1时，就会报上面错误。原因是@SessionAttributes中定义了ModelMap中哪些属性将要存入session中。因为这个存入session的动作是在method1方法结束后发生的，而return 语句一结束，response就会立即被返回，因此就会造成</p>
+<p>“Cannot not create session after response has been committed”。</p>
+<p>解决方法：</p>
+<p>在return之前，创建自己的session，即将上面的method1变成如下：</p>
+<p>@ResponseBody<br>    @RequestMapping(“add”)<br>    public String method1(ModelMap map， HttpSession session) {</p>
+<pre><code>    User user = new User();
+    map.addAttribute(&quot;user&quot;, user);
+    return &quot;success&quot;;
+}</code></pre><p>这样就能保证在return之前，session已将被创建。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/31/%E5%85%B3%E4%BA%8Esession%E9%94%99%E8%AF%AF/" data-id="ckd18ej7w000fdoudhw30h0xa" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-关于前台传值到后台" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/28/%E5%85%B3%E4%BA%8E%E5%89%8D%E5%8F%B0%E4%BC%A0%E5%80%BC%E5%88%B0%E5%90%8E%E5%8F%B0/" class="article-date">
+  <time datetime="2020-03-28T08:09:31.000Z" itemprop="datePublished">2020-03-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/28/%E5%85%B3%E4%BA%8E%E5%89%8D%E5%8F%B0%E4%BC%A0%E5%80%BC%E5%88%B0%E5%90%8E%E5%8F%B0/">关于前台传值到后台</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="关于ajax的data"><a href="#关于ajax的data" class="headerlink" title="关于ajax的data"></a>关于ajax的data</h3><p>data<br>类型：String<br>发送到服务器的数据。将自动转换为请求字符串格式。GET 请求中将附加在 URL 后。查看 processData 选项说明以禁止此自动转换。必须为 Key/Value 格式。如果为数组，jQuery 将自动为不同值对应同一个名称。如 {foo:[“bar1”, “bar2”]} 转换为 ‘&amp;foo=bar1&amp;foo=bar2’。</p>
+<p>当使用ajax的时候，contentType是默认的情况下，<br>后台使用自动注入值是没有问题的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(/)</span><br><span class="line">public String show(默认可以自动注入实体类)&#123;</span><br><span class="line">	这里是获取值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="那么当不使用注入实体类的话，默认String-也会根据类型而注入-但一般只能根据字符串赋值-因为前端的data是字符串"><a href="#那么当不使用注入实体类的话，默认String-也会根据类型而注入-但一般只能根据字符串赋值-因为前端的data是字符串" class="headerlink" title="那么当不使用注入实体类的话，默认String 也会根据类型而注入 但一般只能根据字符串赋值 因为前端的data是字符串"></a>那么当不使用注入实体类的话，默认String 也会根据类型而注入 但一般只能根据字符串赋值 因为前端的data是字符串</h3><p>@RequestPram</p>
+<h3 id="当请求-RequstBody的话"><a href="#当请求-RequstBody的话" class="headerlink" title="当请求@RequstBody的话"></a>当请求@RequstBody的话</h3><p>那么返回必须为json字符串，而且需要用实体类来自动注入 而注入是通过用set根据命名来注入，所以名字不能乱，如果乱的话会导致参数为null，那么就会报error 一般是400参数异常<br>前端 需要加上请求头json</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/28/%E5%85%B3%E4%BA%8E%E5%89%8D%E5%8F%B0%E4%BC%A0%E5%80%BC%E5%88%B0%E5%90%8E%E5%8F%B0/" data-id="ckd18ej7v000edoudea7nfj7r" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-自定义异常类" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/28/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8%E7%B1%BB/" class="article-date">
+  <time datetime="2020-03-28T07:51:20.000Z" itemprop="datePublished">2020-03-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/28/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8%E7%B1%BB/">自定义异常类</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="自定义异常类"><a href="#自定义异常类" class="headerlink" title="自定义异常类"></a>自定义异常类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class (命名)Exception extends Exception&#123;</span><br><span class="line">	public (命名)Exception(String errorMessage)&#123;</span><br><span class="line">		//重写父类的异常打印信息</span><br><span class="line">		super(errorMessage);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="抛出自定义异常"><a href="#抛出自定义异常" class="headerlink" title="抛出自定义异常"></a>抛出自定义异常</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public void verity() throws Exception&#123;</span><br><span class="line">	<span class="keyword">if</span>(age&gt;100)&#123;</span><br><span class="line">		throws new (命名)Exception(<span class="string">"报错"</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/28/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8%E7%B1%BB/" data-id="ckd18ej85000qdoud90pacwml" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-后台分页" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/22/%E5%90%8E%E5%8F%B0%E5%88%86%E9%A1%B5/" class="article-date">
+  <time datetime="2020-03-22T13:06:13.000Z" itemprop="datePublished">2020-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/22/%E5%90%8E%E5%8F%B0%E5%88%86%E9%A1%B5/">后台分页</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="后台"><a href="#后台" class="headerlink" title="后台"></a>后台</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(<span class="string">"/Blog"</span>)</span><br><span class="line">public String show(@RequestParam(value = <span class="string">"currentpage"</span>,required = <span class="literal">false</span>) String currentpage,Model model)&#123;</span><br><span class="line">    //总数据</span><br><span class="line">    int count = articleservice.articletotal();</span><br><span class="line">    List&lt;Article&gt; article = null;</span><br><span class="line">    将页面设置为1</span><br><span class="line">    <span class="keyword">if</span>(currentpage==null) &#123;</span><br><span class="line">        currentpage = <span class="string">"1"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    int Currentpage = Integer.parseInt(currentpage);</span><br><span class="line">    //分页大小</span><br><span class="line">    int Pagesize = 4;</span><br><span class="line">    请求数据每次减一 因为mysql是从0开始查询数据<span class="built_in">limit</span></span><br><span class="line">    article = articleservice.SelectPage((Currentpage-1)*Pagesize,Pagesize);</span><br><span class="line">    分页工具类</span><br><span class="line">    ArticlePage page = new ArticlePage();</span><br><span class="line">    当前页面</span><br><span class="line">    page.setCurrentPage(<span class="string">""</span>+(Currentpage));</span><br><span class="line">    左2右2</span><br><span class="line">    page.setAddPage(<span class="string">""</span>+(Currentpage+2));</span><br><span class="line">    分页数据</span><br><span class="line">    page.setArticle(article);</span><br><span class="line">    总页面 当总数据除分页大小 如果不整除的话加1</span><br><span class="line">    page.setTotalPage(count%Pagesize==0?<span class="string">""</span>+count/Pagesize:<span class="string">""</span>+(count/Pagesize+1));</span><br><span class="line">   	</span><br><span class="line">    这里可以设置当前页面首页出现几页出来和末尾出来</span><br><span class="line"></span><br><span class="line">   	设置属性</span><br><span class="line">    model.addAttribute(<span class="string">"page"</span>,page);</span><br><span class="line">    System.out.println(count);</span><br><span class="line">    <span class="built_in">return</span> <span class="string">"Home"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="前台"><a href="#前台" class="headerlink" title="前台"></a>前台</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">//总页等于尾页</span><br><span class="line">var totalpage = [[<span class="variable">$&#123;page.TotalPage&#125;</span>]]</span><br><span class="line">//当前页面</span><br><span class="line">var currentpage = [[<span class="variable">$&#123;page.CurrentPage&#125;</span>]]</span><br><span class="line">//增加页面</span><br><span class="line">var addpage = [[<span class="variable">$&#123;page.addPage&#125;</span>]]</span><br><span class="line">//这里可以获取一个后台来的属性 设置首页要显示几个页面选择和尾页显示几个页面选择 这里我是默认为5</span><br><span class="line">//页面属性class</span><br><span class="line">var <span class="variable">$page</span> = $(<span class="string">".page"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(+currentpage&lt;=+totalpage)&#123;</span><br><span class="line">    //分页</span><br><span class="line">    <span class="keyword">if</span>(currentpage==totalpage)&#123;</span><br><span class="line">        <span class="keyword">if</span>(totalpage&gt;=5)&#123;</span><br><span class="line">            <span class="keyword">for</span>(var count = totalpage-4; count&lt;totalpage; count++)&#123;</span><br><span class="line">                <span class="variable">$page</span>.append($(<span class="string">'&lt;a href="manage?currentpage='</span>+count+<span class="string">'" class="content_in_page"&gt;'</span>+count+<span class="string">'&lt;/a&gt;'</span>))</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(var count = 1;count&lt;totalpage;count++)&#123;</span><br><span class="line">                <span class="variable">$page</span>.append($(<span class="string">'&lt;a class="content_in_page" href="manage?currentpage='</span>+count+<span class="string">'"  &gt;'</span>+count+<span class="string">'&lt;/a&gt;'</span>))</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //这个为尾页也是当前页</span><br><span class="line">        <span class="variable">$page</span>.append($(<span class="string">'&lt;a href="manage?currentpage='</span>+currentpage+<span class="string">'" class="content_in_page currentpage"&gt;'</span>+currentpage+<span class="string">'&lt;/a&gt;'</span>))</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(currentpage==1)&#123;</span><br><span class="line">        //循环前五个页面出来</span><br><span class="line">        <span class="keyword">if</span>(totalpage&gt;=5)&#123;</span><br><span class="line">            <span class="keyword">for</span>(var i = currentpage;i&lt;=5;i++)&#123;</span><br><span class="line">                //将当前页为蓝色</span><br><span class="line">                <span class="keyword">if</span>(i==currentpage)&#123;</span><br><span class="line">                    <span class="variable">$page</span>.append($(<span class="string">'&lt;a href="manage?currentpage='</span>+i+<span class="string">'" class="content_in_page currentpage"&gt;'</span>+i+<span class="string">'&lt;/a&gt;'</span>))</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="variable">$page</span>.append($(<span class="string">'&lt;a href="manage?currentpage='</span>+i+<span class="string">'" class="content_in_page"&gt;'</span>+i+<span class="string">'&lt;/a&gt;'</span>))</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            //尾页小于5</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(var i = currentpage;i&lt;=totalpage;i++)&#123;</span><br><span class="line">                //将当前页为蓝色</span><br><span class="line">                <span class="keyword">if</span>(i==currentpage)&#123;</span><br><span class="line">                    <span class="variable">$page</span>.append($(<span class="string">'&lt;a href="manage?currentpage='</span>+i+<span class="string">'" class="content_in_page currentpage"&gt;'</span>+i+<span class="string">'&lt;/a&gt;'</span>))</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="variable">$page</span>.append($(<span class="string">'&lt;a href="manage?currentpage='</span>+i+<span class="string">'" class="content_in_page"&gt;'</span>+i+<span class="string">'&lt;/a&gt;'</span>))</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        //分页格数</span><br><span class="line">        var addpagesize = addpage-currentpage;</span><br><span class="line">        var flag;</span><br><span class="line">        //倒数第二页 总页数-1</span><br><span class="line">        var lastbutone = Number(totalpage)-1;</span><br><span class="line">        //第二页 当前页加额外页面 -1</span><br><span class="line">        var secondpage = Number(currentpage)+Number(addpage)-1;</span><br><span class="line">        //当前页面等于第二页面时</span><br><span class="line">        <span class="keyword">if</span>(currentpage==2)&#123;</span><br><span class="line">            flag = secondpage;</span><br><span class="line">        //当前页面等于倒数第二页时</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(currentpage==lastbutone)&#123;</span><br><span class="line">            flag = lastbutone-(Number(addpage)-Number(currentpage))-1;</span><br><span class="line">        &#125;</span><br><span class="line">        //倒数第二页-（当前增加页面-当前页面）再减一 9-（12-9）-1</span><br><span class="line">        var lastPage = lastbutone-(Number(addpage)-Number(currentpage))-1;</span><br><span class="line">        //等于倒数第二页时</span><br><span class="line">        console.log(lastPage)</span><br><span class="line">        <span class="keyword">if</span> (flag==lastPage&amp;&amp;flag!=0) &#123;</span><br><span class="line">            <span class="variable">$page</span>.append($(<span class="string">'&lt;a href="manage?currentpage='</span>+flag+<span class="string">'" class="content_in_page"&gt;'</span>+flag+<span class="string">'&lt;/a&gt;'</span>))</span><br><span class="line">        &#125;</span><br><span class="line">        //当点击页面为3时 那么就是前后加俩页 就为 1 2 3 4 5</span><br><span class="line">        <span class="keyword">for</span>(var i = currentpage-addpagesize;i&lt;=addpage;i++)&#123;</span><br><span class="line">            //大于等于1 并且 小于等于尾页</span><br><span class="line">            <span class="keyword">if</span>(i&gt;=1&amp;&amp;i&lt;=totalpage)&#123;</span><br><span class="line">                <span class="keyword">if</span>(i==currentpage)&#123;</span><br><span class="line">                    //打印当前页面</span><br><span class="line">                    <span class="variable">$page</span>.append($(<span class="string">'&lt;a href="manage?currentpage='</span>+i+<span class="string">'" class="content_in_page currentpage"&gt;'</span>+i+<span class="string">'&lt;/a&gt;'</span>))</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="variable">$page</span>.append($(<span class="string">'&lt;a href="manage?currentpage='</span>+i+<span class="string">'" class="content_in_page"&gt;'</span>+i+<span class="string">'&lt;/a&gt;'</span>))</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //等于第二页时</span><br><span class="line">        <span class="keyword">if</span>(flag==secondpage&amp;&amp;flag&lt;totalpage)&#123;</span><br><span class="line">            <span class="variable">$page</span>.append($(<span class="string">'&lt;a href="manage?currentpage='</span>+flag+<span class="string">'" class="content_in_page"&gt;'</span>+flag+<span class="string">'&lt;/a&gt;'</span>))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/22/%E5%90%8E%E5%8F%B0%E5%88%86%E9%A1%B5/" data-id="ckd18ej7y000jdoud46mz5gma" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-动态sql" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/22/%E5%8A%A8%E6%80%81sql/" class="article-date">
+  <time datetime="2020-03-22T12:43:38.000Z" itemprop="datePublished">2020-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/22/%E5%8A%A8%E6%80%81sql/">动态sql</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="动态语句-where-if"><a href="#动态语句-where-if" class="headerlink" title="动态语句 where if"></a>动态语句 where if</h3><p>如果where语句会自动判断and 和 or 比如说如果第一个参数为null<br>那么语句就是SELECT * FROM BLOG AND title like #{title} where 语句会自动的去掉and<br>如果 不用where 可以用 1+1 and </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=<span class="string">"findActiveBlogLike"</span></span><br><span class="line">     resultType=<span class="string">"Blog"</span>&gt;</span><br><span class="line">  SELECT * FROM BLOG </span><br><span class="line">  &lt;<span class="built_in">where</span>&gt; </span><br><span class="line">    &lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"state != null"</span>&gt;</span><br><span class="line">         state = <span class="comment">#&#123;state&#125;</span></span><br><span class="line">    &lt;/<span class="keyword">if</span>&gt; </span><br><span class="line">    &lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"title != null"</span>&gt;</span><br><span class="line">        AND title like <span class="comment">#&#123;title&#125;</span></span><br><span class="line">    &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"author != null and author.name != null"</span>&gt;</span><br><span class="line">        AND author_name like <span class="comment">#&#123;author.name&#125;</span></span><br><span class="line">    &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">  &lt;/<span class="built_in">where</span>&gt;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="删除多个id-list-lt-属性-gt"><a href="#删除多个id-list-lt-属性-gt" class="headerlink" title="删除多个id list&lt;属性&gt;"></a>删除多个id list&lt;属性&gt;</h3><p>List<String> ids = new ArraryList<String>();<br>for(String id:ids){</p>
+<p>}<br>collection=”ids” 迭代头<br>item=”id” 迭代元素<br>open=” and id in (“ 循环开始<br>separator=”,” 分隔,<br>close=”)” 末尾<br>拼接 动态sql</p>
+<p>在接口请求时要用到@Parm(“指定”)<br>@Param(“ids”) List<Integer> idList</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;delete id=<span class="string">"DeleteArticleId"</span> parameterType=<span class="string">"这里可以指定实体类的集合 如果没有的话就在请求接口指定"</span>&gt;</span><br><span class="line">    delete from article</span><br><span class="line">    &lt;<span class="built_in">where</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"ids!=null and ids.size&gt;0"</span>&gt;</span><br><span class="line">            &lt;foreach item=<span class="string">"id"</span> collection=<span class="string">"ids"</span> open=<span class="string">" and id in ("</span> separator=<span class="string">","</span> close=<span class="string">")"</span>&gt;</span><br><span class="line">                <span class="comment">#&#123;id&#125;</span></span><br><span class="line">            &lt;/foreach&gt;</span><br><span class="line">        &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">    &lt;/<span class="built_in">where</span>&gt;</span><br><span class="line">&lt;/delete&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除多个id-int"><a href="#删除多个id-int" class="headerlink" title="删除多个id int[]"></a>删除多个id int[]</h3><p>当用数组 要指定int[] 类型 parameterType<br>数组默认属性命叫array</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;delete id=<span class="string">"DeleteArticleId"</span> parameterType=<span class="string">"int[]"</span>&gt;</span><br><span class="line">    delete from article</span><br><span class="line">    &lt;<span class="built_in">where</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"array!=null "</span>&gt;</span><br><span class="line">            &lt;foreach item=<span class="string">"id"</span> collection=<span class="string">"array"</span> open=<span class="string">" and id in ("</span> separator=<span class="string">","</span> close=<span class="string">")"</span>&gt;</span><br><span class="line">                <span class="comment">#&#123;id&#125;</span></span><br><span class="line">            &lt;/foreach&gt;</span><br><span class="line">        &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">    &lt;/<span class="built_in">where</span>&gt;</span><br><span class="line">&lt;/delete&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/22/%E5%8A%A8%E6%80%81sql/" data-id="ckd18ej7x000hdoud6o005wjl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-json" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/22/json/" class="article-date">
+  <time datetime="2020-03-22T07:39:55.000Z" itemprop="datePublished">2020-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/22/json/">json</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="请求类型为JSONarray-“name”-”123”-”groos”"><a href="#请求类型为JSONarray-“name”-”123”-”groos”" class="headerlink" title="请求类型为JSONarray [{“name”:”123”,”groos”:}]"></a>请求类型为JSONarray [{“name”:”123”,”groos”:}]</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@RequestBody JSONarray obj</span><br><span class="line"></span><br><span class="line">//List&lt;Object&gt; get = new ArrayList&lt;&gt;();</span><br><span class="line">这里获取的集合类 可以写成person类在里面定义好 循环person类设置属性再添加到集合里</span><br><span class="line">Map&lt;String,Object&gt; map = new HashMap&lt;&gt;();</span><br><span class="line"><span class="keyword">for</span>(int i =0;i&lt;obj.size();i++)&#123;</span><br><span class="line">    //获取第一组&#123;&#125;</span><br><span class="line">    JSONObject jsonObject=obj.getJSONObject(i);</span><br><span class="line">    //get.add(jsonObject.getString(<span class="string">"name"</span>));</span><br><span class="line">    //get.add(jsonObject.getString(<span class="string">"date"</span>));</span><br><span class="line">    map.put(jsonObject.getString(<span class="string">"date"</span>),jsonObject.getString(<span class="string">"name"</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="存放json"><a href="#存放json" class="headerlink" title="存放json"></a>存放json</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var <span class="variable">$lists</span> = new Array();</span><br><span class="line"></span><br><span class="line">var <span class="variable">$list</span> = &#123;</span><br><span class="line">    <span class="string">"name"</span>:Number($(this).siblings(<span class="string">".id"</span>).text()),</span><br><span class="line">    <span class="string">"date"</span>:$(this).siblings(<span class="string">".data"</span>).text()</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable">$lists</span>.push(<span class="variable">$list</span>)</span><br><span class="line"></span><br><span class="line">存储id</span><br><span class="line">var <span class="variable">$lists</span> = new Array();</span><br><span class="line"></span><br><span class="line"><span class="variable">$lists</span>.push(Number($(this).siblings(<span class="string">".id"</span>).text()));</span><br><span class="line"></span><br><span class="line">[1,2,3,4,5]</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="循环遍历json数据"><a href="#循环遍历json数据" class="headerlink" title="循环遍历json数据"></a>循环遍历json数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">var $lists &#x3D; new Array();</span><br><span class="line">$(&quot;.list_check&quot;).each(function (index,ele) &#123;</span><br><span class="line">    if($(ele).attr(&quot;class&quot;).indexOf(&quot;list_checked&quot;)!&#x3D;-1)&#123;</span><br><span class="line">        var $list &#x3D; &#123;</span><br><span class="line">            &quot;name&quot;:Number($(this).siblings(&quot;.id&quot;).text()),</span><br><span class="line">            &quot;date&quot;:$(this).siblings(&quot;.data&quot;).text()</span><br><span class="line">        &#125;;</span><br><span class="line">        $lists.push($list)</span><br><span class="line">        &#x2F;&#x2F;$lists.push(Number($(this).siblings(&quot;.id&quot;).text()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">var json &#x3D; JSON.stringify($lists);</span><br><span class="line">console.log(json);</span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    type:&quot;post&quot;,</span><br><span class="line">    url:&quot;DeleteId&quot;,</span><br><span class="line">    data:json,</span><br><span class="line">    dataType: &quot;json&quot;,</span><br><span class="line">    contentType: &quot;application&#x2F;json;charset&#x3D;UTF-8&quot;,</span><br><span class="line">    cache:false,</span><br><span class="line">    async:false,</span><br><span class="line">    success:function (data) &#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="请求json出现的问题"><a href="#请求json出现的问题" class="headerlink" title="请求json出现的问题"></a>请求json出现的问题</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">端口415 查看请求头</span><br><span class="line"></span><br><span class="line">contentType: <span class="string">"application/json;charset=UTF-8"</span></span><br><span class="line"></span><br><span class="line">端口400错误检查 查看后端请求参数</span><br><span class="line"></span><br><span class="line">当请求json的时候,它会去查看你data的是什么东西 并且设置response响应头 text/html application/json</span><br><span class="line"></span><br><span class="line">当出现text/html 传的是json 那么响应头需要是application/json</span><br><span class="line"></span><br><span class="line">dataType: <span class="string">"json"</span>, 接收参数类型 默认接收是任意类型</span><br><span class="line">设置请求头 contentType: <span class="string">"application/json;charset=UTF-8"</span>, 默认的话是 x-什么。。。</span><br><span class="line"></span><br><span class="line">请求通过到后端 Srping mvc 有@RequestPram(<span class="string">"id"</span>) String id 这种的话相当于 Request.getparam...获取值 data&#123;id:<span class="string">"name"</span>&#125;</span><br><span class="line"></span><br><span class="line">@RequestBody JSONarray array 这种注解它会自动将data里面全部json数据转换成java对象 所以不用String 去接收属性</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取json字符串"><a href="#获取json字符串" class="headerlink" title="获取json字符串"></a>获取json字符串</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">var myObj = &#123;</span><br><span class="line">    <span class="string">"name"</span>:<span class="string">"w3cschool"</span>,</span><br><span class="line">    <span class="string">"alexa"</span>:8000,</span><br><span class="line">    <span class="string">"sites"</span>:[ &#123;</span><br><span class="line">        <span class="string">"site1"</span>:[&#123;</span><br><span class="line">            <span class="string">"name"</span>:<span class="string">"2"</span>,</span><br><span class="line">            <span class="string">"age"</span>:<span class="string">"3"</span></span><br><span class="line">        &#125;],</span><br><span class="line">        <span class="string">"site2"</span>:<span class="string">"m.w3cschool"</span>,</span><br><span class="line">        <span class="string">"site3"</span>:<span class="string">"www.w3cschool111111"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"site1"</span>:[&#123;</span><br><span class="line">            <span class="string">"name"</span>:<span class="string">"222"</span>,</span><br><span class="line">            <span class="string">"age"</span>:<span class="string">"5"</span></span><br><span class="line">        &#125;],</span><br><span class="line">        <span class="string">"site2"</span>:<span class="string">"m.cainiao.cn"</span>,</span><br><span class="line">        <span class="string">"site3"</span>:<span class="string">"www.cainiao.cn/json/"</span></span><br><span class="line">    &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line">$.each(myObj, <span class="keyword">function</span>(k,v) &#123;</span><br><span class="line">    console.log(k);</span><br><span class="line">    //将v的数组json打印 如不是json数组将忽略</span><br><span class="line">    $.each($(v),<span class="keyword">function</span>(ele,index)&#123;</span><br><span class="line">        //数组内</span><br><span class="line">        $.each(index.site1,<span class="keyword">function</span>(ele,index)&#123;</span><br><span class="line">            console.log(index.age)</span><br><span class="line">            console.log(index.name)</span><br><span class="line">        &#125;)</span><br><span class="line">        console.log(index)</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">    console.log(v);</span><br><span class="line">    </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Requestbody"><a href="#Requestbody" class="headerlink" title="@Requestbody"></a>@Requestbody</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">          url:<span class="string">"PreviousArticle"</span>,</span><br><span class="line">          <span class="built_in">type</span>:<span class="string">"post"</span>,</span><br><span class="line">          data:JSON.stringify(&#123;<span class="string">"id"</span>:id&#125;),</span><br><span class="line">          cache:<span class="literal">false</span>,</span><br><span class="line">          async:<span class="literal">false</span>,</span><br><span class="line">          dataType:<span class="string">'json'</span>,</span><br><span class="line">          contentType:<span class="string">"application/json"</span>,</span><br><span class="line">          success:<span class="keyword">function</span>(data)&#123;</span><br><span class="line">              console.log(data)</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line">@RequestMapping(<span class="string">"/PreviousArticle"</span>)</span><br><span class="line">@ResponseBody</span><br><span class="line">public String PreviousArticle(@RequestBody JSONObject json)&#123;</span><br><span class="line">    System.out.println(json.get(<span class="string">"id"</span>));</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/22/json/" data-id="ckd18ej7u000cdoud8tsscuit" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-io流新建文章" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/13/io%E6%B5%81%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0/" class="article-date">
+  <time datetime="2020-03-13T05:37:32.000Z" itemprop="datePublished">2020-03-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/13/io%E6%B5%81%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0/">io流新建文章</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>//发布文章<br>@RequestMapping(“/show”)<br>@ResponseBody<br>public String publish(@RequestParam(“title”) String title,@RequestParam(“content”) String content,HttpServletRequest request) {<br>    String file = title+”.md”;<br>    Date date = new Date();<br>    String path = request.getServletContext().getRealPath(“/file/“);<br>    System.out.println(path);<br>    //判断博客名字是否存在 存在大于1 不存在0<br>    Article result  = articleservice.VerfiyArticleTitle(title);<br>    System.out.println(path);<br>    //创建字节输出流，绑定数据文件<br>    //创建转换流对象，构造方法，绑定字节输出流<br>    if(result==null) {<br>        try {<br>            OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(path+file),”UTF-8”);<br>            osw.write(content);<br>            Article article = new Article(title,file,date);<br>            articleservice.insert(article);<br>            osw.close();<br>        } catch (UnsupportedEncodingException | FileNotFoundException e) {<br>            // TODO Auto-generated catch block<br>            e.printStackTrace();<br>        } catch (IOException e) {<br>            // TODO Auto-generated catch block<br>            e.printStackTrace();<br>        }<br>        return “success”;<br>    }<br>    return “error”;<br>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/13/io%E6%B5%81%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0/" data-id="ckd18ej7p0008doud6y7r0itv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-md5加密" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/11/md5%E5%8A%A0%E5%AF%86/" class="article-date">
+  <time datetime="2020-03-11T06:57:08.000Z" itemprop="datePublished">2020-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/11/md5%E5%8A%A0%E5%AF%86/">md5加密</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">package testProject;</span><br><span class="line"></span><br><span class="line">import java.security.MessageDigest;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line">import java.util.Base64;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class <span class="built_in">test</span> &#123;</span><br><span class="line">    </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(login(<span class="string">"admin123456"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //pmq7VoTEWWLYh1ZPCDRujQ== 就是 admin123456</span><br><span class="line">   	默认加密号码</span><br><span class="line">    private static String savePassWord = <span class="string">"pmq7VoTEWWLYh1ZPCDRujQ=="</span>;</span><br><span class="line">    </span><br><span class="line">    public static boolean login(String password) &#123;</span><br><span class="line">        <span class="keyword">if</span>(savePassWord.equals(md5(password))) &#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    private static String md5(String password) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">        	//加密类型</span><br><span class="line">            MessageDigest md = MessageDigest.getInstance(<span class="string">"md5"</span>);</span><br><span class="line">            </span><br><span class="line">            //生成随机东东 不可逆</span><br><span class="line">            byte[] bytes = md.digest(password.getBytes());</span><br><span class="line">            //</span><br><span class="line">            String str = Base64.getEncoder().encodeToString(bytes);</span><br><span class="line">            </span><br><span class="line">            <span class="built_in">return</span> str;</span><br><span class="line">        &#125; catch (NoSuchAlgorithmException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/11/md5%E5%8A%A0%E5%AF%86/" data-id="ckd18ej7u000ddoud3ua84yeq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Date类" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/06/Date%E7%B1%BB/" class="article-date">
+  <time datetime="2020-03-06T06:32:45.000Z" itemprop="datePublished">2020-03-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/06/Date%E7%B1%BB/">Date类</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="java-Date类"><a href="#java-Date类" class="headerlink" title="java Date类"></a>java Date类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Date date = new Date();日期类</span><br><span class="line">system.out.println(<span class="string">"没有格式化时间"</span>+date);</span><br><span class="line">SimpleDateFormat format = new SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">这里格式化了时间 String str = format.format(date);</span><br></pre></td></tr></table></figure>
+<h3 id="插入数据库时的时间"><a href="#插入数据库时的时间" class="headerlink" title="插入数据库时的时间"></a>插入数据库时的时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Timestamp timePara = new Timestamp(new Date().getTime());这个date的子类</span><br><span class="line"></span><br><span class="line">Date date ;</span><br><span class="line">所以设置的时候可以将这个类设置为date的属性,不会丢失时间数</span><br></pre></td></tr></table></figure>
+
+<h3 id="注解形式的插入时间"><a href="#注解形式的插入时间" class="headerlink" title="注解形式的插入时间"></a>注解形式的插入时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@DateTimeFormat(pattern=<span class="string">"yyyy-MM-dd"</span>)//页面写入数据库时格式化</span><br><span class="line">Date datetime;</span><br><span class="line">这个是前端插入数据库</span><br><span class="line"></span><br><span class="line">这个是后端给前端响应 但是它只能实现@Responsebody</span><br><span class="line">@JsonFormat(pattern = <span class="string">"yyyy-MM-dd"</span>,timezone=<span class="string">"GMT+8"</span>)</span><br><span class="line">可以自动格式化时间</span><br></pre></td></tr></table></figure>
+
+<h3 id="用Thymeleaf插入时间"><a href="#用Thymeleaf插入时间" class="headerlink" title="用Thymeleaf插入时间"></a>用Thymeleaf插入时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如果引用的是对象 那么 date.getDate()</span><br><span class="line"><span class="string">"#dates.format(date,'dd/MMM/yyyy HH:mm')"</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/06/Date%E7%B1%BB/" data-id="ckd18ej7h0005douda7ejbgdd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-标签" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/%E6%A0%87%E7%AD%BE/" class="article-date">
+  <time datetime="2020-03-01T02:07:17.000Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/%E6%A0%87%E7%AD%BE/">标签&lt;url-pattern&gt;</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我们知道在写<url-pattern>时有一种通配符的使用写法，即*</p>
+<p>1.当我使用<url-pattern>/*</url-pattern>时，我们可以匹配所有的请求，即所有的请求都会经过该标签对应的Servlet</p>
+<p>此时就需要注意静态资源的请求，因为当我们使用<a href="http://localhost:8080/we/login.html时，依然会匹配该Servlet，" target="_blank" rel="noopener">http://localhost:8080/we/login.html时，依然会匹配该Servlet，</a></p>
+<p>而很多静态资源其实是不需要经过Servlet的，例如：js，css，html，jsp，img等静态资源文件，此时就需要在该Servlet中对静态资源做特殊处理</p>
+<p>2.如果配有如下两个<url-pattern>标签时，URL地址为<a href="http://localhost:8080/we/index时又是如何匹配的呢？" target="_blank" rel="noopener">http://localhost:8080/we/index时又是如何匹配的呢？</a></p>
+<p>url-pattern/index url-pattern</p>
+<p>url-pattern/*url-pattern</p>
+<p>上边我们已经说过，/*可以匹配所有的请求，而/index也可以匹配我们的URL地址，此时URL地址会自动且优先的进行精确匹配，即/index，</p>
+<p>且只匹配一次，也就是说一旦匹配到一个Servlet即执行该Servlet不再对其他Servlet进行匹配，</p>
+<p>当我们输入一个<a href="http://localhost:8080/we/login时，由于此时匹配不到/login所以只能匹配/*了" target="_blank" rel="noopener">http://localhost:8080/we/login时，由于此时匹配不到/login所以只能匹配/*了</a></p>
+<p>3.在Servlet Path部分我们还可以使用更精确的匹配，例如：</p>
+<p><url-pattern>/index/login</url-pattern>匹配<a href="http://localhost:8080/we/index/login" target="_blank" rel="noopener">http://localhost:8080/we/index/login</a></p>
+<p><url-pattern>/index/logout</url-pattern>匹配<a href="http://localhost:8080/we/index/logout" target="_blank" rel="noopener">http://localhost:8080/we/index/logout</a></p>
+<p>此时/index/login和/index/logout才是我们的Servlet Path</p>
+<p> 4.我们可以通过使用<url-pattern>*.do</url-pattern>来过滤请求，</p>
+<p>这样如果我们在页面中的请求中添加后缀名.do就可以避免对静态资源的过滤了，也就不需要对静态资源做特殊处理了</p>
+<p>注:<url-pattern>/</url-pattern>和<url-pattern>/*</url-pattern>效果是一样的</p>
+<p>/匹配url斜杆下不含后缀</p>
+<p>jsp是动态资源 当前/拦截的时候，图形解析器为jsp的话，会跳转到jsp。</p>
+<p>当/*的时候，它会拦截到所有资源路径。如还是jsp的话，将报404.（因为它相当于访问了静态资源）</p>
+<p><a href="mvc:annotation-driven/">mvc:annotation-driven/</a>拦截所有请求<br><a href="mvc:default-servlet-handler/">mvc:default-servlet-handler/</a>访问静态资源</p>
+<p>/*匹配 url 后缀 .jsp .html</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/%E6%A0%87%E7%AD%BE/" data-id="ckd18ej81000odoud1v2031rt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/21/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">十进制转换</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/04/SringBoot/">SringBoot</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/09/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/">建造者模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/31/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/">抽象工厂</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/30/Batis/">Mybatis</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
