@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    linux命令 |  Hexo
+    shiro |  Hexo
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -44,7 +44,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-linux命令"
+  id="post-shiro"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -55,22 +55,22 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  linux命令
+  shiro
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/08/10/linux%E5%91%BD%E4%BB%A4/" class="article-date">
-  <time datetime="2020-08-10T09:00:55.000Z" itemprop="datePublished">2020-08-10</time>
+      <a href="/2020/08/29/shiro/" class="article-date">
+  <time datetime="2020-08-29T04:41:54.000Z" itemprop="datePublished">2020-08-29</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">69</span>
+            <span class="post-count">406</span>
         </span>
     </span>
 
@@ -79,7 +79,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
@@ -94,14 +94,15 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h4 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-<h4 id="修改权限"><a href="#修改权限" class="headerlink" title="修改权限"></a>修改权限</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 777 公开权限 ./文件夹|文件名</span><br></pre></td></tr></table></figure>
-<h4 id="修改用户组"><a href="#修改用户组" class="headerlink" title="修改用户组"></a>修改用户组</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown 用户</span><br></pre></td></tr></table></figure>
-<h4 id="当前解压"><a href="#当前解压" class="headerlink" title="当前解压"></a>当前解压</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip ./文件.zip</span><br></pre></td></tr></table></figure>
-<h4 id="压缩命令"><a href="#压缩命令" class="headerlink" title="压缩命令"></a>压缩命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip -r FileName.zip ./文件</span><br></pre></td></tr></table></figure>
-<h4 id="删除命令"><a href="#删除命令" class="headerlink" title="删除命令"></a>删除命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -rf ./</span><br></pre></td></tr></table></figure>
-<h4 id="添加xxx"><a href="#添加xxx" class="headerlink" title="添加xxx"></a>添加xxx</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update </span><br><span class="line"></span><br><span class="line">sudo apt-get install xxx</span><br></pre></td></tr></table></figure>
-<pre><code class="bash"></code></pre>
+  <h3 id="shiro配置config"><a href="#shiro配置config" class="headerlink" title="shiro配置config"></a>shiro配置config</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">public class ShiroConfig &#123;</span><br><span class="line">    @Bean</span><br><span class="line">    public ShiroFilterFactoryBean getShiroFilterFactoryBean(@Qualifier(<span class="string">"SecurityManager"</span>) DefaultWebSecurityManager SecurityManager)&#123;</span><br><span class="line">        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();</span><br><span class="line">        //安全管理器</span><br><span class="line">        shiroFilterFactoryBean.setSecurityManager(SecurityManager);</span><br><span class="line"></span><br><span class="line">        //授权</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Map&lt;String, String&gt; filterMap = new LinkedHashMap&lt;String,String&gt;();</span><br><span class="line">        //访问这个接口需要添加权限</span><br><span class="line">        filterMap.put(<span class="string">"/creatarticle"</span>,<span class="string">"perms[overstory]"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        filterMap.put(<span class="string">"/"</span>,<span class="string">"authc"</span>);</span><br><span class="line">        filterMap.put(<span class="string">"/index"</span>,<span class="string">"authc"</span>);</span><br><span class="line">        //设置跳转登陆请求</span><br><span class="line">        shiroFilterFactoryBean.setLoginUrl(<span class="string">"/tologin"</span>);</span><br><span class="line">        //设置没有权限请求页面</span><br><span class="line">        shiroFilterFactoryBean.setUnauthorizedUrl(<span class="string">"/nopermission"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);</span><br><span class="line">        <span class="built_in">return</span> shiroFilterFactoryBean;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Bean(name = <span class="string">"SecurityManager"</span>)</span><br><span class="line">    public DefaultWebSecurityManager getDefaultWebSecurityManager(@Qualifier(<span class="string">"myRealm"</span>) AdminRealm myRealm)&#123;</span><br><span class="line">        DefaultWebSecurityManager SecurityManager = new DefaultWebSecurityManager();</span><br><span class="line">        SecurityManager.setRealm(myRealm);</span><br><span class="line">        <span class="built_in">return</span> SecurityManager;</span><br><span class="line">    &#125;</span><br><span class="line">    //自己添加的bean</span><br><span class="line">    @Bean(name = <span class="string">"myRealm"</span>)</span><br><span class="line">    public AdminRealm <span class="function"><span class="title">myRealm</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span> new AdminRealm();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="继承AuthorizingRealm"><a href="#继承AuthorizingRealm" class="headerlink" title="继承AuthorizingRealm"></a>继承AuthorizingRealm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public class AdminRealm extends AuthorizingRealm &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    UserService userservice;</span><br><span class="line"></span><br><span class="line">    //授权</span><br><span class="line">    @Override</span><br><span class="line">    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) &#123;</span><br><span class="line">        System.out.println(<span class="string">"授权=&gt;doGetAuthorizationInfo"</span>);</span><br><span class="line"></span><br><span class="line">        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();</span><br><span class="line">        Subject subject = SecurityUtils.getSubject();//获取当前用户</span><br><span class="line">        User user = (User) subject.getPrincipal();</span><br><span class="line">        //给用户添加权限</span><br><span class="line">        info.addStringPermission(user.getPermission());</span><br><span class="line"></span><br><span class="line">        <span class="built_in">return</span> info;</span><br><span class="line">    &#125;</span><br><span class="line">    //认证</span><br><span class="line">    @Override</span><br><span class="line">    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken Token) throws AuthenticationException &#123;</span><br><span class="line">        System.out.println(<span class="string">"认证=&gt;doGetAuthorizationInfo"</span>);</span><br><span class="line"></span><br><span class="line">        UsernamePasswordToken usetToken = (UsernamePasswordToken)Token;</span><br><span class="line">        //查看用户是否存在  重复用主键</span><br><span class="line">        User user = userservice.QueryUser(usetToken.getUsername());</span><br><span class="line">        <span class="keyword">if</span>(user==null)&#123;</span><br><span class="line">            <span class="built_in">return</span> null;</span><br><span class="line">        &#125;</span><br><span class="line">        //将密码返回</span><br><span class="line">        <span class="built_in">return</span> new SimpleAuthenticationInfo(user,user.getUserpasswd(),<span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//登陆</span><br><span class="line">    @RequestMapping(<span class="string">"/login"</span>)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public String login(@RequestBody User user)&#123;</span><br><span class="line"></span><br><span class="line">        UsernamePasswordToken Token = new UsernamePasswordToken(user.getUsername(), user.getUserpasswd());</span><br><span class="line">        Subject subject = SecurityUtils.getSubject();</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            subject.login(Token);//将返回来的密码做比对</span><br><span class="line">            <span class="keyword">if</span>(subject.isAuthenticated())&#123;</span><br><span class="line">                System.out.println(user.getUsername()+<span class="string">"认证成功"</span>);</span><br><span class="line">                <span class="built_in">return</span> <span class="string">"success"</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                Token.clear();</span><br><span class="line">                System.out.println(user.getUsername()+<span class="string">"认证失败"</span>);</span><br><span class="line">                <span class="built_in">return</span> <span class="string">"error"</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;catch (UnknownAccountException e)&#123;</span><br><span class="line">            //log.info(username+<span class="string">"验证失败，用户名不存在"</span>);</span><br><span class="line">            System.out.println(<span class="string">"验证失败，用户名不存在"</span>);</span><br><span class="line">        &#125;catch (IncorrectCredentialsException e)&#123;</span><br><span class="line">            //log.info(username+<span class="string">"验证失败，密码错误"</span>);</span><br><span class="line">            System.out.println(<span class="string">"验证失败，密码错误"</span>);</span><br><span class="line">        &#125; catch (AuthenticationException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> <span class="string">"error"</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>###权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">authc 需要登陆</span><br><span class="line">perms 权限</span><br></pre></td></tr></table></figure>
  
       <!-- reward -->
       
@@ -168,7 +169,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/08/10/linux%E5%91%BD%E4%BB%A4/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/08/29/shiro/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -179,19 +180,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2020/08/29/shiro/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            shiro
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/08/10/docker%E5%91%BD%E4%BB%A4/" class="article-nav-link">
+      <a href="/2020/08/10/linux%E5%91%BD%E4%BB%A4/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">docker命令</div>
+        <div class="article-nav-title">linux命令</div>
       </a>
     
   </nav>
