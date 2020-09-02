@@ -101,6 +101,121 @@
     
     
     <article
+  id="post-动态sql"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/22/%E5%8A%A8%E6%80%81sql/"
+    >动态sql</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/22/%E5%8A%A8%E6%80%81sql/" class="article-date">
+  <time datetime="2020-03-22T12:43:38.000Z" itemprop="datePublished">2020-03-22</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="动态语句-where-if"><a href="#动态语句-where-if" class="headerlink" title="动态语句 where if"></a>动态语句 where if</h3><p>如果where语句会自动判断and 和 or 比如说如果第一个参数为null<br>那么语句就是SELECT * FROM BLOG AND title like #{title} where 语句会自动的去掉and<br>如果 不用where 可以用 1+1 and </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=<span class="string">"findActiveBlogLike"</span></span><br><span class="line">     resultType=<span class="string">"Blog"</span>&gt;</span><br><span class="line">  SELECT * FROM BLOG </span><br><span class="line">  &lt;<span class="built_in">where</span>&gt; </span><br><span class="line">    &lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"state != null"</span>&gt;</span><br><span class="line">         state = <span class="comment">#&#123;state&#125;</span></span><br><span class="line">    &lt;/<span class="keyword">if</span>&gt; </span><br><span class="line">    &lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"title != null"</span>&gt;</span><br><span class="line">        AND title like <span class="comment">#&#123;title&#125;</span></span><br><span class="line">    &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"author != null and author.name != null"</span>&gt;</span><br><span class="line">        AND author_name like <span class="comment">#&#123;author.name&#125;</span></span><br><span class="line">    &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">  &lt;/<span class="built_in">where</span>&gt;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="删除多个id-list-lt-属性-gt"><a href="#删除多个id-list-lt-属性-gt" class="headerlink" title="删除多个id list&lt;属性&gt;"></a>删除多个id list&lt;属性&gt;</h3><p>List<String> ids = new ArraryList<String>();<br>for(String id:ids){</p>
+<p>}<br>collection=”ids” 迭代头<br>item=”id” 迭代元素<br>open=” and id in (“ 循环开始<br>separator=”,” 分隔,<br>close=”)” 末尾<br>拼接 动态sql</p>
+<p>在接口请求时要用到@Parm(“指定”)<br>@Param(“ids”) List<Integer> idList</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;delete id=<span class="string">"DeleteArticleId"</span> parameterType=<span class="string">"这里可以指定实体类的集合 如果没有的话就在请求接口指定"</span>&gt;</span><br><span class="line">    delete from article</span><br><span class="line">    &lt;<span class="built_in">where</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"ids!=null and ids.size&gt;0"</span>&gt;</span><br><span class="line">            &lt;foreach item=<span class="string">"id"</span> collection=<span class="string">"ids"</span> open=<span class="string">" and id in ("</span> separator=<span class="string">","</span> close=<span class="string">")"</span>&gt;</span><br><span class="line">                <span class="comment">#&#123;id&#125;</span></span><br><span class="line">            &lt;/foreach&gt;</span><br><span class="line">        &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">    &lt;/<span class="built_in">where</span>&gt;</span><br><span class="line">&lt;/delete&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除多个id-int"><a href="#删除多个id-int" class="headerlink" title="删除多个id int[]"></a>删除多个id int[]</h3><p>当用数组 要指定int[] 类型 parameterType<br>数组默认属性命叫array</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;delete id=<span class="string">"DeleteArticleId"</span> parameterType=<span class="string">"int[]"</span>&gt;</span><br><span class="line">    delete from article</span><br><span class="line">    &lt;<span class="built_in">where</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"array!=null "</span>&gt;</span><br><span class="line">            &lt;foreach item=<span class="string">"id"</span> collection=<span class="string">"array"</span> open=<span class="string">" and id in ("</span> separator=<span class="string">","</span> close=<span class="string">")"</span>&gt;</span><br><span class="line">                <span class="comment">#&#123;id&#125;</span></span><br><span class="line">            &lt;/foreach&gt;</span><br><span class="line">        &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">    &lt;/<span class="built_in">where</span>&gt;</span><br><span class="line">&lt;/delete&gt;</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-json"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/22/json/"
+    >json</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/22/json/" class="article-date">
+  <time datetime="2020-03-22T07:39:55.000Z" itemprop="datePublished">2020-03-22</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="请求类型为JSONarray-“name”-”123”-”groos”"><a href="#请求类型为JSONarray-“name”-”123”-”groos”" class="headerlink" title="请求类型为JSONarray [{“name”:”123”,”groos”:}]"></a>请求类型为JSONarray [{“name”:”123”,”groos”:}]</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@RequestBody JSONarray obj</span><br><span class="line"></span><br><span class="line">//List&lt;Object&gt; get = new ArrayList&lt;&gt;();</span><br><span class="line">这里获取的集合类 可以写成person类在里面定义好 循环person类设置属性再添加到集合里</span><br><span class="line">Map&lt;String,Object&gt; map = new HashMap&lt;&gt;();</span><br><span class="line"><span class="keyword">for</span>(int i =0;i&lt;obj.size();i++)&#123;</span><br><span class="line">    //获取第一组&#123;&#125;</span><br><span class="line">    JSONObject jsonObject=obj.getJSONObject(i);</span><br><span class="line">    //get.add(jsonObject.getString(<span class="string">"name"</span>));</span><br><span class="line">    //get.add(jsonObject.getString(<span class="string">"date"</span>));</span><br><span class="line">    map.put(jsonObject.getString(<span class="string">"date"</span>),jsonObject.getString(<span class="string">"name"</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="存放json"><a href="#存放json" class="headerlink" title="存放json"></a>存放json</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var <span class="variable">$lists</span> = new Array();</span><br><span class="line"></span><br><span class="line">var <span class="variable">$list</span> = &#123;</span><br><span class="line">    <span class="string">"name"</span>:Number($(this).siblings(<span class="string">".id"</span>).text()),</span><br><span class="line">    <span class="string">"date"</span>:$(this).siblings(<span class="string">".data"</span>).text()</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable">$lists</span>.push(<span class="variable">$list</span>)</span><br><span class="line"></span><br><span class="line">存储id</span><br><span class="line">var <span class="variable">$lists</span> = new Array();</span><br><span class="line"></span><br><span class="line"><span class="variable">$lists</span>.push(Number($(this).siblings(<span class="string">".id"</span>).text()));</span><br><span class="line"></span><br><span class="line">[1,2,3,4,5]</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="循环遍历json数据"><a href="#循环遍历json数据" class="headerlink" title="循环遍历json数据"></a>循环遍历json数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">var $lists &#x3D; new Array();</span><br><span class="line">$(&quot;.list_check&quot;).each(function (index,ele) &#123;</span><br><span class="line">    if($(ele).attr(&quot;class&quot;).indexOf(&quot;list_checked&quot;)!&#x3D;-1)&#123;</span><br><span class="line">        var $list &#x3D; &#123;</span><br><span class="line">            &quot;name&quot;:Number($(this).siblings(&quot;.id&quot;).text()),</span><br><span class="line">            &quot;date&quot;:$(this).siblings(&quot;.data&quot;).text()</span><br><span class="line">        &#125;;</span><br><span class="line">        $lists.push($list)</span><br><span class="line">        &#x2F;&#x2F;$lists.push(Number($(this).siblings(&quot;.id&quot;).text()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">var json &#x3D; JSON.stringify($lists);</span><br><span class="line">console.log(json);</span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    type:&quot;post&quot;,</span><br><span class="line">    url:&quot;DeleteId&quot;,</span><br><span class="line">    data:json,</span><br><span class="line">    dataType: &quot;json&quot;,</span><br><span class="line">    contentType: &quot;application&#x2F;json;charset&#x3D;UTF-8&quot;,</span><br><span class="line">    cache:false,</span><br><span class="line">    async:false,</span><br><span class="line">    success:function (data) &#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="请求json出现的问题"><a href="#请求json出现的问题" class="headerlink" title="请求json出现的问题"></a>请求json出现的问题</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">端口415 查看请求头</span><br><span class="line"></span><br><span class="line">contentType: <span class="string">"application/json;charset=UTF-8"</span></span><br><span class="line"></span><br><span class="line">端口400错误检查 查看后端请求参数</span><br><span class="line"></span><br><span class="line">当请求json的时候,它会去查看你data的是什么东西 并且设置response响应头 text/html application/json</span><br><span class="line"></span><br><span class="line">当出现text/html 传的是json 那么响应头需要是application/json</span><br><span class="line"></span><br><span class="line">dataType: <span class="string">"json"</span>, 接收参数类型 默认接收是任意类型</span><br><span class="line">设置请求头 contentType: <span class="string">"application/json;charset=UTF-8"</span>, 默认的话是 x-什么。。。</span><br><span class="line"></span><br><span class="line">请求通过到后端 Srping mvc 有@RequestPram(<span class="string">"id"</span>) String id 这种的话相当于 Request.getparam...获取值 data&#123;id:<span class="string">"name"</span>&#125;</span><br><span class="line"></span><br><span class="line">@RequestBody JSONarray array 这种注解它会自动将data里面全部json数据转换成java对象 所以不用String 去接收属性</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取json字符串"><a href="#获取json字符串" class="headerlink" title="获取json字符串"></a>获取json字符串</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">var myObj = &#123;</span><br><span class="line">    <span class="string">"name"</span>:<span class="string">"w3cschool"</span>,</span><br><span class="line">    <span class="string">"alexa"</span>:8000,</span><br><span class="line">    <span class="string">"sites"</span>:[ &#123;</span><br><span class="line">        <span class="string">"site1"</span>:[&#123;</span><br><span class="line">            <span class="string">"name"</span>:<span class="string">"2"</span>,</span><br><span class="line">            <span class="string">"age"</span>:<span class="string">"3"</span></span><br><span class="line">        &#125;],</span><br><span class="line">        <span class="string">"site2"</span>:<span class="string">"m.w3cschool"</span>,</span><br><span class="line">        <span class="string">"site3"</span>:<span class="string">"www.w3cschool111111"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"site1"</span>:[&#123;</span><br><span class="line">            <span class="string">"name"</span>:<span class="string">"222"</span>,</span><br><span class="line">            <span class="string">"age"</span>:<span class="string">"5"</span></span><br><span class="line">        &#125;],</span><br><span class="line">        <span class="string">"site2"</span>:<span class="string">"m.cainiao.cn"</span>,</span><br><span class="line">        <span class="string">"site3"</span>:<span class="string">"www.cainiao.cn/json/"</span></span><br><span class="line">    &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line">$.each(myObj, <span class="keyword">function</span>(k,v) &#123;</span><br><span class="line">    console.log(k);</span><br><span class="line">    //将v的数组json打印 如不是json数组将忽略</span><br><span class="line">    $.each($(v),<span class="keyword">function</span>(ele,index)&#123;</span><br><span class="line">        //数组内</span><br><span class="line">        $.each(index.site1,<span class="keyword">function</span>(ele,index)&#123;</span><br><span class="line">            console.log(index.age)</span><br><span class="line">            console.log(index.name)</span><br><span class="line">        &#125;)</span><br><span class="line">        console.log(index)</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">    console.log(v);</span><br><span class="line">    </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Requestbody"><a href="#Requestbody" class="headerlink" title="@Requestbody"></a>@Requestbody</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">          url:<span class="string">"PreviousArticle"</span>,</span><br><span class="line">          <span class="built_in">type</span>:<span class="string">"post"</span>,</span><br><span class="line">          data:JSON.stringify(&#123;<span class="string">"id"</span>:id&#125;),</span><br><span class="line">          cache:<span class="literal">false</span>,</span><br><span class="line">          async:<span class="literal">false</span>,</span><br><span class="line">          dataType:<span class="string">'json'</span>,</span><br><span class="line">          contentType:<span class="string">"application/json"</span>,</span><br><span class="line">          success:<span class="keyword">function</span>(data)&#123;</span><br><span class="line">              console.log(data)</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line">@RequestMapping(<span class="string">"/PreviousArticle"</span>)</span><br><span class="line">@ResponseBody</span><br><span class="line">public String PreviousArticle(@RequestBody JSONObject json)&#123;</span><br><span class="line">    System.out.println(json.get(<span class="string">"id"</span>));</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-io流新建文章"
   class="article article-type-post"
   itemscope
@@ -536,110 +651,6 @@
 <td align="center">包含龙文中间任意多个字符</td>
 </tr>
 </tbody></table>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-js样式"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/18/js%E6%A0%B7%E5%BC%8F/"
-    >js样式</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/02/18/js%E6%A0%B7%E5%BC%8F/" class="article-date">
-  <time datetime="2020-02-18T03:26:51.000Z" itemprop="datePublished">2020-02-18</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="通过点击事件增加class"><a href="#通过点击事件增加class" class="headerlink" title="通过点击事件增加class"></a>通过点击事件增加class</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当前如有这个class的话那么点击会删除这个class，</span><br><span class="line">如果没有那么会新增,这个事件也可以通过removeClass来做</span><br><span class="line">$(this).toggleClass(<span class="string">"current"</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="下拉框的事件"><a href="#下拉框的事件" class="headerlink" title="下拉框的事件"></a>下拉框的事件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当你点击的事件它的下个节点是隐藏的，那么将会被显示出来。</span><br><span class="line">如果是显示的话，点击就会被隐藏</span><br><span class="line">$(this).next().slideToggle();</span><br></pre></td></tr></table></figure>
-<h3 id="判断当前的class是否存在"><a href="#判断当前的class是否存在" class="headerlink" title="判断当前的class是否存在"></a>判断当前的class是否存在</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当前的class是否存在这个节点 如果存在那么必然不是负一,</span><br><span class="line">这个主要思想放在循环列表判断是否存在</span><br><span class="line">$(this).attr(<span class="string">"class"</span>).indexOf(<span class="string">"current"</span>)!=-1</span><br></pre></td></tr></table></figure>
-<h3 id="循环数据事件"><a href="#循环数据事件" class="headerlink" title="循环数据事件"></a>循环数据事件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$.each(这里是ajax的变量,<span class="keyword">function</span>(下标,变量元素对象)&#123;</span><br><span class="line">	var <span class="variable">$item</span> = 这里可以写<span class="keyword">function</span>(下标，变量元素)</span><br><span class="line">	或者是</span><br><span class="line">	console.log(变量对象.name等等)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">动态生成的标签那么class这些会导致无法使用</span><br><span class="line">那么就要用到delegate事件托管</span><br><span class="line">class=<span class="string">"content"</span>这里是你要托管的那块地方或者全局</span><br><span class="line">class=<span class="string">"content_in_play"</span>为这个class的节点添加点击事件</span><br><span class="line">$(<span class="string">".content"</span>).delegate(<span class="string">".content_in_play"</span>,<span class="string">"click"</span>,<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">	console.log($(this))==.content_in_play</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="优先级处理"><a href="#优先级处理" class="headerlink" title="优先级处理"></a>优先级处理</h3><p>当要增加class并且换上图片时可以用这个东西</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">background-position: -80px -200px !important;</span><br><span class="line">!important</span><br></pre></td></tr></table></figure>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-css样式"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/17/css%E6%A0%B7%E5%BC%8F/"
-    >css样式</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/02/17/css%E6%A0%B7%E5%BC%8F/" class="article-date">
-  <time datetime="2020-02-17T14:33:35.000Z" itemprop="datePublished">2020-02-17</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="边框设置在内部"><a href="#边框设置在内部" class="headerlink" title="边框设置在内部"></a>边框设置在内部</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box-sizing: border-box;</span><br></pre></td></tr></table></figure>
-<h3 id="超链接下划线隐藏"><a href="#超链接下划线隐藏" class="headerlink" title="超链接下划线隐藏"></a>超链接下划线隐藏</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text-decoration: none;</span><br></pre></td></tr></table></figure>
-<h3 id="文本框点击时背景颜色隐藏"><a href="#文本框点击时背景颜色隐藏" class="headerlink" title="文本框点击时背景颜色隐藏"></a>文本框点击时背景颜色隐藏</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outline: none;</span><br></pre></td></tr></table></figure>
-<h3 id="当文本框点击时可以获取焦点"><a href="#当文本框点击时可以获取焦点" class="headerlink" title="当文本框点击时可以获取焦点"></a>当文本框点击时可以获取焦点</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.centent_in_text .centent_in_text2:focus&#123;</span><br><span class="line">	border-top: 1px solid <span class="comment">#2d78f4;</span></span><br><span class="line">    border-bottom: 1px solid <span class="comment">#2d78f4;</span></span><br><span class="line">    border-left: 1px solid <span class="comment">#2d78f4;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="颜色隐藏"><a href="#颜色隐藏" class="headerlink" title="颜色隐藏"></a>颜色隐藏</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">color:transparent</span><br></pre></td></tr></table></figure>
-<h3 id="超过div范围隐藏"><a href="#超过div范围隐藏" class="headerlink" title="超过div范围隐藏"></a>超过div范围隐藏</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">overflow: hidden;</span><br></pre></td></tr></table></figure>
  
       <!-- reward -->
       

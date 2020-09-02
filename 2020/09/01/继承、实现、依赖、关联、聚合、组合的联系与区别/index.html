@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    shiro |  Hexo
+    继承、实现、依赖、关联、聚合、组合的联系与区别 |  Hexo
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -44,7 +44,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-shiro"
+  id="post-继承、实现、依赖、关联、聚合、组合的联系与区别"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -55,22 +55,22 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  shiro
+  继承、实现、依赖、关联、聚合、组合的联系与区别
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/08/29/shiro/" class="article-date">
-  <time datetime="2020-08-29T04:41:54.000Z" itemprop="datePublished">2020-08-29</time>
+      <a href="/2020/09/01/%E7%BB%A7%E6%89%BF%E3%80%81%E5%AE%9E%E7%8E%B0%E3%80%81%E4%BE%9D%E8%B5%96%E3%80%81%E5%85%B3%E8%81%94%E3%80%81%E8%81%9A%E5%90%88%E3%80%81%E7%BB%84%E5%90%88%E7%9A%84%E8%81%94%E7%B3%BB%E4%B8%8E%E5%8C%BA%E5%88%AB/" class="article-date">
+  <time datetime="2020-09-01T11:57:21.000Z" itemprop="datePublished">2020-09-01</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">406</span>
+            <span class="post-count">177</span>
         </span>
     </span>
 
@@ -79,31 +79,28 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
+            <span class="post-count">1 min</span>
         </span>
     </span>
 </div>
  
     </div>
       
-    <div class="tocbot"></div>
-
 
 
 
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h3 id="shiro配置config"><a href="#shiro配置config" class="headerlink" title="shiro配置config"></a>shiro配置config</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">public class ShiroConfig &#123;</span><br><span class="line">    @Bean</span><br><span class="line">    public ShiroFilterFactoryBean getShiroFilterFactoryBean(@Qualifier(<span class="string">"SecurityManager"</span>) DefaultWebSecurityManager SecurityManager)&#123;</span><br><span class="line">        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();</span><br><span class="line">        //安全管理器</span><br><span class="line">        shiroFilterFactoryBean.setSecurityManager(SecurityManager);</span><br><span class="line"></span><br><span class="line">        //授权</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Map&lt;String, String&gt; filterMap = new LinkedHashMap&lt;String,String&gt;();</span><br><span class="line">        //访问这个接口需要添加权限</span><br><span class="line">        filterMap.put(<span class="string">"/creatarticle"</span>,<span class="string">"perms[overstory]"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        filterMap.put(<span class="string">"/"</span>,<span class="string">"authc"</span>);</span><br><span class="line">        filterMap.put(<span class="string">"/index"</span>,<span class="string">"authc"</span>);</span><br><span class="line">        //设置跳转登陆请求</span><br><span class="line">        shiroFilterFactoryBean.setLoginUrl(<span class="string">"/tologin"</span>);</span><br><span class="line">        //设置没有权限请求页面</span><br><span class="line">        shiroFilterFactoryBean.setUnauthorizedUrl(<span class="string">"/nopermission"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);</span><br><span class="line">        <span class="built_in">return</span> shiroFilterFactoryBean;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Bean(name = <span class="string">"SecurityManager"</span>)</span><br><span class="line">    public DefaultWebSecurityManager getDefaultWebSecurityManager(@Qualifier(<span class="string">"myRealm"</span>) AdminRealm myRealm)&#123;</span><br><span class="line">        DefaultWebSecurityManager SecurityManager = new DefaultWebSecurityManager();</span><br><span class="line">        SecurityManager.setRealm(myRealm);</span><br><span class="line">        <span class="built_in">return</span> SecurityManager;</span><br><span class="line">    &#125;</span><br><span class="line">    //自己添加的bean</span><br><span class="line">    @Bean(name = <span class="string">"myRealm"</span>)</span><br><span class="line">    public AdminRealm <span class="function"><span class="title">myRealm</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span> new AdminRealm();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <p>###依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public person class&#123;</span><br><span class="line"></span><br><span class="line">	public void get(Student student)&#123;</span><br><span class="line">		student.read();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public Student class&#123;</span><br><span class="line">	public void <span class="function"><span class="title">read</span></span>()&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">当需要另一个类的方法，可以通过这样的依赖关系去获取。</span><br></pre></td></tr></table></figure>
 
-
-<h3 id="继承AuthorizingRealm"><a href="#继承AuthorizingRealm" class="headerlink" title="继承AuthorizingRealm"></a>继承AuthorizingRealm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public class AdminRealm extends AuthorizingRealm &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    UserService userservice;</span><br><span class="line"></span><br><span class="line">    //授权</span><br><span class="line">    @Override</span><br><span class="line">    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) &#123;</span><br><span class="line">        System.out.println(<span class="string">"授权=&gt;doGetAuthorizationInfo"</span>);</span><br><span class="line"></span><br><span class="line">        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();</span><br><span class="line">        Subject subject = SecurityUtils.getSubject();//获取当前用户</span><br><span class="line">        User user = (User) subject.getPrincipal();</span><br><span class="line">        //给用户添加权限</span><br><span class="line">        info.addStringPermission(user.getPermission());</span><br><span class="line"></span><br><span class="line">        <span class="built_in">return</span> info;</span><br><span class="line">    &#125;</span><br><span class="line">    //认证</span><br><span class="line">    @Override</span><br><span class="line">    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken Token) throws AuthenticationException &#123;</span><br><span class="line">        System.out.println(<span class="string">"认证=&gt;doGetAuthorizationInfo"</span>);</span><br><span class="line"></span><br><span class="line">        UsernamePasswordToken usetToken = (UsernamePasswordToken)Token;</span><br><span class="line">        //查看用户是否存在  重复用主键</span><br><span class="line">        User user = userservice.QueryUser(usetToken.getUsername());</span><br><span class="line">        <span class="keyword">if</span>(user==null)&#123;</span><br><span class="line">            <span class="built_in">return</span> null;</span><br><span class="line">        &#125;</span><br><span class="line">        //将密码返回</span><br><span class="line">        <span class="built_in">return</span> new SimpleAuthenticationInfo(user,user.getUserpasswd(),<span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//登陆</span><br><span class="line">    @RequestMapping(<span class="string">"/login"</span>)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public String login(@RequestBody User user)&#123;</span><br><span class="line"></span><br><span class="line">        UsernamePasswordToken Token = new UsernamePasswordToken(user.getUsername(), user.getUserpasswd());</span><br><span class="line">        Subject subject = SecurityUtils.getSubject();</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            subject.login(Token);//将返回来的密码做比对</span><br><span class="line">            <span class="keyword">if</span>(subject.isAuthenticated())&#123;</span><br><span class="line">                System.out.println(user.getUsername()+<span class="string">"认证成功"</span>);</span><br><span class="line">                <span class="built_in">return</span> <span class="string">"success"</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                Token.clear();</span><br><span class="line">                System.out.println(user.getUsername()+<span class="string">"认证失败"</span>);</span><br><span class="line">                <span class="built_in">return</span> <span class="string">"error"</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;catch (UnknownAccountException e)&#123;</span><br><span class="line">            //log.info(username+<span class="string">"验证失败，用户名不存在"</span>);</span><br><span class="line">            System.out.println(<span class="string">"验证失败，用户名不存在"</span>);</span><br><span class="line">        &#125;catch (IncorrectCredentialsException e)&#123;</span><br><span class="line">            //log.info(username+<span class="string">"验证失败，密码错误"</span>);</span><br><span class="line">            System.out.println(<span class="string">"验证失败，密码错误"</span>);</span><br><span class="line">        &#125; catch (AuthenticationException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> <span class="string">"error"</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>###权限</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">authc 需要登陆</span><br><span class="line">perms 权限</span><br></pre></td></tr></table></figure>
- 
+<p>###关联</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//单向关联</span><br><span class="line">public person class&#123;</span><br><span class="line">	private Student student;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public Student class&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">//双向关联</span><br><span class="line">public class Customer  </span><br><span class="line">&#123;  </span><br><span class="line">    private Product[] products;  </span><br><span class="line">    ……  </span><br><span class="line">&#125;  </span><br><span class="line">public class Product  </span><br><span class="line">&#123;  </span><br><span class="line">    private Customer customer;  </span><br><span class="line">    ……  </span><br><span class="line">&#125;</span><br><span class="line">//自关联</span><br><span class="line">public person class&#123;</span><br><span class="line">	private person p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###聚合</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public person class&#123;</span><br><span class="line">	private Student student;</span><br><span class="line">	public person(Student student)&#123;</span><br><span class="line">		this.student = student;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">public student class&#123;</span><br><span class="line">	String name;</span><br><span class="line">	int age;</span><br><span class="line">	public student(String name,Int age)&#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">		this.age = age;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###组合</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Person &#123;</span><br><span class="line">    Brain brain;</span><br><span class="line">    public <span class="function"><span class="title">Person</span></span>()&#123;//组合</span><br><span class="line">        brain=new Brain();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Person person=new Person();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line">class Brain&#123;</span><br><span class="line"> </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure> 
       <!-- reward -->
       
       <div id="reward-btn">
@@ -169,7 +166,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/08/29/shiro/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/09/01/%E7%BB%A7%E6%89%BF%E3%80%81%E5%AE%9E%E7%8E%B0%E3%80%81%E4%BE%9D%E8%B5%96%E3%80%81%E5%85%B3%E8%81%94%E3%80%81%E8%81%9A%E5%90%88%E3%80%81%E7%BB%84%E5%90%88%E7%9A%84%E8%81%94%E7%B3%BB%E4%B8%8E%E5%8C%BA%E5%88%AB/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -180,19 +177,19 @@
    
   <nav class="article-nav">
     
-      <a href="/2020/09/01/%E7%BB%A7%E6%89%BF%E3%80%81%E5%AE%9E%E7%8E%B0%E3%80%81%E4%BE%9D%E8%B5%96%E3%80%81%E5%85%B3%E8%81%94%E3%80%81%E8%81%9A%E5%90%88%E3%80%81%E7%BB%84%E5%90%88%E7%9A%84%E8%81%94%E7%B3%BB%E4%B8%8E%E5%8C%BA%E5%88%AB/" class="article-nav-link">
+      <a href="/2020/09/02/%E6%8E%92%E5%BA%8F/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            继承、实现、依赖、关联、聚合、组合的联系与区别
+            排序
           
         </div>
       </a>
     
     
-      <a href="/2020/08/10/linux%E5%91%BD%E4%BB%A4/" class="article-nav-link">
+      <a href="/2020/08/29/shiro/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">linux命令</div>
+        <div class="article-nav-title">shiro</div>
       </a>
     
   </nav>
