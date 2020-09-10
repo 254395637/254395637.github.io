@@ -101,6 +101,98 @@
     
     
     <article
+  id="post-数据库"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/19/%E6%95%B0%E6%8D%AE%E5%BA%93/"
+    >数据库</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/02/19/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
+  <time datetime="2020-02-19T07:34:54.000Z" itemprop="datePublished">2020-02-19</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="清空自增自动删表"><a href="#清空自增自动删表" class="headerlink" title="清空自增自动删表"></a>清空自增自动删表</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TRUNCATE 表名</span><br></pre></td></tr></table></figure>
+<h3 id="增加学生"><a href="#增加学生" class="headerlink" title="增加学生"></a>增加学生</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into 表名 (name,age,address)values(<span class="string">"254395637"</span>,<span class="string">"16"</span>,<span class="string">"揭阳"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="修改表信息"><a href="#修改表信息" class="headerlink" title="修改表信息"></a>修改表信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update 表名 <span class="built_in">set</span> name = <span class="string">"8226942"</span> <span class="built_in">where</span> pass = <span class="string">'123'</span> and name = <span class="string">'原先名字'</span></span><br></pre></td></tr></table></figure>
+<h3 id="删除表信息"><a href="#删除表信息" class="headerlink" title="删除表信息"></a>删除表信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from 表名 <span class="built_in">where</span> name = <span class="string">"?"</span> and <span class="string">"?"</span></span><br></pre></td></tr></table></figure>
+<h3 id="查询信息"><a href="#查询信息" class="headerlink" title="查询信息"></a>查询信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select from 表名 <span class="built_in">where</span> name = <span class="string">"?"</span> and <span class="string">"?"</span></span><br></pre></td></tr></table></figure>
+<h3 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select from 表名 <span class="built_in">where</span> name like CONCAT(<span class="string">"aorg1"</span>，<span class="string">"aorg2"</span>) concat可以多参数</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">%</td>
+<td align="center">任意个</td>
+</tr>
+<tr>
+<td align="center">_</td>
+<td align="center">占一个字符</td>
+</tr>
+<tr>
+<td align="center">%老头%</td>
+<td align="center">包含老头</td>
+</tr>
+<tr>
+<td align="center">老头%</td>
+<td align="center">以老头开头</td>
+</tr>
+<tr>
+<td align="center">%老头</td>
+<td align="center">以老头结尾</td>
+</tr>
+<tr>
+<td align="center">%__王%</td>
+<td align="center">含三个字符的王多个字符</td>
+</tr>
+<tr>
+<td align="center">__王</td>
+<td align="center">为三个字符的王</td>
+</tr>
+<tr>
+<td align="center">%龙%文%</td>
+<td align="center">包含龙文中间任意多个字符</td>
+</tr>
+</tbody></table>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-js样式"
   class="article article-type-post"
   itemscope
