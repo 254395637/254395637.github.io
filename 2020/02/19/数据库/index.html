@@ -70,7 +70,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">159</span>
+            <span class="post-count">182</span>
         </span>
     </span>
 
@@ -99,47 +99,33 @@
 <h3 id="修改表信息"><a href="#修改表信息" class="headerlink" title="修改表信息"></a>修改表信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update 表名 <span class="built_in">set</span> name = <span class="string">"8226942"</span> <span class="built_in">where</span> pass = <span class="string">'123'</span> and name = <span class="string">'原先名字'</span></span><br></pre></td></tr></table></figure>
 <h3 id="删除表信息"><a href="#删除表信息" class="headerlink" title="删除表信息"></a>删除表信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from 表名 <span class="built_in">where</span> name = <span class="string">"?"</span> and <span class="string">"?"</span></span><br></pre></td></tr></table></figure>
 <h3 id="查询信息"><a href="#查询信息" class="headerlink" title="查询信息"></a>查询信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select from 表名 <span class="built_in">where</span> name = <span class="string">"?"</span> and <span class="string">"?"</span></span><br></pre></td></tr></table></figure>
-<h3 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select from 表名 <span class="built_in">where</span> name like CONCAT(<span class="string">"aorg1"</span>，<span class="string">"aorg2"</span>) concat可以多参数</span><br></pre></td></tr></table></figure>
+<h3 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">from</span> 表名 <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="keyword">CONCAT</span>(<span class="string">"aorg1"</span>，<span class="string">"aorg2"</span>) <span class="keyword">concat</span>可以多参数</span><br><span class="line"></span><br><span class="line"><span class="comment">--_下划线为一个占位符</span></span><br><span class="line"><span class="comment">--%百分号为任意个</span></span><br></pre></td></tr></table></figure>
 <table>
 <thead>
 <tr>
-<th align="center">参数</th>
-<th align="center">结果</th>
+<th align="center">条件</th>
+<th>语句</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">%</td>
-<td align="center">任意个</td>
+<td align="center">查看包含小明</td>
+<td>%小明%</td>
 </tr>
 <tr>
-<td align="center">_</td>
-<td align="center">占一个字符</td>
+<td align="center">查询含有小明开头的</td>
+<td>小明%</td>
 </tr>
 <tr>
-<td align="center">%老头%</td>
-<td align="center">包含老头</td>
-</tr>
-<tr>
-<td align="center">老头%</td>
-<td align="center">以老头开头</td>
-</tr>
-<tr>
-<td align="center">%老头</td>
-<td align="center">以老头结尾</td>
-</tr>
-<tr>
-<td align="center">%__王%</td>
-<td align="center">含三个字符的王多个字符</td>
-</tr>
-<tr>
-<td align="center">__王</td>
-<td align="center">为三个字符的王</td>
-</tr>
-<tr>
-<td align="center">%龙%文%</td>
-<td align="center">包含龙文中间任意多个字符</td>
+<td align="center">查看为只有小字开头为俩个字符的</td>
+<td>小_</td>
 </tr>
 </tbody></table>
+<h3 id="查询空字段"><a href="#查询空字段" class="headerlink" title="查询空字段"></a>查询空字段</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> article <span class="keyword">where</span> ARTICLETITLE = <span class="string">''</span> </span><br><span class="line"><span class="comment">--查询不为null</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> article <span class="keyword">where</span> ARTICLETITLE != <span class="string">''</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="查看表结构"><a href="#查看表结构" class="headerlink" title="查看表结构"></a>查看表结构</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span> 表名</span><br><span class="line"></span><br><span class="line"><span class="keyword">desc</span> 表名  <span class="comment">--表结构</span></span><br></pre></td></tr></table></figure>
+
  
       <!-- reward -->
       
