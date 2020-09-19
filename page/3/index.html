@@ -559,7 +559,12 @@
 <h3 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h3><p>显示外连接:</p>
 <p>select * from 表A [inner] join 表B on A.主键 = B.主键<br>on后面可以继续使用where条件查询.</p>
 <p>left join 的话 以左边表为主, 左边有数据, 右边没有使用null代替.左边没有的数据 , 右边也不能出现.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from (主表)xuesheng t1 left join user t2 on t1.id = t2.userid <span class="built_in">where</span> t1.id = <span class="string">"?"</span></span><br></pre></td></tr></table></figure> 
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from (主表)xuesheng t1 left join user t2 on t1.id = t2.userid <span class="built_in">where</span> t1.id = <span class="string">"?"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h3><p><img src="/.com//D:%5CTypora%5C%E5%9B%BE%E7%89%87%5Cimage-20200918090932192.png" alt="image-20200918090932192"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> t1.categoryname,t2.categoryname <span class="keyword">from</span> <span class="keyword">test</span> <span class="keyword">as</span> t1,<span class="keyword">test</span> <span class="keyword">as</span> t2 <span class="keyword">where</span> t1.categoryid = t2.pid</span><br><span class="line"></span><br><span class="line">将类型技术统称为pid 为 <span class="number">1</span>,categoryid不存在于<span class="number">1</span>，这样就不会出现技术类型<span class="keyword">id</span>出来。</span><br><span class="line">查找时以类型<span class="keyword">id</span>去查询子<span class="keyword">id</span></span><br></pre></td></tr></table></figure>
+
+ 
       <!-- reward -->
       
     </div>
