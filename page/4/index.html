@@ -101,6 +101,108 @@
     
     
     <article
+  id="post-多表数据库"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/20/%E5%A4%9A%E8%A1%A8%E6%95%B0%E6%8D%AE%E5%BA%93/"
+    >多表数据库</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/02/20/%E5%A4%9A%E8%A1%A8%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
+  <time datetime="2020-02-20T10:59:13.000Z" itemprop="datePublished">2020-02-20</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="多表删除"><a href="#多表删除" class="headerlink" title="多表删除"></a>多表删除</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">delete t1,t2,t3 from xuesheng t1 left join user t2 on t1.id = t2.id left join account t3 on t1.id = t3.id</span><br><span class="line"><span class="built_in">where</span> t1.id = <span class="comment">#&#123;id&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h3><p>显示外连接:</p>
+<p>select * from 表A [inner] join 表B on A.主键 = B.主键<br>on后面可以继续使用where条件查询.</p>
+<p>left join 的话 以左边表为主, 左边有数据, 右边没有使用null代替.左边没有的数据 , 右边也不能出现.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from (主表)xuesheng t1 left join user t2 on t1.id = t2.userid <span class="built_in">where</span> t1.id = <span class="string">"?"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h3><p><img src="/.com//D:%5CTypora%5C%E5%9B%BE%E7%89%87%5Cimage-20200918090932192.png" alt="image-20200918090932192"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> t1.categoryname,t2.categoryname <span class="keyword">from</span> <span class="keyword">test</span> <span class="keyword">as</span> t1,<span class="keyword">test</span> <span class="keyword">as</span> t2 <span class="keyword">where</span> t1.categoryid = t2.pid</span><br><span class="line"></span><br><span class="line">将类型技术统称为pid 为 <span class="number">1</span>,categoryid不存在于<span class="number">1</span>，这样就不会出现技术类型<span class="keyword">id</span>出来。</span><br><span class="line">查找时以类型<span class="keyword">id</span>去查询子<span class="keyword">id</span></span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-过滤器拦截"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/19/%E8%BF%87%E6%BB%A4%E5%99%A8%E6%8B%A6%E6%88%AA/"
+    >SpringMvc过滤器拦截</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/02/19/%E8%BF%87%E6%BB%A4%E5%99%A8%E6%8B%A6%E6%88%AA/" class="article-date">
+  <time datetime="2020-02-19T09:38:16.000Z" itemprop="datePublished">2020-02-19</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="过滤器xml-配值"><a href="#过滤器xml-配值" class="headerlink" title="过滤器xml 配值"></a>过滤器xml 配值</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 拦截器 --&gt;</span><br><span class="line">&lt;mvc:interceptors&gt;</span><br><span class="line">    &lt;!-- 对所有请求都拦截，公共拦截器可以有多个 --&gt;</span><br><span class="line">    &lt;bean name=<span class="string">"baseInterceptor"</span> class=<span class="string">"cn.zifangsky.interceptor.BaseInterceptor"</span> /&gt;</span><br><span class="line">    &lt;!-- &lt;bean name=<span class="string">"testInterceptor"</span> class=<span class="string">"cn.zifangsky.interceptor.TestInterceptor"</span> /&gt; --&gt;</span><br><span class="line">    &lt;mvc:interceptor&gt;       </span><br><span class="line">        &lt;&lt;!-- 拦截路径 --&gt;</span><br><span class="line">        &lt;mvc:mapping path=<span class="string">"/**"</span>/&gt;</span><br><span class="line">        &lt;!-- 指定不拦截路径 &lt;mvc:exclude-mapping path=<span class="string">"/登陆页面以及静态资源"</span>/&gt;--&gt;</span><br><span class="line">        &lt;bean class=<span class="string">"cn.zifangsky.interceptor.TestInterceptor"</span> /&gt;</span><br><span class="line">    &lt;/mvc:interceptor&gt;</span><br><span class="line">&lt;/mvc:interceptors&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="配值public-class-BaseInterceptor-implements-HandlerInterceptor"><a href="#配值public-class-BaseInterceptor-implements-HandlerInterceptor" class="headerlink" title="配值public class BaseInterceptor implements HandlerInterceptor"></a>配值public class BaseInterceptor implements HandlerInterceptor</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2) throws Exception &#123;</span><br><span class="line">    System.out.println(<span class="string">"************TestInterceptor preHandle executed**********"</span>);</span><br><span class="line">    <span class="built_in">return</span> <span class="literal">true</span>;//这里<span class="literal">false</span>为不释放 <span class="literal">true</span>为释放</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3)</span><br><span class="line">        throws Exception &#123;</span><br><span class="line">    System.out.println(<span class="string">"************TestInterceptor postHandle executed**********"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)</span><br><span class="line">        throws Exception &#123;</span><br><span class="line">    System.out.println(<span class="string">"************TestInterceptor afterCompletion executed**********"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-数据库"
   class="article article-type-post"
   itemscope

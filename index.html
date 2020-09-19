@@ -101,6 +101,111 @@
     
     
     <article
+  id="post-mybatis-plus"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/09/19/mybatis-plus/"
+    >mybatis-plus</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/09/19/mybatis-plus/" class="article-date">
+  <time datetime="2020-09-19T11:54:39.000Z" itemprop="datePublished">2020-09-19</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-jdbc&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;lombok&lt;/artifactId&gt;</span><br><span class="line">    &lt;optional&gt;true&lt;/optional&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.baomidou&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.4.0&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">    &lt;scope&gt;runtime&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    </span><br><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    url: jdbc:mysql:<span class="comment">//localhost:3306/myblog?useUnicode=true&amp;characterEncodeing=utf-8&amp;useSSL=true&amp;serverTimezone=UTC</span></span><br><span class="line">    username: root</span><br><span class="line">    password: password</span><br><span class="line">    driver-class-name: com.mysql.jdbc.Driver</span><br></pre></td></tr></table></figure>
+
+<h3 id="注解ID"><a href="#注解ID" class="headerlink" title="注解ID"></a>注解ID</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> IdType &#123;</span><br><span class="line">    AUTO(<span class="number">0</span>),<span class="comment">//数据库自增id</span></span><br><span class="line">    NONE(<span class="number">1</span>),<span class="comment">//无状态,该类型为未设置主键类型(注解里等于跟随全局,全局里约等于 INPUT)</span></span><br><span class="line">    INPUT(<span class="number">2</span>),<span class="comment">//insert前自行set主键值</span></span><br><span class="line">    ASSIGN_ID(<span class="number">3</span>),<span class="comment">//雪花算法</span></span><br><span class="line">    ASSIGN_UUID(<span class="number">4</span>),<span class="comment">//uuid</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@TableId</span>(type = IdType.AUTO)</span><br><span class="line">Integer userid;</span><br><span class="line"><span class="comment">//关于这块需要写成integer类，否则它默认都为0。</span></span><br><span class="line"><span class="comment">//而当用雪花或者uuid的时候,需要换为long类型因为长度不够</span></span><br><span class="line"></span><br><span class="line"><span class="function">IdType <span class="title">type</span><span class="params">()</span> <span class="keyword">default</span> IdType.NONE</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建时间和更新时间"><a href="#创建时间和更新时间" class="headerlink" title="创建时间和更新时间"></a>创建时间和更新时间</h3><p><img src="/.com//D:%5CTypora%5C%E5%9B%BE%E7%89%87%5Cimage-20200919215131761.png" alt="image-20200919215131761"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--插入当前时间戳 CURRENT_TIMESTAMP</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--将update_time 的根据当前时间戳给勾上</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--用于在插入时,就会同步当前时间,更新时也会同步更新时间</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="乐观锁插件"><a href="#乐观锁插件" class="headerlink" title="乐观锁插件"></a>乐观锁插件</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*意图：</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">当要更新一条记录的时候，希望这条记录没有被别人更新</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">乐观锁实现方式：</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">取出记录时，获取当前version</span></span><br><span class="line"><span class="comment">更新时，带上这个version</span></span><br><span class="line"><span class="comment">执行更新时， set version = newVersion where version = oldVersion</span></span><br><span class="line"><span class="comment">如果version不对，就更新失败*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">mybatisplusconfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> OptimisticLockerInterceptor <span class="title">optimisticLockerInterceptor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> OptimisticLockerInterceptor();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*当一个线程去修改这个id时需要一个version,那么我们就需要先查询出来这个version，再进行判断这个version是不是相同的,如果是相同那么就成功修改并且加一</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">当多个线程时，如果另一个线程抢占修改了version,其他线程可能已经获取到version，但是version已经被原先抢占的线程给修改了,那么就会修改失败。如果没有乐观锁这种想法的话，那么就会造成数据直接覆盖的情况</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-函数式接口"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/09/13/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/"
+    >函数式接口</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/09/13/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/" class="article-date">
+  <time datetime="2020-09-13T07:15:12.000Z" itemprop="datePublished">2020-09-13</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="四大函数式接口"><a href="#四大函数式接口" class="headerlink" title="四大函数式接口"></a>四大函数式接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = <span class="keyword">new</span> Consumer&lt;String&gt;()&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        System.out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">lamda写法</span><br><span class="line">Consumer&lt;String&gt; consumer = (s)-&gt;&#123;</span><br><span class="line">    System.out.println(s)</span><br><span class="line">&#125;</span><br><span class="line">Function&lt;String, String&gt; function = <span class="keyword">new</span> Function&lt;String, String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">apply</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">lamda写法</span><br><span class="line">Function&lt;String, String&gt; function = (s)-&gt;&#123;</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;;</span><br><span class="line">lamda的写法是依赖关系一般()-&gt;&#123;&#125;括号代表的就是<span class="keyword">new</span>了接口，只有当接口一个方法的时候。不然无法编码</span><br></pre></td></tr></table></figure>
+
+<h3 id="Stream流式-链式编程-lamda表达式-函数式接口"><a href="#Stream流式-链式编程-lamda表达式-函数式接口" class="headerlink" title="Stream流式 链式编程 lamda表达式 函数式接口"></a>Stream流式 链式编程 lamda表达式 函数式接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">user u1 = <span class="keyword">new</span> user(<span class="string">"小明"</span>,<span class="number">12</span>,<span class="string">"a"</span>);</span><br><span class="line">user u2 = <span class="keyword">new</span> user(<span class="string">"小红"</span>,<span class="number">13</span>,<span class="string">"b"</span>);</span><br><span class="line">user u3 = <span class="keyword">new</span> user(<span class="string">"小蓝"</span>,<span class="number">14</span>,<span class="string">"c"</span>);</span><br><span class="line">user u4 = <span class="keyword">new</span> user(<span class="string">"小李"</span>,<span class="number">15</span>,<span class="string">"d"</span>);</span><br><span class="line">user u5 = <span class="keyword">new</span> user(<span class="string">"小天"</span>,<span class="number">16</span>,<span class="string">"e"</span>);</span><br><span class="line"></span><br><span class="line">List&lt;user&gt; users = Arrays.asList(u1,u2,u3,u4,u5);</span><br><span class="line"></span><br><span class="line">users.stream()</span><br><span class="line">    .filter((u)-&gt;&#123;<span class="keyword">return</span> u.getname.equals&#125;;)<span class="comment">//过滤你要的值</span></span><br><span class="line">    .map((u)-&gt;&#123;<span class="keyword">return</span> u.getT().toUpperCase();&#125;)<span class="comment">//返回你想返回的对象或者值&lt;t&gt;</span></span><br><span class="line">    .sorted((uu1,uu2)-&gt;&#123;<span class="keyword">return</span> uu2.compareTo(uu1);&#125;)<span class="comment">//compareTo比较方法</span></span><br><span class="line">    .limit(<span class="number">3</span>)<span class="comment">//查看前几条数据</span></span><br><span class="line">    .forEach((u)-&gt;&#123;System.out.println(u);&#125;);<span class="comment">//循环打印</span></span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-java线程"
   class="article article-type-post"
   itemscope
@@ -559,102 +664,6 @@
 <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><pre><code>111011 =&gt;1+2+0+8+16+32 = 59
 
 58 =&gt;32+16 = 110000</code></pre> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-SringBoot"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/07/04/SringBoot/"
-    >SringBoot</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/07/04/SringBoot/" class="article-date">
-  <time datetime="2020-07-04T08:05:27.000Z" itemprop="datePublished">2020-07-04</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h4 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(<span class="string">"/login"</span>)</span><br><span class="line">public String login(User user, Model model)&#123;</span><br><span class="line">    User user1 = userservice.selectuser(user);</span><br><span class="line">    <span class="keyword">if</span>(user1!=null)&#123;</span><br><span class="line">        model.addAttribute(<span class="string">"user"</span>,user1);</span><br><span class="line">        <span class="built_in">return</span> <span class="string">"success"</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="string">"index"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//配置类</span><br><span class="line">@Configuration</span><br><span class="line">public class Webconfigurer implements WebMvcConfigurer &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    LoginInterceptor logininterceptor;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void addInterceptors(InterceptorRegistry registry) &#123;</span><br><span class="line">        System.out.println(<span class="string">"???"</span>);</span><br><span class="line">        registry.addInterceptor(logininterceptor)</span><br><span class="line">                .addPathPatterns(<span class="string">"/**"</span>)//拦截所有</span><br><span class="line">                .excludePathPatterns(<span class="string">"/handler/"</span>,<span class="string">"/handler/login"</span>,</span><br><span class="line">                <span class="string">"/img/**"</span>,<span class="string">"/css/**"</span>);//放开拦截</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//拦截器</span><br><span class="line">@Component(<span class="string">"LoginInterceptor"</span>)</span><br><span class="line">public class LoginInterceptor implements HandlerInterceptor &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception &#123;</span><br><span class="line">        HttpSession session = request.getSession();</span><br><span class="line">        <span class="keyword">if</span>(session.getAttribute(<span class="string">"user"</span>)==null)&#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="mybatis"><a href="#mybatis" class="headerlink" title="mybatis"></a>mybatis</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8888</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    username: root</span><br><span class="line">    password: password</span><br><span class="line">    url: jdbc:mysql://localhost:3306/user?</span><br><span class="line">    useUnicode=<span class="literal">true</span></span><br><span class="line">    &amp;characterEncodeing=utf-8</span><br><span class="line">    &amp;useSSL=<span class="literal">true</span></span><br><span class="line">    &amp;serverTimezone=UTC //时间</span><br><span class="line">    driver-class-name: com.mysql.jdbc.Driver</span><br><span class="line">  thymeleaf:</span><br><span class="line"><span class="comment">#    prefix: classpath:/static/</span></span><br><span class="line"></span><br><span class="line">mybatis:</span><br><span class="line">  mapper-locations: classpath:mapping/*Mapper.xml  =&gt; resoruce/mapping/</span><br><span class="line">  <span class="built_in">type</span>-aliases-package: com.yefeng.Pojo 别名</span><br></pre></td></tr></table></figure>
-
-<h4 id="application-yml"><a href="#application-yml" class="headerlink" title="application.yml"></a>application.yml</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">application-dev.yml 开发环境</span><br><span class="line">application-test.yml 测试环境</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">spring:</span><br><span class="line">  profiles:</span><br><span class="line">    active: dev</span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-建造者模式"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/09/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/"
-    >建造者模式</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/06/09/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/" class="article-date">
-  <time datetime="2020-06-09T02:30:22.000Z" itemprop="datePublished">2020-06-09</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="盖房子"><a href="#盖房子" class="headerlink" title="盖房子"></a>盖房子</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line">package org.Builder;</span><br><span class="line"></span><br><span class="line">public class House &#123;</span><br><span class="line">	String name;</span><br><span class="line">	String wall;</span><br><span class="line">	String tier;</span><br><span class="line">	</span><br><span class="line">	public String <span class="function"><span class="title">getName</span></span>() &#123;</span><br><span class="line">		<span class="built_in">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setName(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	public String <span class="function"><span class="title">getWall</span></span>() &#123;</span><br><span class="line">		<span class="built_in">return</span> wall;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setWall(String wall) &#123;</span><br><span class="line">		this.wall = wall;</span><br><span class="line">	&#125;</span><br><span class="line">	public String <span class="function"><span class="title">getTier</span></span>() &#123;</span><br><span class="line">		<span class="built_in">return</span> tier;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setTier(String tier) &#123;</span><br><span class="line">		this.tier = tier;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public String <span class="function"><span class="title">toString</span></span>() &#123;</span><br><span class="line">		<span class="built_in">return</span> <span class="string">"House [name="</span> + name + <span class="string">", wall="</span> + wall + <span class="string">", tier="</span> + tier + <span class="string">"]"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//建造者</span><br><span class="line">package org.Builder;</span><br><span class="line"></span><br><span class="line">public abstract class HouseBuilder &#123;</span><br><span class="line">	</span><br><span class="line">	private House house = new House();</span><br><span class="line">	</span><br><span class="line">	abstract public void setHousename();</span><br><span class="line">	abstract public void setHousewall();</span><br><span class="line">	abstract public void setHousetril();</span><br><span class="line">	//饿汉模式</span><br><span class="line">	public House <span class="function"><span class="title">getHouse</span></span>() &#123;</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">return</span> house;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">package org.Builder;</span><br><span class="line"></span><br><span class="line">public class CommonHouse extends HouseBuilder&#123;</span><br><span class="line">	public void <span class="function"><span class="title">setHousename</span></span>() &#123;</span><br><span class="line">		getHouse().setName(<span class="string">"普通房子"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	public void <span class="function"><span class="title">setHousewall</span></span>() &#123;</span><br><span class="line">		getHouse().setWall(<span class="string">"白色墙壁"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	public void <span class="function"><span class="title">setHousetril</span></span>() &#123;</span><br><span class="line">		getHouse().setTier(<span class="string">"3层"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">package org.Builder;</span><br><span class="line">//指挥者</span><br><span class="line">public class HouseDirector &#123;</span><br><span class="line">	HouseBuilder housebuilder = null;</span><br><span class="line"></span><br><span class="line">	public void setHousebuilder(HouseBuilder housebuilder) &#123;</span><br><span class="line">		this.housebuilder = housebuilder;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public HouseDirector(HouseBuilder housebuilder) &#123;</span><br><span class="line">		this.housebuilder = housebuilder;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public House <span class="function"><span class="title">BuilderHouse</span></span>() &#123;</span><br><span class="line">		housebuilder.setHousename();</span><br><span class="line">		housebuilder.setHousewall();</span><br><span class="line">		housebuilder.setHousetril();</span><br><span class="line">		<span class="built_in">return</span> housebuilder.getHouse();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">package org.Builder;</span><br><span class="line">//客户需求产品</span><br><span class="line">public class Client &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		HouseDirector houseDirector = new HouseDirector(new CommonHouse());</span><br><span class="line">		House house = houseDirector.BuilderHouse();</span><br><span class="line">		System.out.println(house);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
       <!-- reward -->
       
     </div>
