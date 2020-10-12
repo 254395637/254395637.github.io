@@ -101,6 +101,80 @@
     
     
     <article
+  id="post-十进制转换"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/07/21/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/"
+    >十进制转换</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/07/21/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/" class="article-date">
+  <time datetime="2020-07-21T07:37:02.000Z" itemprop="datePublished">2020-07-21</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="BCD码展示"><a href="#BCD码展示" class="headerlink" title="BCD码展示"></a>BCD码展示</h3><table>
+<thead>
+<tr>
+<th align="center">二进制</th>
+<th align="center">1</th>
+<th align="center">1</th>
+<th align="center">1</th>
+<th align="center">1</th>
+<th align="center">1</th>
+<th align="center">1</th>
+<th align="center">1</th>
+<th align="center">1</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">十进制</td>
+<td align="center">128</td>
+<td align="center">64</td>
+<td align="center">32</td>
+<td align="center">16</td>
+<td align="center">8</td>
+<td align="center">4</td>
+<td align="center">2</td>
+<td align="center">1</td>
+</tr>
+</tbody></table>
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><pre><code>111011 =&gt;1+2+0+8+16+32 = 59
+
+58 =&gt;32+16 = 110000</code></pre> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-SringBoot"
   class="article article-type-post"
   itemscope
@@ -619,80 +693,6 @@
 <h3 id="每次输入都获取值-input"><a href="#每次输入都获取值-input" class="headerlink" title="每次输入都获取值 input"></a>每次输入都获取值 input</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$item</span>.children(<span class="string">"#file"</span>).on(<span class="string">"input"</span>, <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">     console.log($(this).val())</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <h3 id="blur-失去焦点时"><a href="#blur-失去焦点时" class="headerlink" title="blur 失去焦点时"></a>blur 失去焦点时</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">不可回车键</span><br><span class="line"><span class="variable">$item</span>.children(<span class="string">"#file"</span>).on(<span class="string">"blur"</span>, <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">     console.log($(this).val())</span><br><span class="line">&#125;)</span><br><span class="line">//激活回车键</span><br><span class="line"><span class="variable">$item</span>.<span class="built_in">bind</span>(<span class="string">"keydown keyup"</span>,<span class="keyword">function</span>(e)&#123;</span><br><span class="line">    var key = e.which;</span><br><span class="line">    <span class="keyword">if</span> (key == 13) &#123;</span><br><span class="line">        console.log($(this).val())</span><br><span class="line">        $(this).css(<span class="string">"outline"</span>,<span class="string">"none"</span>);</span><br><span class="line">        $(this).attr(<span class="string">"readonly"</span>,<span class="literal">true</span>);</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <h3 id="focus-点击获取焦点时"><a href="#focus-点击获取焦点时" class="headerlink" title="focus 点击获取焦点时"></a>focus 点击获取焦点时</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$item</span>.children(<span class="string">"#file"</span>).on(<span class="string">"focus"</span>, <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">     console.log($(this).val())</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-关于session错误"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/31/%E5%85%B3%E4%BA%8Esession%E9%94%99%E8%AF%AF/"
-    >关于session错误</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/03/31/%E5%85%B3%E4%BA%8Esession%E9%94%99%E8%AF%AF/" class="article-date">
-  <time datetime="2020-03-31T02:52:31.000Z" itemprop="datePublished">2020-03-31</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>使用spring mvc进行Java web开发时，如果同时使用@SessionAttributes 和@ResponseBody注解，就会出现</p>
-<p>“java.lang.IllegalStateException: Cannot create a session after the response has been committed ”这个错误。这是为什么呢，因为我们在创建session前，已经将response进行了提交。</p>
-<p>下面通过一个例子进行说明：</p>
-<p>@Controller<br>@RequestMapping(“/“)<br>@SessionAttributes(value = {“user”})<br>public class UserController {</p>
-<pre><code>@ResponseBody
-@RequestMapping(&quot;add&quot;)
-public String method1(ModelMap map) {
-
-    User user = new User();
-    map.addAttribute(&quot;user&quot;, user);
-    return &quot;success&quot;;
-}
-
-@ResponseBody
-@RequestMapping(&quot;update&quot;)
-public String method2(ModelMap map ) {
-    System.out.println(map.get(&quot;user&quot;));
-    return &quot;success&quot;;
-}</code></pre><p>}</p>
-<p>当访问method1时，就会报上面错误。原因是@SessionAttributes中定义了ModelMap中哪些属性将要存入session中。因为这个存入session的动作是在method1方法结束后发生的，而return 语句一结束，response就会立即被返回，因此就会造成</p>
-<p>“Cannot not create session after response has been committed”。</p>
-<p>解决方法：</p>
-<p>在return之前，创建自己的session，即将上面的method1变成如下：</p>
-<p>@ResponseBody<br>    @RequestMapping(“add”)<br>    public String method1(ModelMap map， HttpSession session) {</p>
-<pre><code>    User user = new User();
-    map.addAttribute(&quot;user&quot;, user);
-    return &quot;success&quot;;
-}</code></pre><p>这样就能保证在return之前，session已将被创建。</p>
- 
       <!-- reward -->
       
     </div>
