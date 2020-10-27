@@ -101,6 +101,198 @@
     
     
     <article
+  id="post-LinkedList"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/12/LinkedList/"
+    >LineList</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/05/12/LinkedList/" class="article-date">
+  <time datetime="2020-05-12T07:43:09.000Z" itemprop="datePublished">2020-05-12</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="关于链表集合"><a href="#关于链表集合" class="headerlink" title="关于链表集合"></a>关于链表集合</h3><pre><code>它有链表头和尾
+插入快 查询慢 性能不安全</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">package org.entity;</span><br><span class="line">//定义一个链表结构</span><br><span class="line">public class Node &#123;</span><br><span class="line">	public Object obj;</span><br><span class="line">	</span><br><span class="line">	public Node prev;</span><br><span class="line">	</span><br><span class="line">	public Node next;</span><br><span class="line">	</span><br><span class="line">	public <span class="function"><span class="title">Node</span></span>() &#123;</span><br><span class="line">		// TODO Auto-generated constructor stub</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public Node(Object obj, Node prev, Node next) &#123;</span><br><span class="line">		this.obj = obj;</span><br><span class="line">		this.prev = prev;</span><br><span class="line">		this.next = next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class text02 &#123;</span><br><span class="line">	</span><br><span class="line">	private Node first;</span><br><span class="line">	</span><br><span class="line">	private Node last;</span><br><span class="line">	</span><br><span class="line">	private int size;</span><br><span class="line"></span><br><span class="line">	public void add(Object obj) &#123;</span><br><span class="line">		Node node = new Node();</span><br><span class="line">		<span class="keyword">if</span>(first==null) &#123;</span><br><span class="line">			node.next = null;</span><br><span class="line">			node.prev = null;</span><br><span class="line">			node.obj = obj;</span><br><span class="line">			first = node;</span><br><span class="line">			last = node;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			node.prev = last;</span><br><span class="line">			node.next = null;</span><br><span class="line">			node.obj = obj;</span><br><span class="line">			last.next = node;</span><br><span class="line">			last = node;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		text02 t = new text02();</span><br><span class="line">		t.add(2);</span><br><span class="line">		t.add(3);</span><br><span class="line">		t.add(4);</span><br><span class="line">		System.out.println(t.last);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加节点的过程"><a href="#添加节点的过程" class="headerlink" title="添加节点的过程"></a>添加节点的过程</h3><p>首先加入第一个节点时 node first就是它自身 last也是它自身 它的上一个节点和下一个节点为null</p>
+<p>当我们链表已经有节点时 再加入节点的时候 </p>
+<p>当前的node.prev上一个节点 = last<br>当前的node.next下一个节点 = null<br>node.obj = obj 就是它本身的节点</p>
+<p>接着</p>
+<p>last是之前的node 也就是说上一个节点的地址，<br>这样我们就可以改变last.next = node 这样就变成了我们加入进来的node对象（因为上一个节点有next 和 prev）<br>再把last = node 这样就变成了我们下次进来的上一个节点为现在的节点<br>依此类推 就不断延续</p>
+<h3 id="空构造法"><a href="#空构造法" class="headerlink" title="空构造法"></a>空构造法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public <span class="function"><span class="title">LinkedList</span></span>() &#123;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="有参构造法"><a href="#有参构造法" class="headerlink" title="有参构造法"></a>有参构造法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"> public LinkedList(Collection&lt;? extends E&gt; c) &#123;</span><br><span class="line">         this();</span><br><span class="line">         // 将集合添加到链表中去</span><br><span class="line">         addAll(c);</span><br><span class="line">     &#125;</span><br><span class="line"> </span><br><span class="line"> public boolean addAll(Collection&lt;? extends E&gt; c) &#123;</span><br><span class="line">         // 从链表尾巴开始集合中元素</span><br><span class="line">         <span class="built_in">return</span> addAll(size, c);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">public boolean addAll(int index, Collection&lt;? extends E&gt; c) &#123;</span><br><span class="line">     // 1.添加位置的下标的合理性检查</span><br><span class="line">     checkPositionIndex(index);</span><br><span class="line"></span><br><span class="line">     // 2.将集合转换为Object[]数组对象</span><br><span class="line">     Object[] a = c.toArray();</span><br><span class="line">     int numNew = a.length;</span><br><span class="line">     <span class="keyword">if</span> (numNew == 0)</span><br><span class="line">         <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">     // 3.得到插入位置的前继节点和后继节点</span><br><span class="line">     Node&lt;E&gt; pred, succ;</span><br><span class="line">     <span class="keyword">if</span> (index == size) &#123;</span><br><span class="line">         // 从尾部添加的情况：前继节点是原来的last节点；后继节点是null</span><br><span class="line">         succ = null;</span><br><span class="line">         pred = last;</span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        // 从指定位置（非尾部）添加的情况:前继节点就是index位置的节点，后继节点是index位置的节点的前一个节点</span><br><span class="line">         succ = node(index);</span><br><span class="line">         pred = succ.prev;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     // 4.遍历数据，将数据插入</span><br><span class="line">     <span class="keyword">for</span> (Object o : a) &#123;</span><br><span class="line">         @SuppressWarnings(<span class="string">"unchecked"</span>) E e = (E) o;</span><br><span class="line">         // 创建节点</span><br><span class="line">         Node&lt;E&gt; newNode = new Node&lt;&gt;(pred, e, null);</span><br><span class="line">         <span class="keyword">if</span> (pred == null)</span><br><span class="line">             // 空链表插入情况：</span><br><span class="line">             first = newNode;</span><br><span class="line">         <span class="keyword">else</span></span><br><span class="line">             // 非空链表插入情况：</span><br><span class="line">             pred.next = newNode;</span><br><span class="line">         // 更新前置节点为最新插入的节点（的地址）</span><br><span class="line">         pred = newNode;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span> (succ == null) &#123;</span><br><span class="line">         // 如果是从尾部开始插入的，则把last置为最后一个插入的元素</span><br><span class="line">         last = pred;</span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         // 如果不是从尾部插入的，则把尾部的数据和之前的节点连起来</span><br><span class="line">         pred.next = succ;</span><br><span class="line">         succ.prev = pred;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     size += numNew;  // 链表大小+num</span><br><span class="line">     modCount++;  // 修改次数加1</span><br><span class="line">     <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="add-E-e-方法"><a href="#add-E-e-方法" class="headerlink" title="add(E e)方法"></a>add(E e)方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 作用：将元素添加到链表尾部</span><br><span class="line">   public boolean add(E e) &#123;</span><br><span class="line">       linkLast(e);</span><br><span class="line">       <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   void linkLast(E e) &#123;</span><br><span class="line">       final Node&lt;E&gt; l = last;  // 获取尾部元素</span><br><span class="line">       final Node&lt;E&gt; newNode = new Node&lt;&gt;(l, e, null); // 以尾部元素为前继节点创建一个新节点</span><br><span class="line">       last = newNode;  // 更新尾部节点为需要插入的节点</span><br><span class="line">       <span class="keyword">if</span> (l == null)</span><br><span class="line">	    // 如果空链表的情况：同时更新first节点也为需要插入的节点。（也就是说：该节点既是头节点first也是尾节点last）</span><br><span class="line">           first = newNode;</span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">        // 不是空链表的情况：将原来的尾部节点（现在是倒数第二个节点）的next指向需要插入的节点</span><br><span class="line">           l.next = newNode;</span><br><span class="line">       size++; // 更新链表大小和修改次数，插入完毕</span><br><span class="line">       modCount++;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="add-int-index-E-element-方法"><a href="#add-int-index-E-element-方法" class="headerlink" title="add(int index, E element)方法"></a>add(int index, E element)方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">// 作用：在指定位置添加元素</span><br><span class="line">   public void add(int index, E element) &#123;</span><br><span class="line">    // 检查插入位置的索引的合理性</span><br><span class="line">       checkPositionIndex(index);</span><br><span class="line">       //添加到尾部</span><br><span class="line">       <span class="keyword">if</span> (index == size)</span><br><span class="line">        // 插入的情况是尾部插入的情况：调用linkLast（）解释如上。</span><br><span class="line">           linkLast(element);</span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">        // 中间插入）：linkBefore（）见下面。</span><br><span class="line">           linkBefore(element, node(index));</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   private void checkPositionIndex(int index) &#123;</span><br><span class="line">       <span class="keyword">if</span> (!isPositionIndex(index))</span><br><span class="line">           throw new IndexOutOfBoundsException(outOfBoundsMsg(index));</span><br><span class="line">   &#125;</span><br><span class="line">   //判断index是否正确参数</span><br><span class="line">   private boolean isPositionIndex(int index) &#123;</span><br><span class="line">       <span class="built_in">return</span> index &gt;= 0 &amp;&amp; index &lt;= size;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   void linkBefore(E e, Node&lt;E&gt; succ) &#123;</span><br><span class="line">       // assert succ != null;</span><br><span class="line">       final Node&lt;E&gt; pred = succ.prev;  //获取到输入下标的node上个节点是</span><br><span class="line">       final Node&lt;E&gt; newNode = new Node&lt;&gt;(pred, e, succ);  // pred设置为新元素的上一个节点 老的succ为下一个节点</span><br><span class="line">       succ.prev = newNode;  // 将succ的上一个节点设置为新的节点</span><br><span class="line">       <span class="keyword">if</span> (pred == null)</span><br><span class="line">        // 如果pred为null，说明该节点插入在头节点之前，要重置first头节点 </span><br><span class="line">           first = newNode;</span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">        // 如果pred不为null，</span><br><span class="line">           pred.next = newNode;pred的下个节点等于新的节点对象</span><br><span class="line">       size++;</span><br><span class="line">       modCount++;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="get-int-index-方法"><a href="#get-int-index-方法" class="headerlink" title="get(int index)方法"></a>get(int index)方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">   public E get(int index) &#123;</span><br><span class="line">    // 元素下表的合理性检查</span><br><span class="line">       checkElementIndex(index);</span><br><span class="line">       // node(index)真正查询匹配元素并返回</span><br><span class="line">       <span class="built_in">return</span> node(index).item;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">// 作用：查询指定位置元素并返回</span><br><span class="line">   Node&lt;E&gt; node(int index) &#123;</span><br><span class="line">       // assert isElementIndex(index);</span><br><span class="line"></span><br><span class="line">	// 如果索引位置靠链表前半部分，从头开始遍历</span><br><span class="line">       <span class="keyword">if</span> (index &lt; (size &gt;&gt; 1)) &#123;</span><br><span class="line">           Node&lt;E&gt; x = first;</span><br><span class="line">           <span class="keyword">for</span> (int i = 0; i &lt; index; i++)</span><br><span class="line">               x = x.next;</span><br><span class="line">           <span class="built_in">return</span> x;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       // 如果索引位置靠链表后半部分，从尾开始遍历</span><br><span class="line">           Node&lt;E&gt; x = last;</span><br><span class="line">           <span class="keyword">for</span> (int i = size - 1; i &gt; index; i--)</span><br><span class="line">               x = x.prev;</span><br><span class="line">           <span class="built_in">return</span> x;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="remove-int-index-方法"><a href="#remove-int-index-方法" class="headerlink" title="remove(int index)方法"></a>remove(int index)方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">// 作用：移除指定位置的元素</span><br><span class="line">   public E remove(int index) &#123;</span><br><span class="line">    // 移除元素索引的合理性检查</span><br><span class="line">       checkElementIndex(index);</span><br><span class="line">       // 将节点删除</span><br><span class="line">       <span class="built_in">return</span> unlink(node(index));</span><br><span class="line">   &#125;</span><br><span class="line"> E unlink(Node&lt;E&gt; x) &#123;</span><br><span class="line">        // assert x != null;</span><br><span class="line">        final E element = x.item;  // 得到指定节点的值</span><br><span class="line">        final Node&lt;E&gt; next = x.next; // 得到指定节点的后继节点</span><br><span class="line">        final Node&lt;E&gt; prev = x.prev; // 得到指定节点的前继节点</span><br><span class="line"></span><br><span class="line">		// 如果prev为null表示删除是头节点，否则就不是头节点</span><br><span class="line">        <span class="keyword">if</span> (prev == null) &#123;</span><br><span class="line">            first = next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            prev.next = next;2 3 4 去除掉3 2的下一个节点4</span><br><span class="line">            x.prev = null; // 置空需删除的指定节点的前置节点（null）</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">		// 如果next为null,则表示删除的是尾部节点，否则就不是尾部节点</span><br><span class="line">        <span class="keyword">if</span> (next == null) &#123;</span><br><span class="line">            last = prev;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            next.prev = prev;2 3 4 去除掉3 4的上一个节点2</span><br><span class="line">            x.next = null; //  置空需删除的指定节点的后置节点</span><br><span class="line">        &#125;</span><br><span class="line">		</span><br><span class="line">		// 置空需删除的指定节点的值</span><br><span class="line">        x.item = null;</span><br><span class="line">        size--; // 数量减1</span><br><span class="line">        modCount++;</span><br><span class="line">        <span class="built_in">return</span> element;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="clear-方法"><a href="#clear-方法" class="headerlink" title="clear()方法"></a>clear()方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 清空链表</span><br><span class="line">   public void <span class="function"><span class="title">clear</span></span>() &#123;</span><br><span class="line">       // Clearing all of the links between nodes is <span class="string">"unnecessary"</span>, but:</span><br><span class="line">       // - helps a generational GC <span class="keyword">if</span> the discarded nodes inhabit</span><br><span class="line">       //   more than one generation</span><br><span class="line">       // - is sure to free memory even <span class="keyword">if</span> there is a reachable Iterator</span><br><span class="line">    // 进行<span class="keyword">for</span>循环，进行逐条置空；直到最后一个元素</span><br><span class="line">       <span class="keyword">for</span> (Node&lt;E&gt; x = first; x != null; ) &#123;</span><br><span class="line">           Node&lt;E&gt; next = x.next;</span><br><span class="line">           x.item = null;</span><br><span class="line">           x.next = null;</span><br><span class="line">           x.prev = null;</span><br><span class="line">           x = next;</span><br><span class="line">       &#125;</span><br><span class="line">       // 置空头和尾为null</span><br><span class="line">       first = last = null;</span><br><span class="line">       size = 0;</span><br><span class="line">       modCount++;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="indexOf-Object-o"><a href="#indexOf-Object-o" class="headerlink" title="indexOf(Object o)"></a>indexOf(Object o)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// 返回元素在链表中的索引，如果不存在则返回-1</span><br><span class="line">public int indexOf(Object o) &#123;</span><br><span class="line">      int index = 0;</span><br><span class="line">      // 如果元素为null，进行如下循环判断</span><br><span class="line">      <span class="keyword">if</span> (o == null) &#123;</span><br><span class="line">          <span class="keyword">for</span> (Node&lt;E&gt; x = first; x != null; x = x.next) &#123;</span><br><span class="line">              <span class="keyword">if</span> (x.item == null)</span><br><span class="line">                  <span class="built_in">return</span> index;</span><br><span class="line">              index++;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      // 元素不为null.进行如下循环判断</span><br><span class="line">          <span class="keyword">for</span> (Node&lt;E&gt; x = first; x != null; x = x.next) &#123;</span><br><span class="line">              <span class="keyword">if</span> (o.equals(x.item))</span><br><span class="line">                  <span class="built_in">return</span> index;</span><br><span class="line">              index++;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">return</span> -1;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="addFirst-E-e-方法"><a href="#addFirst-E-e-方法" class="headerlink" title="addFirst(E e)方法"></a>addFirst(E e)方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> // 作用：在链表头插入指定元素</span><br><span class="line"> public void addFirst(E e) &#123;</span><br><span class="line">      linkFirst(e);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private void linkFirst(E e) &#123;</span><br><span class="line">      final Node&lt;E&gt; f = first; // 获取头部元素</span><br><span class="line">      final Node&lt;E&gt; newNode = new Node&lt;&gt;(null, e, f); // 创建新的头部元素（原来的头部元素变成了第二个）</span><br><span class="line">      first = newNode;</span><br><span class="line"></span><br><span class="line">// 链表头部为空，（也就是链表为空）</span><br><span class="line">      <span class="keyword">if</span> (f == null)</span><br><span class="line">          last = newNode; // 头尾元素都是e</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">          f.prev = newNode;  // 否则就更新原来的头元素的prev为新元素的地址引用</span><br><span class="line">      size++;</span><br><span class="line">      modCount++;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="addLast-E-e-方法"><a href="#addLast-E-e-方法" class="headerlink" title="addLast(E e)方法"></a>addLast(E e)方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 作用：在链表尾部添加元素e</span><br><span class="line">  public void addLast(E e) &#123;</span><br><span class="line">	// 上面已讲解过，参考上面。add()方法</span><br><span class="line">       linkLast(e);</span><br><span class="line">   &#125;</span><br><span class="line">   void linkLast(E e) &#123;</span><br><span class="line">       final Node&lt;E&gt; l = last;  // 获取尾部元素</span><br><span class="line">       final Node&lt;E&gt; newNode = new Node&lt;&gt;(l, e, null); // 以尾部元素为前继节点创建一个新节点</span><br><span class="line">       last = newNode;  // 更新尾部节点为需要插入的节点</span><br><span class="line">       <span class="keyword">if</span> (l == null)</span><br><span class="line">	    // 如果空链表的情况：同时更新first节点也为需要插入的节点。（也就是说：该节点既是头节点first也是尾节点last）</span><br><span class="line">           first = newNode;</span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">        // 不是空链表的情况：将原来的尾部节点（现在是倒数第二个节点）的next指向需要插入的节点</span><br><span class="line">           l.next = newNode;</span><br><span class="line">       size++; // 更新链表大小和修改次数，插入完毕</span><br><span class="line">       modCount++;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-ArrayList"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/12/ArrayList/"
+    >ArrayList</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/05/12/ArrayList/" class="article-date">
+  <time datetime="2020-05-12T07:13:03.000Z" itemprop="datePublished">2020-05-12</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>列表集合</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class ArrayList&lt;E&gt; extends AbstractList&lt;E&gt; implements List&lt;E&gt;, RandomAccess, Cloneable, Serializable &#123;  </span><br><span class="line">    // 序列化id  </span><br><span class="line">    private static final long serialVersionUID = 8683452581122892189L;  </span><br><span class="line">    // 默认初始的容量  </span><br><span class="line">    private static final int DEFAULT_CAPACITY = 10;  </span><br><span class="line">    // 一个空对象（为什么是new Object[0]呢？）</span><br><span class="line">    //用Object[0]来代替null 很多时候我们需要传递参数的类型，而不是传null，所以用Object[0]</span><br><span class="line">    private static final Object[] EMPTY_ELEMENTDATA = new Object[0];  </span><br><span class="line">    // 一个空对象，如果使用默认构造函数创建，则默认对象内容默认是该值  </span><br><span class="line">    private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = new Object[0];  </span><br><span class="line">    // 当前数据对象存放地方，当前对象不参与序列化(主要是关键字transient起作用的)  </span><br><span class="line">    transient Object[] elementData;  </span><br><span class="line">    // 当前数组长度  </span><br><span class="line">    private int size;  </span><br><span class="line">    // 数组最大长度  </span><br><span class="line">    private static final int MAX_ARRAY_SIZE = 2147483639;  </span><br><span class="line"></span><br><span class="line">    // 省略方法。。  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>默认object[] xxx = {}||new object[0]</p>
+<p>这里规定了一个默认空对象的构造法方法 ：</p>
+<p>private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = new Object[0];  </p>
+<p>还有一个有参数的构造法 private static final Object[] EMPTY_ELEMENTDATA = new Object[0]; </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">public boolean add(E e) &#123;</span><br><span class="line">        ensureCapacityInternal(size + 1);  //确认内部容量</span><br><span class="line">        前面定义默认的size为0 所以每次添加新的值 size会加一</span><br><span class="line">        elementData[size++] = e;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> private void ensureCapacityInternal(int minCapacity) &#123;</span><br><span class="line">        // 如果elementData 指向的是 DEFAULTCAPACITY_EMPTY_ELEMENTDATA 的地址</span><br><span class="line">        <span class="keyword">if</span> (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) &#123;</span><br><span class="line">            //置默认大小 为DEFAULT_CAPACITY</span><br><span class="line">            minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);</span><br><span class="line"></span><br><span class="line">            DEFAULT_CAPACITY == 10 前面定义为10 minCapacity 是size+1进来的</span><br><span class="line">        	这里为何要加一的原因是数组的length有长度的话就是1 而下标是为0</span><br><span class="line">        </span><br><span class="line">        &#125;</span><br><span class="line">        //确定实际容量</span><br><span class="line">        ensureExplicitCapacity(minCapacity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">private void ensureExplicitCapacity(int minCapacity) &#123;</span><br><span class="line">        modCount++;</span><br><span class="line"></span><br><span class="line">        // 如果超出了容量，进行扩展</span><br><span class="line">        <span class="keyword">if</span> (minCapacity - elementData.length &gt; 0)</span><br><span class="line">            grow(minCapacity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">private void grow(int minCapacity) &#123;</span><br><span class="line">        // overflow-conscious code</span><br><span class="line">        int oldCapacity = elementData.length;</span><br><span class="line">        //右移运算符等价于除以2</span><br><span class="line">        int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1);</span><br><span class="line">        <span class="keyword">if</span> (newCapacity - minCapacity &lt; 0)</span><br><span class="line">            newCapacity = minCapacity;</span><br><span class="line">        <span class="keyword">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; 0)</span><br><span class="line">            newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">        // minCapacity is usually close to size, so this is a win:</span><br><span class="line">        elementData = Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码块比较长，这里做个简单的总结：<br>1、add（E e）：添加元素，首先会判断 elementData 数组的长度，然后设置值<br>2、ensureCapacityInternal（int minCapacity）：判断 element 是否为空，如果是，则设置默认数组长度<br>3、ensureExplicitCapacity（int minCapacity）：判断预期增长数组长度是否超过当前容量，如果过超过，则调用grow（）<br>4、grow(int minCapacity)：对数组进行扩展，默认的长度为10</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public void add(int index, E element) &#123;</span><br><span class="line">    rangeCheckForAdd(index);</span><br><span class="line">    //确定容量</span><br><span class="line">    ensureCapacityInternal(size + 1);  // Increments modCount!!</span><br><span class="line">    System.arraycopy(elementData, index, elementData, index + 1,</span><br><span class="line">                     size - index);</span><br><span class="line">    elementData[index] = element;//将下标赋值</span><br><span class="line">    size++;//长度加一</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public ArrayList(int initialCapacity) &#123;  </span><br><span class="line">    <span class="keyword">if</span> (initialCapacity &gt; 0) &#123;  </span><br><span class="line">        this.elementData = new Object[initialCapacity];  </span><br><span class="line">        //设置容量</span><br><span class="line">        如果值为0的时候 将赋值EMPTY_ELEMENTDATA &#123;0&#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (initialCapacity == 0) &#123;  </span><br><span class="line">        this.elementData = EMPTY_ELEMENTDATA; </span><br><span class="line">        //EMPTY_ELEMENTDATA</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">        throw new IllegalArgumentException(<span class="string">"Illegal Capacity: "</span>+  </span><br><span class="line">                                           initialCapacity);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ArrayList（）：指向 DEFAULTCAPACITY_EMPTY_ELEMENTDATA，当列表使用的时候，才会进行初始化，会通过判断是不是 DEFAULTCAPACITY_EMPTY_ELEMENTDATA 这个对象而设置数组默认大小。<br>ArrayList(int initialCapacity)：当 initialCapacity &gt;0 的时候，设置该长度。如果 initialCapacity =0，则指向 EMPTY_ELEMENTDATA 在使用的时候，并不会设置默认数组长度 。</p>
+<p>因此 DEFAULTCAPACITY_EMPTY_ELEMENTDATA 与 EMPTY_ELEMENTDATA 的本质区别就在于，会不会设置默认的数组长度。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@HotSpotIntrinsicCandidate</span><br><span class="line">public static void (Object src,</span><br><span class="line">                             int srcPos,</span><br><span class="line">                             Object dest,</span><br><span class="line">                             int destPos,</span><br><span class="line">                             int length)</span><br><span class="line">src:源数组；     srcPos:源数组要复制的起始位置；</span><br><span class="line">dest:目的数组；  destPos:目的数组放置的起始位置；    length:复制的长度。</span><br><span class="line">注意：src and dest都必须是同类型或者可以进行转换类型的数组．</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public E remove(int index) &#123;</span><br><span class="line">        rangeCheck(index); // 判断索引是否有效</span><br><span class="line">        modCount++;</span><br><span class="line">        E oldValue = elementData(index);  // 获取对应数据</span><br><span class="line">        int numMoved = size - index - 1;  // 判断删除数据位置</span><br><span class="line">        <span class="keyword">if</span> (numMoved &gt; 0) //如果删除数据不是最后一位，则需要移动数组</span><br><span class="line">            System.arraycopy(elementData, index+1, elementData, index,</span><br><span class="line">                             numMoved);</span><br><span class="line">        elementData[--size] = null; // 让指针最后指向空，进行垃圾回收</span><br><span class="line">        <span class="built_in">return</span> oldValue;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>System.arraycopy(elementData, index+1, elementData, index,numMoved);<br>将原本的数组 下标加一复制到当前的下标的地方 </p>
+<p>numMoved至于长度 == size(该数组的长度) - 下标 - 1 = 复制后面的长度（这里并不会影响到数组的容量）</p>
+<p>elementData[–size] = null;将数组的size长度减一的坐标为null</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public boolean remove(Object o) &#123;</span><br><span class="line">        <span class="keyword">if</span> (o == null) &#123;</span><br><span class="line">            <span class="keyword">for</span> (int index = 0; index &lt; size; index++)</span><br><span class="line">                <span class="keyword">if</span> (elementData[index] == null) &#123;</span><br><span class="line">                    fastRemove(index);</span><br><span class="line">                    <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (int index = 0; index &lt; size; index++)</span><br><span class="line">                <span class="keyword">if</span> (o.equals(elementData[index])) &#123;</span><br><span class="line">                    fastRemove(index);</span><br><span class="line">                    <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>这种方式，会在内部进行 AccessRandom 方式遍历数组，当匹配到数据跟 Object 相等，则调用 fastRemove（） 进行删除</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">private void fastRemove(int index) &#123;</span><br><span class="line">       modCount++;</span><br><span class="line">       int numMoved = size - index - 1;</span><br><span class="line">       <span class="keyword">if</span> (numMoved &gt; 0)</span><br><span class="line">           System.arraycopy(elementData, index+1, elementData, index,</span><br><span class="line">                            numMoved);</span><br><span class="line">       elementData[--size] = null; // clear to <span class="built_in">let</span> GC <span class="keyword">do</span> its work</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>fastRemove( ): fastRemove 操作与上述的根据下标进行删除其实是一致的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">private boolean batchRemove(Collection&lt;?&gt; c, boolean complement) &#123;</span><br><span class="line">       //获取数组指针</span><br><span class="line">       final Object[] elementData = this.elementData;</span><br><span class="line">       int r = 0, w = 0;</span><br><span class="line">       r为控制循环 w为交集多少个交集</span><br><span class="line">       boolean modified = <span class="literal">false</span>;</span><br><span class="line">       try &#123;</span><br><span class="line">           <span class="keyword">for</span> (; r &lt; size; r++)</span><br><span class="line">               //根据 complement 进行判断是否一致 </span><br><span class="line">               <span class="keyword">if</span> (c.contains(elementData[r]) == complement)</span><br><span class="line">                   elementData[w++] = elementData[r];</span><br><span class="line">       &#125; finally &#123;</span><br><span class="line">           // 进行数据整理</span><br><span class="line">           <span class="keyword">if</span> (r != size) &#123;</span><br><span class="line">               System.arraycopy(elementData, r,</span><br><span class="line">                                elementData, w,</span><br><span class="line">                                size - r);</span><br><span class="line">               w += size - r;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> (w != size) &#123;</span><br><span class="line">               // clear to <span class="built_in">let</span> GC <span class="keyword">do</span> its work</span><br><span class="line">               <span class="keyword">for</span> (int i = w; i &lt; size; i++)</span><br><span class="line">                   elementData[i] = null;</span><br><span class="line">               modCount += size - w;</span><br><span class="line">               size = w;</span><br><span class="line">               modified = <span class="literal">true</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="built_in">return</span> modified;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public E <span class="built_in">set</span>(int index, E e) &#123;</span><br><span class="line">        rangeCheck(index);//判断是否有校index</span><br><span class="line">        checkForComodification();</span><br><span class="line">        //旧值</span><br><span class="line">        E oldValue = ArrayList.this.elementData(offset + index);</span><br><span class="line">        //赋新值</span><br><span class="line">        ArrayList.this.elementData[offset + index] = e;</span><br><span class="line">        //返回旧值</span><br><span class="line">        <span class="built_in">return</span> oldValue;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public int indexOf(Object o) &#123;</span><br><span class="line">		//索引为null的值</span><br><span class="line">        <span class="keyword">if</span> (o == null) &#123;</span><br><span class="line">            <span class="keyword">for</span> (int i = 0; i &lt; size; i++)</span><br><span class="line">                <span class="keyword">if</span> (elementData[i]==null)</span><br><span class="line">                    <span class="built_in">return</span> i;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        //找出一样的值</span><br><span class="line">            <span class="keyword">for</span> (int i = 0; i &lt; size; i++)</span><br><span class="line">                <span class="keyword">if</span> (o.equals(elementData[i]))</span><br><span class="line">                    <span class="built_in">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">        //找不到为null</span><br><span class="line">        <span class="built_in">return</span> -1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>//判断索引的值会不会大于数组的长度<br>public E get(int index) {<br>        rangeCheck(index);</p>
+<pre><code>    return elementData(index);
+}</code></pre> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-input焦点"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/16/input%E7%84%A6%E7%82%B9/"
+    >input焦点</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/04/16/input%E7%84%A6%E7%82%B9/" class="article-date">
+  <time datetime="2020-04-16T00:22:25.000Z" itemprop="datePublished">2020-04-16</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="change-当改变时触发"><a href="#change-当改变时触发" class="headerlink" title="change 当改变时触发"></a>change 当改变时触发</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">可回车确认</span><br><span class="line"><span class="variable">$item</span>.children(<span class="string">"#file"</span>).on(<span class="string">"change"</span>, <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">     console.log($(this).val())</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="每次输入都获取值-input"><a href="#每次输入都获取值-input" class="headerlink" title="每次输入都获取值 input"></a>每次输入都获取值 input</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$item</span>.children(<span class="string">"#file"</span>).on(<span class="string">"input"</span>, <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">     console.log($(this).val())</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="blur-失去焦点时"><a href="#blur-失去焦点时" class="headerlink" title="blur 失去焦点时"></a>blur 失去焦点时</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">不可回车键</span><br><span class="line"><span class="variable">$item</span>.children(<span class="string">"#file"</span>).on(<span class="string">"blur"</span>, <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">     console.log($(this).val())</span><br><span class="line">&#125;)</span><br><span class="line">//激活回车键</span><br><span class="line"><span class="variable">$item</span>.<span class="built_in">bind</span>(<span class="string">"keydown keyup"</span>,<span class="keyword">function</span>(e)&#123;</span><br><span class="line">    var key = e.which;</span><br><span class="line">    <span class="keyword">if</span> (key == 13) &#123;</span><br><span class="line">        console.log($(this).val())</span><br><span class="line">        $(this).css(<span class="string">"outline"</span>,<span class="string">"none"</span>);</span><br><span class="line">        $(this).attr(<span class="string">"readonly"</span>,<span class="literal">true</span>);</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="focus-点击获取焦点时"><a href="#focus-点击获取焦点时" class="headerlink" title="focus 点击获取焦点时"></a>focus 点击获取焦点时</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$item</span>.children(<span class="string">"#file"</span>).on(<span class="string">"focus"</span>, <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">     console.log($(this).val())</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-关于session错误"
   class="article article-type-post"
   itemscope
@@ -462,172 +654,6 @@ public String method2(ModelMap map ) {
     <div class="article-entry" itemprop="articleBody">
        
   <p>//发布文章<br>@RequestMapping(“/show”)<br>@ResponseBody<br>public String publish(@RequestParam(“title”) String title,@RequestParam(“content”) String content,HttpServletRequest request) {<br>    String file = title+”.md”;<br>    Date date = new Date();<br>    String path = request.getServletContext().getRealPath(“/file/“);<br>    System.out.println(path);<br>    //判断博客名字是否存在 存在大于1 不存在0<br>    Article result  = articleservice.VerfiyArticleTitle(title);<br>    System.out.println(path);<br>    //创建字节输出流，绑定数据文件<br>    //创建转换流对象，构造方法，绑定字节输出流<br>    if(result==null) {<br>        try {<br>            OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(path+file),”UTF-8”);<br>            osw.write(content);<br>            Article article = new Article(title,file,date);<br>            articleservice.insert(article);<br>            osw.close();<br>        } catch (UnsupportedEncodingException | FileNotFoundException e) {<br>            // TODO Auto-generated catch block<br>            e.printStackTrace();<br>        } catch (IOException e) {<br>            // TODO Auto-generated catch block<br>            e.printStackTrace();<br>        }<br>        return “success”;<br>    }<br>    return “error”;<br>}</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-md5加密"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/11/md5%E5%8A%A0%E5%AF%86/"
-    >md5加密</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/03/11/md5%E5%8A%A0%E5%AF%86/" class="article-date">
-  <time datetime="2020-03-11T06:57:08.000Z" itemprop="datePublished">2020-03-11</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">package testProject;</span><br><span class="line"></span><br><span class="line">import java.security.MessageDigest;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line">import java.util.Base64;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class <span class="built_in">test</span> &#123;</span><br><span class="line">    </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(login(<span class="string">"admin123456"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //pmq7VoTEWWLYh1ZPCDRujQ== 就是 admin123456</span><br><span class="line">   	默认加密号码</span><br><span class="line">    private static String savePassWord = <span class="string">"pmq7VoTEWWLYh1ZPCDRujQ=="</span>;</span><br><span class="line">    </span><br><span class="line">    public static boolean login(String password) &#123;</span><br><span class="line">        <span class="keyword">if</span>(savePassWord.equals(md5(password))) &#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    private static String md5(String password) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">        	//加密类型</span><br><span class="line">            MessageDigest md = MessageDigest.getInstance(<span class="string">"md5"</span>);</span><br><span class="line">            </span><br><span class="line">            //生成随机东东 不可逆</span><br><span class="line">            byte[] bytes = md.digest(password.getBytes());</span><br><span class="line">            //</span><br><span class="line">            String str = Base64.getEncoder().encodeToString(bytes);</span><br><span class="line">            </span><br><span class="line">            <span class="built_in">return</span> str;</span><br><span class="line">        &#125; catch (NoSuchAlgorithmException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-Date类"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/06/Date%E7%B1%BB/"
-    >Date类</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/03/06/Date%E7%B1%BB/" class="article-date">
-  <time datetime="2020-03-06T06:32:45.000Z" itemprop="datePublished">2020-03-06</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="java-Date类"><a href="#java-Date类" class="headerlink" title="java Date类"></a>java Date类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Date date = new Date();日期类</span><br><span class="line">system.out.println(<span class="string">"没有格式化时间"</span>+date);</span><br><span class="line">SimpleDateFormat format = new SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">这里格式化了时间 String str = format.format(date);</span><br></pre></td></tr></table></figure>
-<h3 id="插入数据库时的时间"><a href="#插入数据库时的时间" class="headerlink" title="插入数据库时的时间"></a>插入数据库时的时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Timestamp timePara = new Timestamp(new Date().getTime());这个date的子类</span><br><span class="line"></span><br><span class="line">Date date ;</span><br><span class="line">所以设置的时候可以将这个类设置为date的属性,不会丢失时间数</span><br></pre></td></tr></table></figure>
-
-<h3 id="注解形式的插入时间"><a href="#注解形式的插入时间" class="headerlink" title="注解形式的插入时间"></a>注解形式的插入时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@DateTimeFormat(pattern=<span class="string">"yyyy-MM-dd"</span>)//页面写入数据库时格式化</span><br><span class="line">Date datetime;</span><br><span class="line">这个是前端插入数据库</span><br><span class="line"></span><br><span class="line">这个是后端给前端响应 但是它只能实现@Responsebody</span><br><span class="line">@JsonFormat(pattern = <span class="string">"yyyy-MM-dd"</span>,timezone=<span class="string">"GMT+8"</span>)</span><br><span class="line">可以自动格式化时间</span><br></pre></td></tr></table></figure>
-
-<h3 id="用Thymeleaf插入时间"><a href="#用Thymeleaf插入时间" class="headerlink" title="用Thymeleaf插入时间"></a>用Thymeleaf插入时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如果引用的是对象 那么 date.getDate()</span><br><span class="line"><span class="string">"#dates.format(date,'dd/MMM/yyyy HH:mm')"</span></span><br></pre></td></tr></table></figure>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-标签"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/01/%E6%A0%87%E7%AD%BE/"
-    >标签&lt;url-pattern&gt;</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/03/01/%E6%A0%87%E7%AD%BE/" class="article-date">
-  <time datetime="2020-03-01T02:07:17.000Z" itemprop="datePublished">2020-03-01</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>我们知道在写<url-pattern>时有一种通配符的使用写法，即*</p>
-<p>1.当我使用<url-pattern>/*</url-pattern>时，我们可以匹配所有的请求，即所有的请求都会经过该标签对应的Servlet</p>
-<p>此时就需要注意静态资源的请求，因为当我们使用<a href="http://localhost:8080/we/login.html时，依然会匹配该Servlet，" target="_blank" rel="noopener">http://localhost:8080/we/login.html时，依然会匹配该Servlet，</a></p>
-<p>而很多静态资源其实是不需要经过Servlet的，例如：js，css，html，jsp，img等静态资源文件，此时就需要在该Servlet中对静态资源做特殊处理</p>
-<p>2.如果配有如下两个<url-pattern>标签时，URL地址为<a href="http://localhost:8080/we/index时又是如何匹配的呢？" target="_blank" rel="noopener">http://localhost:8080/we/index时又是如何匹配的呢？</a></p>
-<p>url-pattern/index url-pattern</p>
-<p>url-pattern/*url-pattern</p>
-<p>上边我们已经说过，/*可以匹配所有的请求，而/index也可以匹配我们的URL地址，此时URL地址会自动且优先的进行精确匹配，即/index，</p>
-<p>且只匹配一次，也就是说一旦匹配到一个Servlet即执行该Servlet不再对其他Servlet进行匹配，</p>
-<p>当我们输入一个<a href="http://localhost:8080/we/login时，由于此时匹配不到/login所以只能匹配/*了" target="_blank" rel="noopener">http://localhost:8080/we/login时，由于此时匹配不到/login所以只能匹配/*了</a></p>
-<p>3.在Servlet Path部分我们还可以使用更精确的匹配，例如：</p>
-<p><url-pattern>/index/login</url-pattern>匹配<a href="http://localhost:8080/we/index/login" target="_blank" rel="noopener">http://localhost:8080/we/index/login</a></p>
-<p><url-pattern>/index/logout</url-pattern>匹配<a href="http://localhost:8080/we/index/logout" target="_blank" rel="noopener">http://localhost:8080/we/index/logout</a></p>
-<p>此时/index/login和/index/logout才是我们的Servlet Path</p>
-<p> 4.我们可以通过使用<url-pattern>*.do</url-pattern>来过滤请求，</p>
-<p>这样如果我们在页面中的请求中添加后缀名.do就可以避免对静态资源的过滤了，也就不需要对静态资源做特殊处理了</p>
-<p>注:<url-pattern>/</url-pattern>和<url-pattern>/*</url-pattern>效果是一样的</p>
-<p>/匹配url斜杆下不含后缀</p>
-<p>jsp是动态资源 当前/拦截的时候，图形解析器为jsp的话，会跳转到jsp。</p>
-<p>当/*的时候，它会拦截到所有资源路径。如还是jsp的话，将报404.（因为它相当于访问了静态资源）</p>
-<p><a href="mvc:annotation-driven/">mvc:annotation-driven/</a>拦截所有请求<br><a href="mvc:default-servlet-handler/">mvc:default-servlet-handler/</a>访问静态资源</p>
-<p>/*匹配 url 后缀 .jsp .html</p>
  
       <!-- reward -->
       

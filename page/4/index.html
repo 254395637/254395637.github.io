@@ -101,6 +101,172 @@
     
     
     <article
+  id="post-md5加密"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/11/md5%E5%8A%A0%E5%AF%86/"
+    >md5加密</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/11/md5%E5%8A%A0%E5%AF%86/" class="article-date">
+  <time datetime="2020-03-11T06:57:08.000Z" itemprop="datePublished">2020-03-11</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">package testProject;</span><br><span class="line"></span><br><span class="line">import java.security.MessageDigest;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line">import java.util.Base64;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class <span class="built_in">test</span> &#123;</span><br><span class="line">    </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(login(<span class="string">"admin123456"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //pmq7VoTEWWLYh1ZPCDRujQ== 就是 admin123456</span><br><span class="line">   	默认加密号码</span><br><span class="line">    private static String savePassWord = <span class="string">"pmq7VoTEWWLYh1ZPCDRujQ=="</span>;</span><br><span class="line">    </span><br><span class="line">    public static boolean login(String password) &#123;</span><br><span class="line">        <span class="keyword">if</span>(savePassWord.equals(md5(password))) &#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    private static String md5(String password) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">        	//加密类型</span><br><span class="line">            MessageDigest md = MessageDigest.getInstance(<span class="string">"md5"</span>);</span><br><span class="line">            </span><br><span class="line">            //生成随机东东 不可逆</span><br><span class="line">            byte[] bytes = md.digest(password.getBytes());</span><br><span class="line">            //</span><br><span class="line">            String str = Base64.getEncoder().encodeToString(bytes);</span><br><span class="line">            </span><br><span class="line">            <span class="built_in">return</span> str;</span><br><span class="line">        &#125; catch (NoSuchAlgorithmException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-Date类"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/06/Date%E7%B1%BB/"
+    >Date类</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/06/Date%E7%B1%BB/" class="article-date">
+  <time datetime="2020-03-06T06:32:45.000Z" itemprop="datePublished">2020-03-06</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="java-Date类"><a href="#java-Date类" class="headerlink" title="java Date类"></a>java Date类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Date date = new Date();日期类</span><br><span class="line">system.out.println(<span class="string">"没有格式化时间"</span>+date);</span><br><span class="line">SimpleDateFormat format = new SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">这里格式化了时间 String str = format.format(date);</span><br></pre></td></tr></table></figure>
+<h3 id="插入数据库时的时间"><a href="#插入数据库时的时间" class="headerlink" title="插入数据库时的时间"></a>插入数据库时的时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Timestamp timePara = new Timestamp(new Date().getTime());这个date的子类</span><br><span class="line"></span><br><span class="line">Date date ;</span><br><span class="line">所以设置的时候可以将这个类设置为date的属性,不会丢失时间数</span><br></pre></td></tr></table></figure>
+
+<h3 id="注解形式的插入时间"><a href="#注解形式的插入时间" class="headerlink" title="注解形式的插入时间"></a>注解形式的插入时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@DateTimeFormat(pattern=<span class="string">"yyyy-MM-dd"</span>)//页面写入数据库时格式化</span><br><span class="line">Date datetime;</span><br><span class="line">这个是前端插入数据库</span><br><span class="line"></span><br><span class="line">这个是后端给前端响应 但是它只能实现@Responsebody</span><br><span class="line">@JsonFormat(pattern = <span class="string">"yyyy-MM-dd"</span>,timezone=<span class="string">"GMT+8"</span>)</span><br><span class="line">可以自动格式化时间</span><br></pre></td></tr></table></figure>
+
+<h3 id="用Thymeleaf插入时间"><a href="#用Thymeleaf插入时间" class="headerlink" title="用Thymeleaf插入时间"></a>用Thymeleaf插入时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如果引用的是对象 那么 date.getDate()</span><br><span class="line"><span class="string">"#dates.format(date,'dd/MMM/yyyy HH:mm')"</span></span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-标签"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/01/%E6%A0%87%E7%AD%BE/"
+    >标签&lt;url-pattern&gt;</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/01/%E6%A0%87%E7%AD%BE/" class="article-date">
+  <time datetime="2020-03-01T02:07:17.000Z" itemprop="datePublished">2020-03-01</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>我们知道在写<url-pattern>时有一种通配符的使用写法，即*</p>
+<p>1.当我使用<url-pattern>/*</url-pattern>时，我们可以匹配所有的请求，即所有的请求都会经过该标签对应的Servlet</p>
+<p>此时就需要注意静态资源的请求，因为当我们使用<a href="http://localhost:8080/we/login.html时，依然会匹配该Servlet，" target="_blank" rel="noopener">http://localhost:8080/we/login.html时，依然会匹配该Servlet，</a></p>
+<p>而很多静态资源其实是不需要经过Servlet的，例如：js，css，html，jsp，img等静态资源文件，此时就需要在该Servlet中对静态资源做特殊处理</p>
+<p>2.如果配有如下两个<url-pattern>标签时，URL地址为<a href="http://localhost:8080/we/index时又是如何匹配的呢？" target="_blank" rel="noopener">http://localhost:8080/we/index时又是如何匹配的呢？</a></p>
+<p>url-pattern/index url-pattern</p>
+<p>url-pattern/*url-pattern</p>
+<p>上边我们已经说过，/*可以匹配所有的请求，而/index也可以匹配我们的URL地址，此时URL地址会自动且优先的进行精确匹配，即/index，</p>
+<p>且只匹配一次，也就是说一旦匹配到一个Servlet即执行该Servlet不再对其他Servlet进行匹配，</p>
+<p>当我们输入一个<a href="http://localhost:8080/we/login时，由于此时匹配不到/login所以只能匹配/*了" target="_blank" rel="noopener">http://localhost:8080/we/login时，由于此时匹配不到/login所以只能匹配/*了</a></p>
+<p>3.在Servlet Path部分我们还可以使用更精确的匹配，例如：</p>
+<p><url-pattern>/index/login</url-pattern>匹配<a href="http://localhost:8080/we/index/login" target="_blank" rel="noopener">http://localhost:8080/we/index/login</a></p>
+<p><url-pattern>/index/logout</url-pattern>匹配<a href="http://localhost:8080/we/index/logout" target="_blank" rel="noopener">http://localhost:8080/we/index/logout</a></p>
+<p>此时/index/login和/index/logout才是我们的Servlet Path</p>
+<p> 4.我们可以通过使用<url-pattern>*.do</url-pattern>来过滤请求，</p>
+<p>这样如果我们在页面中的请求中添加后缀名.do就可以避免对静态资源的过滤了，也就不需要对静态资源做特殊处理了</p>
+<p>注:<url-pattern>/</url-pattern>和<url-pattern>/*</url-pattern>效果是一样的</p>
+<p>/匹配url斜杆下不含后缀</p>
+<p>jsp是动态资源 当前/拦截的时候，图形解析器为jsp的话，会跳转到jsp。</p>
+<p>当/*的时候，它会拦截到所有资源路径。如还是jsp的话，将报404.（因为它相当于访问了静态资源）</p>
+<p><a href="mvc:annotation-driven/">mvc:annotation-driven/</a>拦截所有请求<br><a href="mvc:default-servlet-handler/">mvc:default-servlet-handler/</a>访问静态资源</p>
+<p>/*匹配 url 后缀 .jsp .html</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-js分页"
   class="article article-type-post"
   itemscope
