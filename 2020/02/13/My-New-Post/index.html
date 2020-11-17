@@ -103,10 +103,6 @@
 <h1 id="获取当前连接的参数值"><a href="#获取当前连接的参数值" class="headerlink" title="获取当前连接的参数值"></a>获取当前连接的参数值</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">getRequest</span></span>() &#123;   </span><br><span class="line">   var url = window.location.search; //获取url中<span class="string">"?"</span>符后的字串   </span><br><span class="line">   var theRequest = new Object();   </span><br><span class="line">   <span class="keyword">if</span> (url.indexOf(<span class="string">"?"</span>) != -1) &#123;   </span><br><span class="line">      var str = url.substr(1);   </span><br><span class="line">      strs = str.split(<span class="string">"&amp;"</span>);   </span><br><span class="line">      <span class="keyword">for</span>(var i = 0; i &lt; strs.length; i ++) &#123;   </span><br><span class="line">          //就是这句的问题</span><br><span class="line">         theRequest[strs[i].split(<span class="string">"="</span>)[0]]=decodeURI(strs[i].split(<span class="string">"="</span>)[1]); </span><br><span class="line">         //之前用了unescape()</span><br><span class="line">         //才会出现乱码  </span><br><span class="line">      &#125;   </span><br><span class="line">   &#125;   </span><br><span class="line">   <span class="built_in">return</span> theRequest;   </span><br><span class="line">&#125;</span><br><span class="line">console.log(getRequest().参数值)</span><br><span class="line"></span><br><span class="line">var obj = new new Object(); 同等于 var obj = &#123;&#125; 这也是一个数组对象</span><br><span class="line">(1)strs[i].split(<span class="string">"="</span>)[0] 这块分解出来是name   name[0]= 参数值[1]</span><br><span class="line">(2)decodeURI(strs[i].split(<span class="string">"="</span>)[1]) 这里是转码问题 在href前面会有网络编码问题 这个是参数值</span><br><span class="line">将转码完的(2)给(1)</span><br><span class="line">theRequest[strs[i].split(<span class="string">"="</span>)[0]] 这是一个对象[name]这里是(1)</span><br><span class="line">那么这个对象就会变成&#123;name:<span class="string">"参数值"</span>&#125; 数组对象</span><br></pre></td></tr></table></figure> 
       <!-- reward -->
       
-      <div id="reward-btn">
-        Donate
-      </div>
-      
     </div>
     
 
@@ -364,19 +360,9 @@
 <!-- #reward -->
 <div id="reward">
   <span class="close"><i class="ri-close-line"></i></span>
-  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
   <div class="reward-box">
     
-    <div class="reward-item">
-      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
-      <span class="reward-type">支付宝</span>
-    </div>
-    
-    
-    <div class="reward-item">
-      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
-      <span class="reward-type">微信</span>
-    </div>
     
   </div>
 </div>

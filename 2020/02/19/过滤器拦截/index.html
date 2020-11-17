@@ -98,10 +98,6 @@
 <h3 id="配值public-class-BaseInterceptor-implements-HandlerInterceptor"><a href="#配值public-class-BaseInterceptor-implements-HandlerInterceptor" class="headerlink" title="配值public class BaseInterceptor implements HandlerInterceptor"></a>配值public class BaseInterceptor implements HandlerInterceptor</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2) throws Exception &#123;</span><br><span class="line">    System.out.println(<span class="string">"************TestInterceptor preHandle executed**********"</span>);</span><br><span class="line">    <span class="built_in">return</span> <span class="literal">true</span>;//这里<span class="literal">false</span>为不释放 <span class="literal">true</span>为释放</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3)</span><br><span class="line">        throws Exception &#123;</span><br><span class="line">    System.out.println(<span class="string">"************TestInterceptor postHandle executed**********"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)</span><br><span class="line">        throws Exception &#123;</span><br><span class="line">    System.out.println(<span class="string">"************TestInterceptor afterCompletion executed**********"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
       <!-- reward -->
       
-      <div id="reward-btn">
-        Donate
-      </div>
-      
     </div>
     
 
@@ -364,19 +360,9 @@
 <!-- #reward -->
 <div id="reward">
   <span class="close"><i class="ri-close-line"></i></span>
-  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
   <div class="reward-box">
     
-    <div class="reward-item">
-      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
-      <span class="reward-type">支付宝</span>
-    </div>
-    
-    
-    <div class="reward-item">
-      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
-      <span class="reward-type">微信</span>
-    </div>
     
   </div>
 </div>

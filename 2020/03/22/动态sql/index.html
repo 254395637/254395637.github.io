@@ -108,10 +108,6 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;delete id=<span class="string">"DeleteArticleId"</span> parameterType=<span class="string">"int[]"</span>&gt;</span><br><span class="line">    delete from article</span><br><span class="line">    &lt;<span class="built_in">where</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"array!=null "</span>&gt;</span><br><span class="line">            &lt;foreach item=<span class="string">"id"</span> collection=<span class="string">"array"</span> open=<span class="string">" and id in ("</span> separator=<span class="string">","</span> close=<span class="string">")"</span>&gt;</span><br><span class="line">                <span class="comment">#&#123;id&#125;</span></span><br><span class="line">            &lt;/foreach&gt;</span><br><span class="line">        &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">    &lt;/<span class="built_in">where</span>&gt;</span><br><span class="line">&lt;/delete&gt;</span><br></pre></td></tr></table></figure> 
       <!-- reward -->
       
-      <div id="reward-btn">
-        Donate
-      </div>
-      
     </div>
     
 
@@ -374,19 +370,9 @@
 <!-- #reward -->
 <div id="reward">
   <span class="close"><i class="ri-close-line"></i></span>
-  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
   <div class="reward-box">
     
-    <div class="reward-item">
-      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
-      <span class="reward-type">支付宝</span>
-    </div>
-    
-    
-    <div class="reward-item">
-      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
-      <span class="reward-type">微信</span>
-    </div>
     
   </div>
 </div>
