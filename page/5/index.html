@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Nginx |  Hexo
+     Hexo
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -42,9 +42,66 @@
     
       
     <main class="content on">
-      <section class="outer">
-  <article
-  id="post-Nginx"
+      
+<section class="cover">
+    
+      
+      <a class="forkMe" href="https://github.com/Shen-Yu/hexo-theme-ayer"
+        target="_blank"><img width="149" height="149" src="/images/forkme.png"
+          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover1.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">Hexo</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+        startDelay: 0,
+        typeSpeed: 200,
+        loop: true,
+        backSpeed: 100,
+        showCursor: true
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-My-New-Post"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -54,197 +111,59 @@
     
     <header class="article-header">
        
-<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Nginx
-</h1>
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/13/My-New-Post/"
+    >js和jquery实现页面跳转的几种方式</a> 
+</h2>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/10/16/Nginx/" class="article-date">
-  <time datetime="2020-10-16T11:23:55.000Z" itemprop="datePublished">2020-10-16</time>
-</a>   
-<div class="word_count">
-    <span class="post-time">
-        <span class="post-meta-item-icon">
-            <i class="ri-quill-pen-line"></i>
-            <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">275</span>
-        </span>
-    </span>
-
-    <span class="post-time">
-        &nbsp; | &nbsp;
-        <span class="post-meta-item-icon">
-            <i class="ri-book-open-line"></i>
-            <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
-        </span>
-    </span>
-</div>
- 
+      <a href="/2020/02/13/My-New-Post/" class="article-date">
+  <time datetime="2020-02-13T09:33:47.000Z" itemprop="datePublished">2020-02-13</time>
+</a>    
     </div>
       
-    <div class="tocbot"></div>
-
-
-
-
-  
     <div class="article-entry" itemprop="articleBody">
        
-  <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//中文官方文档</span><br><span class="line">https://www.nginx.cn/doc/index.html</span><br><span class="line">//开放80端口</span><br><span class="line">iptables -I INPUT -p tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
+  <h3 id="原有页面条状"><a href="#原有页面条状" class="headerlink" title="原有页面条状"></a>原有页面条状</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.location.href=<span class="string">'b.html'</span></span><br></pre></td></tr></table></figure>
+<h3 id="返回上一个页面"><a href="#返回上一个页面" class="headerlink" title="返回上一个页面"></a>返回上一个页面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.history.back(-1)</span><br></pre></td></tr></table></figure>
 
-<h3 id="反向代理匹配规则"><a href="#反向代理匹配规则" class="headerlink" title="反向代理匹配规则"></a>反向代理匹配规则</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">//前端匹配</span><br><span class="line">devServer: &#123;</span><br><span class="line">        /* 自动打开浏览器 */</span><br><span class="line">        // open: <span class="literal">true</span>,</span><br><span class="line">        /* 设置为0.0.0.0则所有的地址均能访问 */</span><br><span class="line">        host: <span class="string">'0.0.0.0'</span>,</span><br><span class="line">        port: 8080,</span><br><span class="line">        https: <span class="literal">false</span>,</span><br><span class="line">        hotOnly: <span class="literal">false</span>,</span><br><span class="line">        /* 使用代理 */</span><br><span class="line">        proxy: &#123;</span><br><span class="line">            <span class="string">'/api'</span>: &#123;</span><br><span class="line">                /* 目标代理服务器地址 */</span><br><span class="line">                target: <span class="string">'http://localhost:8000/api'</span>,</span><br><span class="line">                /* 允许跨域 */</span><br><span class="line">                changeOrigin: <span class="literal">true</span>,</span><br><span class="line">                pathRewrite:&#123;</span><br><span class="line">                    <span class="string">'^/api'</span>:<span class="string">''</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">前端axios请求为</span><br><span class="line"></span><br><span class="line">this.<span class="variable">$axios</span>(&#123;</span><br><span class="line">	url:<span class="string">'api/login'</span> == target/login</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">localhost:8080/api/login 请求为后端</span><br><span class="line"></span><br><span class="line">nginx配置为</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">        listen       8080;</span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#charset koi8-r;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#access_log  logs/host.access.log  main;</span></span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   D:/vue-jin/dist/;</span><br><span class="line">	       	index  index.html index.htm;</span><br><span class="line">			<span class="comment">#proxy_pass http://localhost:8000;	        </span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment"># api为前端项目名称，带app的访问路径都是访问前端，故此将请求转到前端工程</span></span><br><span class="line">		location /api &#123; </span><br><span class="line">			proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">			proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">			proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">			proxy_set_header X-Forwarded-Proto  <span class="variable">$scheme</span>;</span><br><span class="line">			proxy_pass http://localhost:8000;</span><br><span class="line">		&#125;</span><br><span class="line">		当前端请求了localhost:8080/api/xxxx请求的时候</span><br><span class="line">		反向道理为localhost:8000/api/xxxxx</span><br><span class="line">		</span><br><span class="line">		当proxy_pass http://localhost:8000/;后面加斜杆后</span><br><span class="line">		反向代理为locahost:8000/xxxx</span><br></pre></td></tr></table></figure>
+<h1 id="jquery条状方式"><a href="#jquery条状方式" class="headerlink" title="jquery条状方式"></a>jquery条状方式</h1><h3 id="原有页面条状-1"><a href="#原有页面条状-1" class="headerlink" title="原有页面条状"></a>原有页面条状</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.location.href=<span class="string">'b.html'</span></span><br></pre></td></tr></table></figure>
+<h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.location.replace(<span class="string">"b.html"</span>);</span><br></pre></td></tr></table></figure>
 
- 
+<h1 id="获取当前连接的参数值"><a href="#获取当前连接的参数值" class="headerlink" title="获取当前连接的参数值"></a>获取当前连接的参数值</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">getRequest</span></span>() &#123;   </span><br><span class="line">   var url = window.location.search; //获取url中<span class="string">"?"</span>符后的字串   </span><br><span class="line">   var theRequest = new Object();   </span><br><span class="line">   <span class="keyword">if</span> (url.indexOf(<span class="string">"?"</span>) != -1) &#123;   </span><br><span class="line">      var str = url.substr(1);   </span><br><span class="line">      strs = str.split(<span class="string">"&amp;"</span>);   </span><br><span class="line">      <span class="keyword">for</span>(var i = 0; i &lt; strs.length; i ++) &#123;   </span><br><span class="line">          //就是这句的问题</span><br><span class="line">         theRequest[strs[i].split(<span class="string">"="</span>)[0]]=decodeURI(strs[i].split(<span class="string">"="</span>)[1]); </span><br><span class="line">         //之前用了unescape()</span><br><span class="line">         //才会出现乱码  </span><br><span class="line">      &#125;   </span><br><span class="line">   &#125;   </span><br><span class="line">   <span class="built_in">return</span> theRequest;   </span><br><span class="line">&#125;</span><br><span class="line">console.log(getRequest().参数值)</span><br><span class="line"></span><br><span class="line">var obj = new new Object(); 同等于 var obj = &#123;&#125; 这也是一个数组对象</span><br><span class="line">(1)strs[i].split(<span class="string">"="</span>)[0] 这块分解出来是name   name[0]= 参数值[1]</span><br><span class="line">(2)decodeURI(strs[i].split(<span class="string">"="</span>)[1]) 这里是转码问题 在href前面会有网络编码问题 这个是参数值</span><br><span class="line">将转码完的(2)给(1)</span><br><span class="line">theRequest[strs[i].split(<span class="string">"="</span>)[0]] 这是一个对象[name]这里是(1)</span><br><span class="line">那么这个对象就会变成&#123;name:<span class="string">"参数值"</span>&#125; 数组对象</span><br></pre></td></tr></table></figure> 
       <!-- reward -->
-      
-      <div id="reward-btn">
-        Donate
-      </div>
       
     </div>
     
 
     <!-- copyright -->
     
-    <div class="declare">
-      <ul class="post-copyright">
-        <li>
-          <i class="ri-copyright-line"></i>
-          <strong>Copyright： </strong>
-          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
-        </li>
-      </ul>
-    </div>
-    
     <footer class="article-footer">
        
-<div class="share-btn">
-      <span class="share-sns share-outer">
-        <i class="ri-share-forward-line"></i>
-        分享
-      </span>
-      <div class="share-wrap">
-        <i class="arrow"></i>
-        <div class="share-icons">
-          
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="ri-weibo-fill"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="ri-wechat-fill"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="ri-qq-fill"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="ri-douban-line"></i>
-          </a>
-          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a> -->
-          
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="ri-facebook-circle-fill"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="ri-twitter-fill"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="ri-google-fill"></i>
-          </a>
-        </div>
-      </div>
-</div>
-
-<div class="wx-share-modal">
-    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://47.110.124.167/2020/10/16/Nginx/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div id="share-mask"></div>  
     </footer>
   </div>
 
-   
-  <nav class="article-nav">
     
-      <a href="/2020/11/05/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            接口和抽象接口的区别
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2020/10/14/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3/" class="article-nav-link">
-        <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">自定义注解</div>
-      </a>
-    
-  </nav>
-
-   
-<!-- valine评论 -->
-<div id="vcomments-box">
-  <div id="vcomments"></div>
-</div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
-<script>
-  new Valine({
-    el: "#vcomments",
-    app_id: "",
-    app_key: "",
-    path: window.location.pathname,
-    avatar: "monsterid",
-    placeholder: "给我的文章加点评论吧~",
-    recordIP: true,
-  });
-  const infoEle = document.querySelector("#vcomments .info");
-  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
-    infoEle.childNodes.forEach(function (item) {
-      item.parentNode.removeChild(item);
-    });
-  }
-</script>
-<style>
-  #vcomments-box {
-    padding: 5px 30px;
-  }
-
-  @media screen and (max-width: 800px) {
-    #vcomments-box {
-      padding: 5px 0px;
-    }
-  }
-
-  #vcomments-box #vcomments {
-    background-color: #fff;
-  }
-
-  .v .vlist .vcard .vh {
-    padding-right: 20px;
-  }
-
-  .v .vlist .vcard {
-    padding-left: 10px;
-  }
-</style>
-
  
-     
+   
 </article>
 
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+  </nav>
+  
 </section>
+</div>
+
       <footer class="footer">
   <div class="outer">
     <ul>
@@ -398,23 +317,6 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
-
-
-<script src="/js/tocbot.min.js"></script>
-
-<script>
-  tocbot.init({
-    tocSelector: '.tocbot',
-    contentSelector: '.article-entry',
-    headingSelector: 'h1, h2, h3, h4, h5, h6',
-    hasInnerContainers: true,
-    scrollSmooth: true,
-    scrollContainer: 'main',
-    positionFixedSelector: '.tocbot',
-    positionFixedClass: 'is-position-fixed',
-    fixedSidebarOffset: 'auto'
-  });
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">

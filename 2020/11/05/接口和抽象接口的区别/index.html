@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Nginx |  Hexo
+    接口和抽象接口的区别 |  Hexo
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -44,7 +44,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-Nginx"
+  id="post-接口和抽象接口的区别"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -55,22 +55,22 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Nginx
+  接口和抽象接口的区别
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/10/16/Nginx/" class="article-date">
-  <time datetime="2020-10-16T11:23:55.000Z" itemprop="datePublished">2020-10-16</time>
+      <a href="/2020/11/05/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-date">
+  <time datetime="2020-11-05T07:26:07.000Z" itemprop="datePublished">2020-11-05</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">275</span>
+            <span class="post-count">247</span>
         </span>
     </span>
 
@@ -94,9 +94,11 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//中文官方文档</span><br><span class="line">https://www.nginx.cn/doc/index.html</span><br><span class="line">//开放80端口</span><br><span class="line">iptables -I INPUT -p tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
+  <h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">为空实现</span><br><span class="line">在项目中三层架构就是最经典的接口空实现，高内聚低耦合</span><br><span class="line"></span><br><span class="line">当我们这个接口想换一个实现类那么是完全没有影响的。</span><br><span class="line">因为它是空实现</span><br></pre></td></tr></table></figure>
 
-<h3 id="反向代理匹配规则"><a href="#反向代理匹配规则" class="headerlink" title="反向代理匹配规则"></a>反向代理匹配规则</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">//前端匹配</span><br><span class="line">devServer: &#123;</span><br><span class="line">        /* 自动打开浏览器 */</span><br><span class="line">        // open: <span class="literal">true</span>,</span><br><span class="line">        /* 设置为0.0.0.0则所有的地址均能访问 */</span><br><span class="line">        host: <span class="string">'0.0.0.0'</span>,</span><br><span class="line">        port: 8080,</span><br><span class="line">        https: <span class="literal">false</span>,</span><br><span class="line">        hotOnly: <span class="literal">false</span>,</span><br><span class="line">        /* 使用代理 */</span><br><span class="line">        proxy: &#123;</span><br><span class="line">            <span class="string">'/api'</span>: &#123;</span><br><span class="line">                /* 目标代理服务器地址 */</span><br><span class="line">                target: <span class="string">'http://localhost:8000/api'</span>,</span><br><span class="line">                /* 允许跨域 */</span><br><span class="line">                changeOrigin: <span class="literal">true</span>,</span><br><span class="line">                pathRewrite:&#123;</span><br><span class="line">                    <span class="string">'^/api'</span>:<span class="string">''</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">前端axios请求为</span><br><span class="line"></span><br><span class="line">this.<span class="variable">$axios</span>(&#123;</span><br><span class="line">	url:<span class="string">'api/login'</span> == target/login</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">localhost:8080/api/login 请求为后端</span><br><span class="line"></span><br><span class="line">nginx配置为</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">        listen       8080;</span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#charset koi8-r;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#access_log  logs/host.access.log  main;</span></span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   D:/vue-jin/dist/;</span><br><span class="line">	       	index  index.html index.htm;</span><br><span class="line">			<span class="comment">#proxy_pass http://localhost:8000;	        </span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment"># api为前端项目名称，带app的访问路径都是访问前端，故此将请求转到前端工程</span></span><br><span class="line">		location /api &#123; </span><br><span class="line">			proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">			proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">			proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">			proxy_set_header X-Forwarded-Proto  <span class="variable">$scheme</span>;</span><br><span class="line">			proxy_pass http://localhost:8000;</span><br><span class="line">		&#125;</span><br><span class="line">		当前端请求了localhost:8080/api/xxxx请求的时候</span><br><span class="line">		反向道理为localhost:8000/api/xxxxx</span><br><span class="line">		</span><br><span class="line">		当proxy_pass http://localhost:8000/;后面加斜杆后</span><br><span class="line">		反向代理为locahost:8000/xxxx</span><br></pre></td></tr></table></figure>
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">抽象类是一种具体的实现</span><br><span class="line">当我们用抽象类dao时，都需要写一个具体方法。</span><br><span class="line"></span><br><span class="line">那么我将这些抽象类提取出来做为一个抽象类变成一个通用的crud</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.test;</span><br><span class="line"><span class="comment">//通用的crud接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseDao</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">add</span><span class="params">(T c)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"crud增加"</span>);</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">delete</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"crud删除"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> org.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDao</span> <span class="keyword">extends</span> <span class="title">BaseDao</span>&lt;<span class="title">User</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> org.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">OtherDao</span> <span class="keyword">extends</span> <span class="title">BaseDao</span>&lt;<span class="title">Teacher</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> org.test;</span><br><span class="line"><span class="comment">//当成service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> <span class="keyword">extends</span> <span class="title">OtherDao</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//这里的话就是传入一个参数去查出来返回对象数据</span></span><br><span class="line">        System.out.println(<span class="keyword">new</span> test().add(<span class="keyword">new</span> Teacher()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
  
       <!-- reward -->
@@ -164,7 +166,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://47.110.124.167/2020/10/16/Nginx/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://47.110.124.167/2020/11/05/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -175,19 +177,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2020/11/05/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            接口和抽象接口的区别
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/10/14/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3/" class="article-nav-link">
+      <a href="/2020/10/16/Nginx/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">自定义注解</div>
+        <div class="article-nav-title">Nginx</div>
       </a>
     
   </nav>

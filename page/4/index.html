@@ -101,6 +101,53 @@
     
     
     <article
+  id="post-io流新建文章"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/13/io%E6%B5%81%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0/"
+    >io流新建文章</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/13/io%E6%B5%81%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0/" class="article-date">
+  <time datetime="2020-03-13T05:37:32.000Z" itemprop="datePublished">2020-03-13</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>//发布文章<br>@RequestMapping(“/show”)<br>@ResponseBody<br>public String publish(@RequestParam(“title”) String title,@RequestParam(“content”) String content,HttpServletRequest request) {<br>    String file = title+”.md”;<br>    Date date = new Date();<br>    String path = request.getServletContext().getRealPath(“/file/“);<br>    System.out.println(path);<br>    //判断博客名字是否存在 存在大于1 不存在0<br>    Article result  = articleservice.VerfiyArticleTitle(title);<br>    System.out.println(path);<br>    //创建字节输出流，绑定数据文件<br>    //创建转换流对象，构造方法，绑定字节输出流<br>    if(result==null) {<br>        try {<br>            OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(path+file),”UTF-8”);<br>            osw.write(content);<br>            Article article = new Article(title,file,date);<br>            articleservice.insert(article);<br>            osw.close();<br>        } catch (UnsupportedEncodingException | FileNotFoundException e) {<br>            // TODO Auto-generated catch block<br>            e.printStackTrace();<br>        } catch (IOException e) {<br>            // TODO Auto-generated catch block<br>            e.printStackTrace();<br>        }<br>        return “success”;<br>    }<br>    return “error”;<br>}</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-md5加密"
   class="article article-type-post"
   itemscope
@@ -225,11 +272,11 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p>我们知道在写<url-pattern>时有一种通配符的使用写法，即*</p>
+  <p>我们知道在写<url-pattern>时有一种通配符的使用写法，即*</url-pattern></p>
 <p>1.当我使用<url-pattern>/*</url-pattern>时，我们可以匹配所有的请求，即所有的请求都会经过该标签对应的Servlet</p>
 <p>此时就需要注意静态资源的请求，因为当我们使用<a href="http://localhost:8080/we/login.html时，依然会匹配该Servlet，" target="_blank" rel="noopener">http://localhost:8080/we/login.html时，依然会匹配该Servlet，</a></p>
 <p>而很多静态资源其实是不需要经过Servlet的，例如：js，css，html，jsp，img等静态资源文件，此时就需要在该Servlet中对静态资源做特殊处理</p>
-<p>2.如果配有如下两个<url-pattern>标签时，URL地址为<a href="http://localhost:8080/we/index时又是如何匹配的呢？" target="_blank" rel="noopener">http://localhost:8080/we/index时又是如何匹配的呢？</a></p>
+<p>2.如果配有如下两个<url-pattern>标签时，URL地址为<a href="http://localhost:8080/we/index时又是如何匹配的呢？" target="_blank" rel="noopener">http://localhost:8080/we/index时又是如何匹配的呢？</a></url-pattern></p>
 <p>url-pattern/index url-pattern</p>
 <p>url-pattern/*url-pattern</p>
 <p>上边我们已经说过，/*可以匹配所有的请求，而/index也可以匹配我们的URL地址，此时URL地址会自动且优先的进行精确匹配，即/index，</p>
@@ -352,7 +399,7 @@
 <p>left join 的话 以左边表为主, 左边有数据, 右边没有使用null代替.左边没有的数据 , 右边也不能出现.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from (主表)xuesheng t1 left join user t2 on t1.id = t2.userid <span class="built_in">where</span> t1.id = <span class="string">"?"</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h3><p><img src="/.com//D:%5CTypora%5C%E5%9B%BE%E7%89%87%5Cimage-20200918090932192.png" alt="image-20200918090932192"></p>
+<h3 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h3><p><img src="/.167//D:%5CTypora%5C%E5%9B%BE%E7%89%87%5Cimage-20200918090932192.png" alt="image-20200918090932192"></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> t1.categoryname,t2.categoryname <span class="keyword">from</span> <span class="keyword">test</span> <span class="keyword">as</span> t1,<span class="keyword">test</span> <span class="keyword">as</span> t2 <span class="keyword">where</span> t1.categoryid = t2.pid</span><br><span class="line"></span><br><span class="line">将类型技术统称为pid 为 <span class="number">1</span>,categoryid不存在于<span class="number">1</span>，这样就不会出现技术类型<span class="keyword">id</span>出来。</span><br><span class="line">查找时以类型<span class="keyword">id</span>去查询子<span class="keyword">id</span></span><br></pre></td></tr></table></figure>
 
  
@@ -482,6 +529,8 @@
 
 <h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">test</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> categoryid <span class="keyword">desc</span> <span class="comment">--降序</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">test</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> categoryid <span class="keyword">asc</span> <span class="comment">--升序</span></span><br></pre></td></tr></table></figure>
 
+<h3 id="重置自增"><a href="#重置自增" class="headerlink" title="重置自增"></a>重置自增</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 auto_increment= 起始值</span><br></pre></td></tr></table></figure>
+
  
       <!-- reward -->
       
@@ -605,65 +654,13 @@
 </article>
 
     
-    <article
-  id="post-My-New-Post"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/13/My-New-Post/"
-    >js和jquery实现页面跳转的几种方式</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/02/13/My-New-Post/" class="article-date">
-  <time datetime="2020-02-13T09:33:47.000Z" itemprop="datePublished">2020-02-13</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="原有页面条状"><a href="#原有页面条状" class="headerlink" title="原有页面条状"></a>原有页面条状</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.location.href=<span class="string">'b.html'</span></span><br></pre></td></tr></table></figure>
-<h3 id="返回上一个页面"><a href="#返回上一个页面" class="headerlink" title="返回上一个页面"></a>返回上一个页面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.history.back(-1)</span><br></pre></td></tr></table></figure>
-
-<h1 id="jquery条状方式"><a href="#jquery条状方式" class="headerlink" title="jquery条状方式"></a>jquery条状方式</h1><h3 id="原有页面条状-1"><a href="#原有页面条状-1" class="headerlink" title="原有页面条状"></a>原有页面条状</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.location.href=<span class="string">'b.html'</span></span><br></pre></td></tr></table></figure>
-<h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.location.replace(<span class="string">"b.html"</span>);</span><br></pre></td></tr></table></figure>
-
-<h1 id="获取当前连接的参数值"><a href="#获取当前连接的参数值" class="headerlink" title="获取当前连接的参数值"></a>获取当前连接的参数值</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">getRequest</span></span>() &#123;   </span><br><span class="line">   var url = window.location.search; //获取url中<span class="string">"?"</span>符后的字串   </span><br><span class="line">   var theRequest = new Object();   </span><br><span class="line">   <span class="keyword">if</span> (url.indexOf(<span class="string">"?"</span>) != -1) &#123;   </span><br><span class="line">      var str = url.substr(1);   </span><br><span class="line">      strs = str.split(<span class="string">"&amp;"</span>);   </span><br><span class="line">      <span class="keyword">for</span>(var i = 0; i &lt; strs.length; i ++) &#123;   </span><br><span class="line">          //就是这句的问题</span><br><span class="line">         theRequest[strs[i].split(<span class="string">"="</span>)[0]]=decodeURI(strs[i].split(<span class="string">"="</span>)[1]); </span><br><span class="line">         //之前用了unescape()</span><br><span class="line">         //才会出现乱码  </span><br><span class="line">      &#125;   </span><br><span class="line">   &#125;   </span><br><span class="line">   <span class="built_in">return</span> theRequest;   </span><br><span class="line">&#125;</span><br><span class="line">console.log(getRequest().参数值)</span><br><span class="line"></span><br><span class="line">var obj = new new Object(); 同等于 var obj = &#123;&#125; 这也是一个数组对象</span><br><span class="line">(1)strs[i].split(<span class="string">"="</span>)[0] 这块分解出来是name   name[0]= 参数值[1]</span><br><span class="line">(2)decodeURI(strs[i].split(<span class="string">"="</span>)[1]) 这里是转码问题 在href前面会有网络编码问题 这个是参数值</span><br><span class="line">将转码完的(2)给(1)</span><br><span class="line">theRequest[strs[i].split(<span class="string">"="</span>)[0]] 这是一个对象[name]这里是(1)</span><br><span class="line">那么这个对象就会变成&#123;name:<span class="string">"参数值"</span>&#125; 数组对象</span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
   </nav>
   
 </section>

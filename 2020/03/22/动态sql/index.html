@@ -99,9 +99,9 @@
 
 
 
-<h3 id="删除多个id-list-lt-属性-gt"><a href="#删除多个id-list-lt-属性-gt" class="headerlink" title="删除多个id list&lt;属性&gt;"></a>删除多个id list&lt;属性&gt;</h3><p>List<String> ids = new ArraryList<String>();<br>for(String id:ids){</p>
+<h3 id="删除多个id-list-lt-属性-gt"><a href="#删除多个id-list-lt-属性-gt" class="headerlink" title="删除多个id list&lt;属性&gt;"></a>删除多个id list&lt;属性&gt;</h3><p>List<String> ids = new ArraryList<String>();<br>for(String id:ids){</String></String></p>
 <p>}<br>collection=”ids” 迭代头<br>item=”id” 迭代元素<br>open=” and id in (“ 循环开始<br>separator=”,” 分隔,<br>close=”)” 末尾<br>拼接 动态sql</p>
-<p>在接口请求时要用到@Parm(“指定”)<br>@Param(“ids”) List<Integer> idList</p>
+<p>在接口请求时要用到@Parm(“指定”)<br>@Param(“ids”) List<Integer> idList</Integer></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;delete id=<span class="string">"DeleteArticleId"</span> parameterType=<span class="string">"这里可以指定实体类的集合 如果没有的话就在请求接口指定"</span>&gt;</span><br><span class="line">    delete from article</span><br><span class="line">    &lt;<span class="built_in">where</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"ids!=null and ids.size&gt;0"</span>&gt;</span><br><span class="line">            &lt;foreach item=<span class="string">"id"</span> collection=<span class="string">"ids"</span> open=<span class="string">" and id in ("</span> separator=<span class="string">","</span> close=<span class="string">")"</span>&gt;</span><br><span class="line">                <span class="comment">#&#123;id&#125;</span></span><br><span class="line">            &lt;/foreach&gt;</span><br><span class="line">        &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">    &lt;/<span class="built_in">where</span>&gt;</span><br><span class="line">&lt;/delete&gt;</span><br></pre></td></tr></table></figure>
 
 <h3 id="删除多个id-int"><a href="#删除多个id-int" class="headerlink" title="删除多个id int[]"></a>删除多个id int[]</h3><p>当用数组 要指定int[] 类型 parameterType<br>数组默认属性命叫array</p>
@@ -171,7 +171,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/03/22/%E5%8A%A8%E6%80%81sql/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://47.110.124.167/2020/03/22/%E5%8A%A8%E6%80%81sql/" alt="微信分享二维码">
     </div>
 </div>
 
