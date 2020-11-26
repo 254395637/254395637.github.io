@@ -96,6 +96,60 @@
     
     
     <article
+  id="post-继承、实现、依赖、关联、聚合、组合的联系与区别"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/09/01/%E7%BB%A7%E6%89%BF%E3%80%81%E5%AE%9E%E7%8E%B0%E3%80%81%E4%BE%9D%E8%B5%96%E3%80%81%E5%85%B3%E8%81%94%E3%80%81%E8%81%9A%E5%90%88%E3%80%81%E7%BB%84%E5%90%88%E7%9A%84%E8%81%94%E7%B3%BB%E4%B8%8E%E5%8C%BA%E5%88%AB/"
+    >继承、实现、依赖、关联、聚合、组合的联系与区别</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/09/01/%E7%BB%A7%E6%89%BF%E3%80%81%E5%AE%9E%E7%8E%B0%E3%80%81%E4%BE%9D%E8%B5%96%E3%80%81%E5%85%B3%E8%81%94%E3%80%81%E8%81%9A%E5%90%88%E3%80%81%E7%BB%84%E5%90%88%E7%9A%84%E8%81%94%E7%B3%BB%E4%B8%8E%E5%8C%BA%E5%88%AB/" class="article-date">
+  <time datetime="2020-09-01T11:57:21.000Z" itemprop="datePublished">2020-09-01</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>###依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public person class&#123;</span><br><span class="line"></span><br><span class="line">	public void get(Student student)&#123;</span><br><span class="line">		student.read();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public Student class&#123;</span><br><span class="line">	public void <span class="function"><span class="title">read</span></span>()&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">当需要另一个类的方法，可以通过这样的依赖关系去获取。</span><br></pre></td></tr></table></figure>
+
+<p>###关联</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//单向关联</span><br><span class="line">public person class&#123;</span><br><span class="line">	private Student student;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public Student class&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">//双向关联</span><br><span class="line">public class Customer  </span><br><span class="line">&#123;  </span><br><span class="line">    private Product[] products;  </span><br><span class="line">    ……  </span><br><span class="line">&#125;  </span><br><span class="line">public class Product  </span><br><span class="line">&#123;  </span><br><span class="line">    private Customer customer;  </span><br><span class="line">    ……  </span><br><span class="line">&#125;</span><br><span class="line">//自关联</span><br><span class="line">public person class&#123;</span><br><span class="line">	private person p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###聚合</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public person class&#123;</span><br><span class="line">	private Student student;</span><br><span class="line">	public person(Student student)&#123;</span><br><span class="line">		this.student = student;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">public student class&#123;</span><br><span class="line">	String name;</span><br><span class="line">	int age;</span><br><span class="line">	public student(String name,Int age)&#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">		this.age = age;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###组合</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Person &#123;</span><br><span class="line">    Brain brain;</span><br><span class="line">    public <span class="function"><span class="title">Person</span></span>()&#123;//组合</span><br><span class="line">        brain=new Brain();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Person person=new Person();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line">class Brain&#123;</span><br><span class="line"> </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-shiro"
   class="article article-type-post"
   itemscope
@@ -384,7 +438,9 @@
 </tbody></table>
 <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><pre><code>111011 =&gt;1+2+0+8+16+32 = 59
 
-58 =&gt;32+16 = 110000</code></pre> 
+58 =&gt;32+16 = 110000</code></pre><h3 id="或位运算"><a href="#或位运算" class="headerlink" title="或位运算"></a>或位运算</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">按位与运算符（&amp;）</span><br><span class="line">参加运算的两个数，按二进制位进行“与”运算。</span><br><span class="line"></span><br><span class="line">运算规则：只有两个数的二进制同时为1，结果才为1，否则为0。（负数按补码形式参加按位与运算）</span><br><span class="line"></span><br><span class="line">即 0 &amp; 0= 0 ，0 &amp; 1= 0，1 &amp; 0= 0， 1 &amp; 1= 1。</span><br><span class="line"></span><br><span class="line">例：3 &amp;5  即 00000011 &amp; 00000101 = 00000001 ，所以 3 &amp; 5的值为1。</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">按位或运算符（|）</span><br><span class="line">参加运算的两个数，按二进制位进行“或”运算。</span><br><span class="line"></span><br><span class="line">运算规则：参加运算的两个数只要两个数中的一个为1，结果就为1。</span><br><span class="line"></span><br><span class="line">即  0 | 0= 0 ,  1 | 0= 1  ， 0 | 1= 1  ,  1 | 1= 1 。</span><br><span class="line"></span><br><span class="line">例：2 | 4 即 00000010 | 00000100 = 00000110 ，所以2 | 4的值为 6 。</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">异或运算符（^）</span><br><span class="line">参加运算的两个数，按二进制位进行“异或”运算。</span><br><span class="line"></span><br><span class="line">运算规则：参加运算的两个数，如果两个相应位为“异”（值不同），则该位结果为1，否则为0。</span><br><span class="line"></span><br><span class="line">即 0 ^ 0=0  ， 0 ^ 1= 1  ， 1 ^ 0= 1  ， 1 ^ 1= 0 。</span><br><span class="line"></span><br><span class="line">例： 2 ^ 4 即 00000010 ^ 00000100 =00000110 ，所以 2 ^ 4 的值为6 。</span><br></pre></td></tr></table></figure>
+
+ 
       <!-- reward -->
       
     </div>
@@ -648,66 +704,6 @@
 
 <h3 id="类型转换器"><a href="#类型转换器" class="headerlink" title="类型转换器"></a>类型转换器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">package org.Dao.processor;</span><br><span class="line"></span><br><span class="line">import org.apache.ibatis.type.BaseTypeHandler;</span><br><span class="line">import org.apache.ibatis.type.JdbcType;</span><br><span class="line"></span><br><span class="line">import java.sql.CallableStatement;</span><br><span class="line">import java.sql.PreparedStatement;</span><br><span class="line">import java.sql.ResultSet;</span><br><span class="line">import java.sql.SQLException;</span><br><span class="line"></span><br><span class="line">public class SexTypeHandler extends BaseTypeHandler&lt;String&gt; &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void setNonNullParameter(PreparedStatement ps, int i, String parameter, JdbcType jdbcType) throws SQLException &#123;</span><br><span class="line">        <span class="keyword">if</span> (parameter.equals(<span class="string">"男"</span>)) &#123;</span><br><span class="line">            ps.setString(i,<span class="string">"1"</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            ps.setString(i,<span class="string">"0"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String getNullableResult(ResultSet rs, String columnName) throws SQLException &#123;</span><br><span class="line">        <span class="built_in">return</span> rs.getString(columnName).equals(<span class="string">"1"</span>)?<span class="string">"男"</span>:<span class="string">"女"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String getNullableResult(ResultSet rs, int columnIndex) throws SQLException &#123;</span><br><span class="line">        <span class="built_in">return</span> rs.getString(columnIndex).equals(<span class="string">"1"</span>)?<span class="string">"男"</span>:<span class="string">"女"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String getNullableResult(CallableStatement cs, int columnIndex) throws SQLException &#123;</span><br><span class="line">        <span class="built_in">return</span> cs.getString(columnIndex).equals(<span class="string">"1"</span>)?<span class="string">"男"</span>:<span class="string">"女"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">conf.xml配置</span><br><span class="line">&lt;!-- 创建处理器--&gt;</span><br><span class="line">    &lt;typeHandlers&gt;</span><br><span class="line">        &lt;typeHandler handler=<span class="string">"org.Dao.processor.StringTypeHandler"</span> javaType=<span class="string">"String"</span> jdbcType=<span class="string">"VARCHAR"</span>/&gt;</span><br><span class="line">        &lt;typeHandler handler=<span class="string">"org.Dao.processor.SexTypeHandler"</span> javaType=<span class="string">"String"</span> jdbcType=<span class="string">"VARCHAR"</span>/&gt;</span><br><span class="line">        &lt;typeHandler handler=<span class="string">"org.Dao.processor.validTypeHandle"</span> /&gt;</span><br><span class="line">    &lt;/typeHandlers&gt;</span><br></pre></td></tr></table></figure>
 
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-单例模式"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/05/23/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"
-    >单例模式</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/05/23/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="article-date">
-  <time datetime="2020-05-23T12:30:32.000Z" itemprop="datePublished">2020-05-23</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="饿汉模式（静态常量）"><a href="#饿汉模式（静态常量）" class="headerlink" title="饿汉模式（静态常量）"></a>饿汉模式（静态常量）</h3><p>优点：实现起来简单，没有多线程同步问题。<br>缺点：java加载时就初始化了静态变量instance，如果没有被使用就占用了内存空间</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    // 将自身实例化对象设置为一个属性，并用static、final修饰</span><br><span class="line">    private static final Singleton instance = new Singleton();</span><br><span class="line">    </span><br><span class="line">    // 构造方法私有化</span><br><span class="line">    private <span class="function"><span class="title">Singleton</span></span>() &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    // 公有静态方法返回该实例</span><br><span class="line">    public static Singleton <span class="function"><span class="title">getInstance</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="饿汉模式（静态代码块）"><a href="#饿汉模式（静态代码块）" class="headerlink" title="饿汉模式（静态代码块）"></a>饿汉模式（静态代码块）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    // 将自身实例化对象设置为一个属性，并用static、final修饰</span><br><span class="line">    private static final Singleton instance;</span><br><span class="line">    static &#123;</span><br><span class="line">    	instance = new Singleton();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 构造方法私有化</span><br><span class="line">    private <span class="function"><span class="title">Singleton</span></span>() &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    // 公有静态方法返回该实例</span><br><span class="line">    public static Singleton <span class="function"><span class="title">getInstance</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>初始化类的实例。优 缺点和上面是一样的。 2) 结论：这种单例模式可用，但是可能造成内存浪费</p>
-<h3 id="懒汉模式-延迟加载"><a href="#懒汉模式-延迟加载" class="headerlink" title="懒汉模式/延迟加载"></a>懒汉模式/延迟加载</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    // 将自身实例化对象设置为一个属性，并用static修饰</span><br><span class="line">    private static Singleton instance;</span><br><span class="line">    </span><br><span class="line">    // 构造方法私有化</span><br><span class="line">    private <span class="function"><span class="title">Singleton</span></span>() &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    // 静态方法返回该实例</span><br><span class="line">    public static Singleton <span class="function"><span class="title">getInstance</span></span>() &#123;</span><br><span class="line">        <span class="keyword">if</span>(instance == null) &#123;</span><br><span class="line">            instance = new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>优点 实现了单例模式<br>缺点 存在于多线程不安全</p>
-<h3 id="线程安全的“懒汉模式”"><a href="#线程安全的“懒汉模式”" class="headerlink" title="线程安全的“懒汉模式”"></a>线程安全的“懒汉模式”</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    // 将自身实例化对象设置为一个属性，并用static修饰</span><br><span class="line">    private static Singleton instance;</span><br><span class="line">    </span><br><span class="line">    // 构造方法私有化</span><br><span class="line">    private <span class="function"><span class="title">Singleton</span></span>() &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    // 静态方法返回该实例，加synchronized关键字实现同步</span><br><span class="line">    public static synchronized Singleton <span class="function"><span class="title">getInstance</span></span>() &#123;</span><br><span class="line">        <span class="keyword">if</span>(instance == null) &#123;</span><br><span class="line">            instance = new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>优点 实现多线程安全 单列<br>缺点 每个线程进来都要同步getInstance() 同步锁耗费性能 导致效率低</p>
-<h3 id><a href="#" class="headerlink" title></a></h3><h3 id="懒汉模式-线程安全"><a href="#懒汉模式-线程安全" class="headerlink" title="懒汉模式 线程安全"></a>懒汉模式 线程安全</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    // 将自身实例化对象设置为一个属性，并用static修饰</span><br><span class="line">    private volatile static Singleton instance;</span><br><span class="line">    </span><br><span class="line">    // 构造方法私有化</span><br><span class="line">    private <span class="function"><span class="title">Singleton</span></span>() &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    // 静态方法返回该实例</span><br><span class="line">    public static Singleton <span class="function"><span class="title">getInstance</span></span>() &#123;</span><br><span class="line">        // 第一次检查instance是否被实例化出来，如果没有进入<span class="keyword">if</span>块</span><br><span class="line">        <span class="keyword">if</span>(instance == null) &#123;</span><br><span class="line">            synchronized (Singleton.class) &#123;</span><br><span class="line">                // 某个线程取得了类锁，实例化对象前第二次检查instance是否已经被实例化出来，如果没有，才最终实例出对象</span><br><span class="line">                <span class="keyword">if</span> (instance == null) &#123;</span><br><span class="line">                    instance = new Singleton();//初始化顺序不一定，不是一个原子的操作</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">volatile 可以避免指令重排</span><br><span class="line">可见性:可以让参数看见给main线程看见</span><br><span class="line">原子性</span><br><span class="line">有序性</span><br><span class="line"></span><br><span class="line">1.分配内存空间</span><br><span class="line">2.执行构造方法 初始化对象</span><br><span class="line">3.把这个对象指向这个空间</span><br></pre></td></tr></table></figure>
-<p>内存占用率高，效率高，线程安全，多线程</p>
-<h3 id="懒汉模式内部类"><a href="#懒汉模式内部类" class="headerlink" title="懒汉模式内部类"></a>懒汉模式内部类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">	private <span class="function"><span class="title">Singleton</span></span>()&#123;&#125;</span><br><span class="line"></span><br><span class="line">	private statc class SingletonInstance&#123;</span><br><span class="line">		private static final Singleton singleton = new Singleton();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static Singleton <span class="function"><span class="title">getInstance</span></span>()&#123;</span><br><span class="line">		<span class="built_in">return</span> SingletonInstance.singleton</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>静态内部类方式在Singleton类被装载时并不会立即实例化，而是在需要实例化 时，调用getInstance方法，才会装载SingletonInstance类，从而完成Singleton的 实例化。</p>
-<p>类的静态属性只会在第一次加载类的时候初始化，所以在这里，JVM帮助我们 保证了线程的安全性，在类进行初始化时，别的线程是无法进入的。</p>
-<p>优点：避免了线程不安全，利用静态内部类特点实现延迟加载，效率高 </p>
  
       <!-- reward -->
       

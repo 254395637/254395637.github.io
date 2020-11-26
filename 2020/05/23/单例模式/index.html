@@ -70,7 +70,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">863</span>
+            <span class="post-count">862</span>
         </span>
     </span>
 
@@ -106,7 +106,7 @@
 <p>内存占用率高，效率高，线程安全，多线程</p>
 <h3 id="懒汉模式内部类"><a href="#懒汉模式内部类" class="headerlink" title="懒汉模式内部类"></a>懒汉模式内部类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">	private <span class="function"><span class="title">Singleton</span></span>()&#123;&#125;</span><br><span class="line"></span><br><span class="line">	private statc class SingletonInstance&#123;</span><br><span class="line">		private static final Singleton singleton = new Singleton();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static Singleton <span class="function"><span class="title">getInstance</span></span>()&#123;</span><br><span class="line">		<span class="built_in">return</span> SingletonInstance.singleton</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>静态内部类方式在Singleton类被装载时并不会立即实例化，而是在需要实例化 时，调用getInstance方法，才会装载SingletonInstance类，从而完成Singleton的 实例化。</p>
-<p>类的静态属性只会在第一次加载类的时候初始化，所以在这里，JVM帮助我们 保证了线程的安全性，在类进行初始化时，别的线程是无法进入的。</p>
+<p>类的静态属性只会在第一次加载类的时候初始化，所以在这里，帮助我们 保证了线程的安全性，在类进行初始化时，别的线程是无法进入的。</p>
 <p>优点：避免了线程不安全，利用静态内部类特点实现延迟加载，效率高 </p>
  
       <!-- reward -->
