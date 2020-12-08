@@ -70,7 +70,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">225</span>
+            <span class="post-count">239</span>
         </span>
     </span>
 
@@ -129,6 +129,9 @@
 <h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">test</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> categoryid <span class="keyword">desc</span> <span class="comment">--降序</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">test</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> categoryid <span class="keyword">asc</span> <span class="comment">--升序</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="重置自增"><a href="#重置自增" class="headerlink" title="重置自增"></a>重置自增</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 auto_increment= 起始值</span><br></pre></td></tr></table></figure>
+
+<p>生成唯一索引</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 unique <span class="string">"字段名"</span></span><br></pre></td></tr></table></figure>
 
  
       <!-- reward -->

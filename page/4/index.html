@@ -96,6 +96,63 @@
     
     
     <article
+  id="post-动态sql"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/22/%E5%8A%A8%E6%80%81sql/"
+    >动态sql</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/22/%E5%8A%A8%E6%80%81sql/" class="article-date">
+  <time datetime="2020-03-22T12:43:38.000Z" itemprop="datePublished">2020-03-22</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="动态语句-where-if"><a href="#动态语句-where-if" class="headerlink" title="动态语句 where if"></a>动态语句 where if</h3><p>如果where语句会自动判断and 和 or 比如说如果第一个参数为null<br>那么语句就是SELECT * FROM BLOG AND title like #{title} where 语句会自动的去掉and<br>如果 不用where 可以用 1+1 and </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=<span class="string">"findActiveBlogLike"</span></span><br><span class="line">     resultType=<span class="string">"Blog"</span>&gt;</span><br><span class="line">  SELECT * FROM BLOG </span><br><span class="line">  &lt;<span class="built_in">where</span>&gt; </span><br><span class="line">    &lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"state != null"</span>&gt;</span><br><span class="line">         state = <span class="comment">#&#123;state&#125;</span></span><br><span class="line">    &lt;/<span class="keyword">if</span>&gt; </span><br><span class="line">    &lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"title != null"</span>&gt;</span><br><span class="line">        AND title like <span class="comment">#&#123;title&#125;</span></span><br><span class="line">    &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"author != null and author.name != null"</span>&gt;</span><br><span class="line">        AND author_name like <span class="comment">#&#123;author.name&#125;</span></span><br><span class="line">    &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">  &lt;/<span class="built_in">where</span>&gt;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="删除多个id-list-lt-属性-gt"><a href="#删除多个id-list-lt-属性-gt" class="headerlink" title="删除多个id list&lt;属性&gt;"></a>删除多个id list&lt;属性&gt;</h3><p>List<String> ids = new ArraryList<String>();<br>for(String id:ids){</String></String></p>
+<p>}<br>collection=”ids” 迭代头<br>item=”id” 迭代元素<br>open=” and id in (“ 循环开始<br>separator=”,” 分隔,<br>close=”)” 末尾<br>拼接 动态sql</p>
+<p>在接口请求时要用到@Parm(“指定”)<br>@Param(“ids”) List<Integer> idList</Integer></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;delete id=<span class="string">"DeleteArticleId"</span> parameterType=<span class="string">"这里可以指定实体类的集合 如果没有的话就在请求接口指定"</span>&gt;</span><br><span class="line">    delete from article</span><br><span class="line">    &lt;<span class="built_in">where</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"ids!=null and ids.size&gt;0"</span>&gt;</span><br><span class="line">            &lt;foreach item=<span class="string">"id"</span> collection=<span class="string">"ids"</span> open=<span class="string">" and id in ("</span> separator=<span class="string">","</span> close=<span class="string">")"</span>&gt;</span><br><span class="line">                <span class="comment">#&#123;id&#125;</span></span><br><span class="line">            &lt;/foreach&gt;</span><br><span class="line">        &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">    &lt;/<span class="built_in">where</span>&gt;</span><br><span class="line">&lt;/delete&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除多个id-int"><a href="#删除多个id-int" class="headerlink" title="删除多个id int[]"></a>删除多个id int[]</h3><p>当用数组 要指定int[] 类型 parameterType<br>数组默认属性命叫array</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;delete id=<span class="string">"DeleteArticleId"</span> parameterType=<span class="string">"int[]"</span>&gt;</span><br><span class="line">    delete from article</span><br><span class="line">    &lt;<span class="built_in">where</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"array!=null "</span>&gt;</span><br><span class="line">            &lt;foreach item=<span class="string">"id"</span> collection=<span class="string">"array"</span> open=<span class="string">" and id in ("</span> separator=<span class="string">","</span> close=<span class="string">")"</span>&gt;</span><br><span class="line">                <span class="comment">#&#123;id&#125;</span></span><br><span class="line">            &lt;/foreach&gt;</span><br><span class="line">        &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">    &lt;/<span class="built_in">where</span>&gt;</span><br><span class="line">&lt;/delete&gt;</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-json"
   class="article article-type-post"
   itemscope
@@ -584,58 +641,9 @@
 
 <h3 id="重置自增"><a href="#重置自增" class="headerlink" title="重置自增"></a>重置自增</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 auto_increment= 起始值</span><br></pre></td></tr></table></figure>
 
- 
-      <!-- reward -->
-      
-    </div>
-    
+<p>生成唯一索引</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 unique <span class="string">"字段名"</span></span><br></pre></td></tr></table></figure>
 
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-js样式"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/18/js%E6%A0%B7%E5%BC%8F/"
-    >js样式</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/02/18/js%E6%A0%B7%E5%BC%8F/" class="article-date">
-  <time datetime="2020-02-18T03:26:51.000Z" itemprop="datePublished">2020-02-18</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="通过点击事件增加class"><a href="#通过点击事件增加class" class="headerlink" title="通过点击事件增加class"></a>通过点击事件增加class</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当前如有这个class的话那么点击会删除这个class，</span><br><span class="line">如果没有那么会新增,这个事件也可以通过removeClass来做</span><br><span class="line">$(this).toggleClass(<span class="string">"current"</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="下拉框的事件"><a href="#下拉框的事件" class="headerlink" title="下拉框的事件"></a>下拉框的事件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当你点击的事件它的下个节点是隐藏的，那么将会被显示出来。</span><br><span class="line">如果是显示的话，点击就会被隐藏</span><br><span class="line">$(this).next().slideToggle();</span><br></pre></td></tr></table></figure>
-<h3 id="判断当前的class是否存在"><a href="#判断当前的class是否存在" class="headerlink" title="判断当前的class是否存在"></a>判断当前的class是否存在</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当前的class是否存在这个节点 如果存在那么必然不是负一,</span><br><span class="line">这个主要思想放在循环列表判断是否存在</span><br><span class="line">$(this).attr(<span class="string">"class"</span>).indexOf(<span class="string">"current"</span>)!=-1</span><br></pre></td></tr></table></figure>
-<h3 id="循环数据事件"><a href="#循环数据事件" class="headerlink" title="循环数据事件"></a>循环数据事件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$.each(这里是ajax的变量,<span class="keyword">function</span>(下标,变量元素对象)&#123;</span><br><span class="line">	var <span class="variable">$item</span> = 这里可以写<span class="keyword">function</span>(下标，变量元素)</span><br><span class="line">	或者是</span><br><span class="line">	console.log(变量对象.name等等)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">动态生成的标签那么class这些会导致无法使用</span><br><span class="line">那么就要用到delegate事件托管</span><br><span class="line">class=<span class="string">"content"</span>这里是你要托管的那块地方或者全局</span><br><span class="line">class=<span class="string">"content_in_play"</span>为这个class的节点添加点击事件</span><br><span class="line">$(<span class="string">".content"</span>).delegate(<span class="string">".content_in_play"</span>,<span class="string">"click"</span>,<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">	console.log($(this))==.content_in_play</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="优先级处理"><a href="#优先级处理" class="headerlink" title="优先级处理"></a>优先级处理</h3><p>当要增加class并且换上图片时可以用这个东西</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">background-position: -80px -200px !important;</span><br><span class="line">!important</span><br></pre></td></tr></table></figure>
  
       <!-- reward -->
       
