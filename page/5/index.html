@@ -96,6 +96,138 @@
     
     
     <article
+  id="post-过滤器拦截"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/19/%E8%BF%87%E6%BB%A4%E5%99%A8%E6%8B%A6%E6%88%AA/"
+    >SpringMvc过滤器拦截</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/02/19/%E8%BF%87%E6%BB%A4%E5%99%A8%E6%8B%A6%E6%88%AA/" class="article-date">
+  <time datetime="2020-02-19T09:38:16.000Z" itemprop="datePublished">2020-02-19</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="过滤器xml-配值"><a href="#过滤器xml-配值" class="headerlink" title="过滤器xml 配值"></a>过滤器xml 配值</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 拦截器 --&gt;</span><br><span class="line">&lt;mvc:interceptors&gt;</span><br><span class="line">    &lt;!-- 对所有请求都拦截，公共拦截器可以有多个 --&gt;</span><br><span class="line">    &lt;bean name=<span class="string">"baseInterceptor"</span> class=<span class="string">"cn.zifangsky.interceptor.BaseInterceptor"</span> /&gt;</span><br><span class="line">    &lt;!-- &lt;bean name=<span class="string">"testInterceptor"</span> class=<span class="string">"cn.zifangsky.interceptor.TestInterceptor"</span> /&gt; --&gt;</span><br><span class="line">    &lt;mvc:interceptor&gt;       </span><br><span class="line">        &lt;&lt;!-- 拦截路径 --&gt;</span><br><span class="line">        &lt;mvc:mapping path=<span class="string">"/**"</span>/&gt;</span><br><span class="line">        &lt;!-- 指定不拦截路径 &lt;mvc:exclude-mapping path=<span class="string">"/登陆页面以及静态资源"</span>/&gt;--&gt;</span><br><span class="line">        &lt;bean class=<span class="string">"cn.zifangsky.interceptor.TestInterceptor"</span> /&gt;</span><br><span class="line">    &lt;/mvc:interceptor&gt;</span><br><span class="line">&lt;/mvc:interceptors&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="配值public-class-BaseInterceptor-implements-HandlerInterceptor"><a href="#配值public-class-BaseInterceptor-implements-HandlerInterceptor" class="headerlink" title="配值public class BaseInterceptor implements HandlerInterceptor"></a>配值public class BaseInterceptor implements HandlerInterceptor</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2) throws Exception &#123;</span><br><span class="line">    System.out.println(<span class="string">"************TestInterceptor preHandle executed**********"</span>);</span><br><span class="line">    <span class="built_in">return</span> <span class="literal">true</span>;//这里<span class="literal">false</span>为不释放 <span class="literal">true</span>为释放</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3)</span><br><span class="line">        throws Exception &#123;</span><br><span class="line">    System.out.println(<span class="string">"************TestInterceptor postHandle executed**********"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)</span><br><span class="line">        throws Exception &#123;</span><br><span class="line">    System.out.println(<span class="string">"************TestInterceptor afterCompletion executed**********"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-数据库"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/19/%E6%95%B0%E6%8D%AE%E5%BA%93/"
+    >数据库</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/02/19/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
+  <time datetime="2020-02-19T07:34:54.000Z" itemprop="datePublished">2020-02-19</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="清空自增自动删表"><a href="#清空自增自动删表" class="headerlink" title="清空自增自动删表"></a>清空自增自动删表</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TRUNCATE 表名</span><br></pre></td></tr></table></figure>
+<h3 id="增加学生"><a href="#增加学生" class="headerlink" title="增加学生"></a>增加学生</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into 表名 (name,age,address)values(<span class="string">"254395637"</span>,<span class="string">"16"</span>,<span class="string">"揭阳"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="修改表信息"><a href="#修改表信息" class="headerlink" title="修改表信息"></a>修改表信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update 表名 <span class="built_in">set</span> name = <span class="string">"8226942"</span> <span class="built_in">where</span> pass = <span class="string">'123'</span> and name = <span class="string">'原先名字'</span></span><br></pre></td></tr></table></figure>
+<h3 id="删除表信息"><a href="#删除表信息" class="headerlink" title="删除表信息"></a>删除表信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from 表名 <span class="built_in">where</span> name = <span class="string">"?"</span> and <span class="string">"?"</span></span><br></pre></td></tr></table></figure>
+<h3 id="查询信息"><a href="#查询信息" class="headerlink" title="查询信息"></a>查询信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select from 表名 <span class="built_in">where</span> name = <span class="string">"?"</span> and <span class="string">"?"</span></span><br></pre></td></tr></table></figure>
+<h3 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">from</span> 表名 <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="keyword">CONCAT</span>(<span class="string">"aorg1"</span>，<span class="string">"aorg2"</span>) <span class="keyword">concat</span>可以多参数</span><br><span class="line"></span><br><span class="line"><span class="comment">--_下划线为一个占位符</span></span><br><span class="line"><span class="comment">--%百分号为任意个</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th align="center">条件</th>
+<th>语句</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">查看包含小明</td>
+<td>%小明%</td>
+</tr>
+<tr>
+<td align="center">查询含有小明开头的</td>
+<td>小明%</td>
+</tr>
+<tr>
+<td align="center">查看为只有小字开头为俩个字符的</td>
+<td>小_</td>
+</tr>
+</tbody></table>
+<h3 id="查询空字段"><a href="#查询空字段" class="headerlink" title="查询空字段"></a>查询空字段</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> article <span class="keyword">where</span> ARTICLETITLE = <span class="string">''</span> </span><br><span class="line"><span class="comment">--查询不为null</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> article <span class="keyword">where</span> ARTICLETITLE != <span class="string">''</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="查看表结构"><a href="#查看表结构" class="headerlink" title="查看表结构"></a>查看表结构</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span> 表名</span><br><span class="line"></span><br><span class="line"><span class="keyword">desc</span> 表名  <span class="comment">--表结构</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">index</span> <span class="keyword">from</span> 表名 <span class="comment">--显示表的索引</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">test</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> categoryid <span class="keyword">desc</span> <span class="comment">--降序</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">test</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> categoryid <span class="keyword">asc</span> <span class="comment">--升序</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="重置自增"><a href="#重置自增" class="headerlink" title="重置自增"></a>重置自增</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 auto_increment= 起始值</span><br></pre></td></tr></table></figure>
+
+<p>生成唯一索引</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 unique <span class="string">"字段名"</span></span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-js样式"
   class="article article-type-post"
   itemscope
