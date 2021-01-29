@@ -96,6 +96,129 @@
     
     
     <article
+  id="post-ArrayList"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/12/ArrayList/"
+    >ArrayList</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/05/12/ArrayList/" class="article-date">
+  <time datetime="2020-05-12T07:13:03.000Z" itemprop="datePublished">2020-05-12</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>列表集合</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class ArrayList&lt;E&gt; extends AbstractList&lt;E&gt; implements List&lt;E&gt;, RandomAccess, Cloneable, Serializable &#123;  </span><br><span class="line">    // 序列化id  </span><br><span class="line">    private static final long serialVersionUID = 8683452581122892189L;  </span><br><span class="line">    // 默认初始的容量  </span><br><span class="line">    private static final int DEFAULT_CAPACITY = 10;  </span><br><span class="line">    // 一个空对象（为什么是new Object[0]呢？）</span><br><span class="line">    //用Object[0]来代替null 很多时候我们需要传递参数的类型，而不是传null，所以用Object[0]</span><br><span class="line">    private static final Object[] EMPTY_ELEMENTDATA = new Object[0];  </span><br><span class="line">    // 一个空对象，如果使用默认构造函数创建，则默认对象内容默认是该值  </span><br><span class="line">    private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = new Object[0];  </span><br><span class="line">    // 当前数据对象存放地方，当前对象不参与序列化(主要是关键字transient起作用的)  </span><br><span class="line">    transient Object[] elementData;  </span><br><span class="line">    // 当前数组长度  </span><br><span class="line">    private int size;  </span><br><span class="line">    // 数组最大长度  </span><br><span class="line">    private static final int MAX_ARRAY_SIZE = 2147483639;  </span><br><span class="line"></span><br><span class="line">    // 省略方法。。  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>默认object[] xxx = {}||new object[0]</p>
+<p>这里规定了一个默认空对象的构造法方法 ：</p>
+<p>private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = new Object[0];  </p>
+<p>还有一个有参数的构造法 private static final Object[] EMPTY_ELEMENTDATA = new Object[0]; </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">public boolean add(E e) &#123;</span><br><span class="line">        ensureCapacityInternal(size + 1);  //确认内部容量</span><br><span class="line">        前面定义默认的size为0 所以每次添加新的值 size会加一</span><br><span class="line">        elementData[size++] = e;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> private void ensureCapacityInternal(int minCapacity) &#123;</span><br><span class="line">        // 如果elementData 指向的是 DEFAULTCAPACITY_EMPTY_ELEMENTDATA 的地址</span><br><span class="line">        <span class="keyword">if</span> (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) &#123;</span><br><span class="line">            //置默认大小 为DEFAULT_CAPACITY</span><br><span class="line">            minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);</span><br><span class="line"></span><br><span class="line">            DEFAULT_CAPACITY == 10 前面定义为10 minCapacity 是size+1进来的</span><br><span class="line">        	这里为何要加一的原因是数组的length有长度的话就是1 而下标是为0</span><br><span class="line">        </span><br><span class="line">        &#125;</span><br><span class="line">        //确定实际容量</span><br><span class="line">        ensureExplicitCapacity(minCapacity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">private void ensureExplicitCapacity(int minCapacity) &#123;</span><br><span class="line">        modCount++;</span><br><span class="line"></span><br><span class="line">        // 如果超出了容量，进行扩展</span><br><span class="line">        <span class="keyword">if</span> (minCapacity - elementData.length &gt; 0)</span><br><span class="line">            grow(minCapacity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">private void grow(int minCapacity) &#123;</span><br><span class="line">        // overflow-conscious code</span><br><span class="line">        int oldCapacity = elementData.length;</span><br><span class="line">        //右移运算符等价于除以2</span><br><span class="line">        int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1);</span><br><span class="line">        <span class="keyword">if</span> (newCapacity - minCapacity &lt; 0)</span><br><span class="line">            newCapacity = minCapacity;</span><br><span class="line">        <span class="keyword">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; 0)</span><br><span class="line">            newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">        // minCapacity is usually close to size, so this is a win:</span><br><span class="line">        elementData = Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码块比较长，这里做个简单的总结：<br>1、add（E e）：添加元素，首先会判断 elementData 数组的长度，然后设置值<br>2、ensureCapacityInternal（int minCapacity）：判断 element 是否为空，如果是，则设置默认数组长度<br>3、ensureExplicitCapacity（int minCapacity）：判断预期增长数组长度是否超过当前容量，如果过超过，则调用grow（）<br>4、grow(int minCapacity)：对数组进行扩展，默认的长度为10</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public void add(int index, E element) &#123;</span><br><span class="line">    rangeCheckForAdd(index);</span><br><span class="line">    //确定容量</span><br><span class="line">    ensureCapacityInternal(size + 1);  // Increments modCount!!</span><br><span class="line">    System.arraycopy(elementData, index, elementData, index + 1,</span><br><span class="line">                     size - index);</span><br><span class="line">    elementData[index] = element;//将下标赋值</span><br><span class="line">    size++;//长度加一</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public ArrayList(int initialCapacity) &#123;  </span><br><span class="line">    <span class="keyword">if</span> (initialCapacity &gt; 0) &#123;  </span><br><span class="line">        this.elementData = new Object[initialCapacity];  </span><br><span class="line">        //设置容量</span><br><span class="line">        如果值为0的时候 将赋值EMPTY_ELEMENTDATA &#123;0&#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (initialCapacity == 0) &#123;  </span><br><span class="line">        this.elementData = EMPTY_ELEMENTDATA; </span><br><span class="line">        //EMPTY_ELEMENTDATA</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">        throw new IllegalArgumentException(<span class="string">"Illegal Capacity: "</span>+  </span><br><span class="line">                                           initialCapacity);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ArrayList（）：指向 DEFAULTCAPACITY_EMPTY_ELEMENTDATA，当列表使用的时候，才会进行初始化，会通过判断是不是 DEFAULTCAPACITY_EMPTY_ELEMENTDATA 这个对象而设置数组默认大小。<br>ArrayList(int initialCapacity)：当 initialCapacity &gt;0 的时候，设置该长度。如果 initialCapacity =0，则指向 EMPTY_ELEMENTDATA 在使用的时候，并不会设置默认数组长度 。</p>
+<p>因此 DEFAULTCAPACITY_EMPTY_ELEMENTDATA 与 EMPTY_ELEMENTDATA 的本质区别就在于，会不会设置默认的数组长度。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@HotSpotIntrinsicCandidate</span><br><span class="line">public static void (Object src,</span><br><span class="line">                             int srcPos,</span><br><span class="line">                             Object dest,</span><br><span class="line">                             int destPos,</span><br><span class="line">                             int length)</span><br><span class="line">src:源数组；     srcPos:源数组要复制的起始位置；</span><br><span class="line">dest:目的数组；  destPos:目的数组放置的起始位置；    length:复制的长度。</span><br><span class="line">注意：src and dest都必须是同类型或者可以进行转换类型的数组．</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public E remove(int index) &#123;</span><br><span class="line">        rangeCheck(index); // 判断索引是否有效</span><br><span class="line">        modCount++;</span><br><span class="line">        E oldValue = elementData(index);  // 获取对应数据</span><br><span class="line">        int numMoved = size - index - 1;  // 判断删除数据位置</span><br><span class="line">        <span class="keyword">if</span> (numMoved &gt; 0) //如果删除数据不是最后一位，则需要移动数组</span><br><span class="line">            System.arraycopy(elementData, index+1, elementData, index,</span><br><span class="line">                             numMoved);</span><br><span class="line">        elementData[--size] = null; // 让指针最后指向空，进行垃圾回收</span><br><span class="line">        <span class="built_in">return</span> oldValue;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>System.arraycopy(elementData, index+1, elementData, index,numMoved);<br>将原本的数组 下标加一复制到当前的下标的地方 </p>
+<p>numMoved至于长度 == size(该数组的长度) - 下标 - 1 = 复制后面的长度（这里并不会影响到数组的容量）</p>
+<p>elementData[–size] = null;将数组的size长度减一的坐标为null</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public boolean remove(Object o) &#123;</span><br><span class="line">        <span class="keyword">if</span> (o == null) &#123;</span><br><span class="line">            <span class="keyword">for</span> (int index = 0; index &lt; size; index++)</span><br><span class="line">                <span class="keyword">if</span> (elementData[index] == null) &#123;</span><br><span class="line">                    fastRemove(index);</span><br><span class="line">                    <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (int index = 0; index &lt; size; index++)</span><br><span class="line">                <span class="keyword">if</span> (o.equals(elementData[index])) &#123;</span><br><span class="line">                    fastRemove(index);</span><br><span class="line">                    <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>这种方式，会在内部进行 AccessRandom 方式遍历数组，当匹配到数据跟 Object 相等，则调用 fastRemove（） 进行删除</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">private void fastRemove(int index) &#123;</span><br><span class="line">       modCount++;</span><br><span class="line">       int numMoved = size - index - 1;</span><br><span class="line">       <span class="keyword">if</span> (numMoved &gt; 0)</span><br><span class="line">           System.arraycopy(elementData, index+1, elementData, index,</span><br><span class="line">                            numMoved);</span><br><span class="line">       elementData[--size] = null; // clear to <span class="built_in">let</span> GC <span class="keyword">do</span> its work</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>fastRemove( ): fastRemove 操作与上述的根据下标进行删除其实是一致的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">private boolean batchRemove(Collection&lt;?&gt; c, boolean complement) &#123;</span><br><span class="line">       //获取数组指针</span><br><span class="line">       final Object[] elementData = this.elementData;</span><br><span class="line">       int r = 0, w = 0;</span><br><span class="line">       r为控制循环 w为交集多少个交集</span><br><span class="line">       boolean modified = <span class="literal">false</span>;</span><br><span class="line">       try &#123;</span><br><span class="line">           <span class="keyword">for</span> (; r &lt; size; r++)</span><br><span class="line">               //根据 complement 进行判断是否一致 </span><br><span class="line">               <span class="keyword">if</span> (c.contains(elementData[r]) == complement)</span><br><span class="line">                   elementData[w++] = elementData[r];</span><br><span class="line">       &#125; finally &#123;</span><br><span class="line">           // 进行数据整理</span><br><span class="line">           <span class="keyword">if</span> (r != size) &#123;</span><br><span class="line">               System.arraycopy(elementData, r,</span><br><span class="line">                                elementData, w,</span><br><span class="line">                                size - r);</span><br><span class="line">               w += size - r;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> (w != size) &#123;</span><br><span class="line">               // clear to <span class="built_in">let</span> GC <span class="keyword">do</span> its work</span><br><span class="line">               <span class="keyword">for</span> (int i = w; i &lt; size; i++)</span><br><span class="line">                   elementData[i] = null;</span><br><span class="line">               modCount += size - w;</span><br><span class="line">               size = w;</span><br><span class="line">               modified = <span class="literal">true</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="built_in">return</span> modified;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public E <span class="built_in">set</span>(int index, E e) &#123;</span><br><span class="line">        rangeCheck(index);//判断是否有校index</span><br><span class="line">        checkForComodification();</span><br><span class="line">        //旧值</span><br><span class="line">        E oldValue = ArrayList.this.elementData(offset + index);</span><br><span class="line">        //赋新值</span><br><span class="line">        ArrayList.this.elementData[offset + index] = e;</span><br><span class="line">        //返回旧值</span><br><span class="line">        <span class="built_in">return</span> oldValue;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public int indexOf(Object o) &#123;</span><br><span class="line">		//索引为null的值</span><br><span class="line">        <span class="keyword">if</span> (o == null) &#123;</span><br><span class="line">            <span class="keyword">for</span> (int i = 0; i &lt; size; i++)</span><br><span class="line">                <span class="keyword">if</span> (elementData[i]==null)</span><br><span class="line">                    <span class="built_in">return</span> i;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        //找出一样的值</span><br><span class="line">            <span class="keyword">for</span> (int i = 0; i &lt; size; i++)</span><br><span class="line">                <span class="keyword">if</span> (o.equals(elementData[i]))</span><br><span class="line">                    <span class="built_in">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">        //找不到为null</span><br><span class="line">        <span class="built_in">return</span> -1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>//判断索引的值会不会大于数组的长度<br>public E get(int index) {<br>        rangeCheck(index);</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    return elementData(index);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-input焦点"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/16/input%E7%84%A6%E7%82%B9/"
+    >input焦点</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/04/16/input%E7%84%A6%E7%82%B9/" class="article-date">
+  <time datetime="2020-04-16T00:22:25.000Z" itemprop="datePublished">2020-04-16</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="change-当改变时触发"><a href="#change-当改变时触发" class="headerlink" title="change 当改变时触发"></a>change 当改变时触发</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">可回车确认</span><br><span class="line"><span class="variable">$item</span>.children(<span class="string">"#file"</span>).on(<span class="string">"change"</span>, <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">     console.log($(this).val())</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="每次输入都获取值-input"><a href="#每次输入都获取值-input" class="headerlink" title="每次输入都获取值 input"></a>每次输入都获取值 input</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$item</span>.children(<span class="string">"#file"</span>).on(<span class="string">"input"</span>, <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">     console.log($(this).val())</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="blur-失去焦点时"><a href="#blur-失去焦点时" class="headerlink" title="blur 失去焦点时"></a>blur 失去焦点时</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">不可回车键</span><br><span class="line"><span class="variable">$item</span>.children(<span class="string">"#file"</span>).on(<span class="string">"blur"</span>, <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">     console.log($(this).val())</span><br><span class="line">&#125;)</span><br><span class="line">//激活回车键</span><br><span class="line"><span class="variable">$item</span>.<span class="built_in">bind</span>(<span class="string">"keydown keyup"</span>,<span class="keyword">function</span>(e)&#123;</span><br><span class="line">    var key = e.which;</span><br><span class="line">    <span class="keyword">if</span> (key == 13) &#123;</span><br><span class="line">        console.log($(this).val())</span><br><span class="line">        $(this).css(<span class="string">"outline"</span>,<span class="string">"none"</span>);</span><br><span class="line">        $(this).attr(<span class="string">"readonly"</span>,<span class="literal">true</span>);</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="focus-点击获取焦点时"><a href="#focus-点击获取焦点时" class="headerlink" title="focus 点击获取焦点时"></a>focus 点击获取焦点时</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$item</span>.children(<span class="string">"#file"</span>).on(<span class="string">"focus"</span>, <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">     console.log($(this).val())</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-关于session错误"
   class="article article-type-post"
   itemscope
@@ -522,126 +645,6 @@ public String method2(ModelMap map ) {
 </article>
 
     
-    <article
-  id="post-Date类"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/06/Date%E7%B1%BB/"
-    >Date类</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/03/06/Date%E7%B1%BB/" class="article-date">
-  <time datetime="2020-03-06T06:32:45.000Z" itemprop="datePublished">2020-03-06</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="java-Date类"><a href="#java-Date类" class="headerlink" title="java Date类"></a>java Date类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Date date = new Date();日期类</span><br><span class="line">system.out.println(<span class="string">"没有格式化时间"</span>+date);</span><br><span class="line">SimpleDateFormat format = new SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">这里格式化了时间 String str = format.format(date);</span><br></pre></td></tr></table></figure>
-<h3 id="插入数据库时的时间"><a href="#插入数据库时的时间" class="headerlink" title="插入数据库时的时间"></a>插入数据库时的时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Timestamp timePara = new Timestamp(new Date().getTime());这个date的子类</span><br><span class="line"></span><br><span class="line">Date date ;</span><br><span class="line">所以设置的时候可以将这个类设置为date的属性,不会丢失时间数</span><br></pre></td></tr></table></figure>
-
-<h3 id="注解形式的插入时间"><a href="#注解形式的插入时间" class="headerlink" title="注解形式的插入时间"></a>注解形式的插入时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@DateTimeFormat(pattern=<span class="string">"yyyy-MM-dd"</span>)//页面写入数据库时格式化</span><br><span class="line">Date datetime;</span><br><span class="line">这个是前端插入数据库</span><br><span class="line"></span><br><span class="line">这个是后端给前端响应 但是它只能实现@Responsebody</span><br><span class="line">@JsonFormat(pattern = <span class="string">"yyyy-MM-dd"</span>,timezone=<span class="string">"GMT+8"</span>)</span><br><span class="line">可以自动格式化时间</span><br></pre></td></tr></table></figure>
-
-<h3 id="用Thymeleaf插入时间"><a href="#用Thymeleaf插入时间" class="headerlink" title="用Thymeleaf插入时间"></a>用Thymeleaf插入时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如果引用的是对象 那么 date.getDate()</span><br><span class="line"><span class="string">"#dates.format(date,'dd/MMM/yyyy HH:mm')"</span></span><br></pre></td></tr></table></figure>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-标签"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/01/%E6%A0%87%E7%AD%BE/"
-    >标签&lt;url-pattern&gt;</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/03/01/%E6%A0%87%E7%AD%BE/" class="article-date">
-  <time datetime="2020-03-01T02:07:17.000Z" itemprop="datePublished">2020-03-01</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>我们知道在写<url-pattern>时有一种通配符的使用写法，即*</url-pattern></p>
-<p>1.当我使用<url-pattern>/*</url-pattern>时，我们可以匹配所有的请求，即所有的请求都会经过该标签对应的Servlet</p>
-<p>此时就需要注意静态资源的请求，因为当我们使用<a href="http://localhost:8080/we/login.html时，依然会匹配该Servlet，" target="_blank" rel="noopener">http://localhost:8080/we/login.html时，依然会匹配该Servlet，</a></p>
-<p>而很多静态资源其实是不需要经过Servlet的，例如：js，css，html，jsp，img等静态资源文件，此时就需要在该Servlet中对静态资源做特殊处理</p>
-<p>2.如果配有如下两个<url-pattern>标签时，URL地址为<a href="http://localhost:8080/we/index时又是如何匹配的呢？" target="_blank" rel="noopener">http://localhost:8080/we/index时又是如何匹配的呢？</a></url-pattern></p>
-<p>url-pattern/index url-pattern</p>
-<p>url-pattern/*url-pattern</p>
-<p>上边我们已经说过，/*可以匹配所有的请求，而/index也可以匹配我们的URL地址，此时URL地址会自动且优先的进行精确匹配，即/index，</p>
-<p>且只匹配一次，也就是说一旦匹配到一个Servlet即执行该Servlet不再对其他Servlet进行匹配，</p>
-<p>当我们输入一个<a href="http://localhost:8080/we/login时，由于此时匹配不到/login所以只能匹配/*了" target="_blank" rel="noopener">http://localhost:8080/we/login时，由于此时匹配不到/login所以只能匹配/*了</a></p>
-<p>3.在Servlet Path部分我们还可以使用更精确的匹配，例如：</p>
-<p><url-pattern>/index/login</url-pattern>匹配<a href="http://localhost:8080/we/index/login" target="_blank" rel="noopener">http://localhost:8080/we/index/login</a></p>
-<p><url-pattern>/index/logout</url-pattern>匹配<a href="http://localhost:8080/we/index/logout" target="_blank" rel="noopener">http://localhost:8080/we/index/logout</a></p>
-<p>此时/index/login和/index/logout才是我们的Servlet Path</p>
-<p> 4.我们可以通过使用<url-pattern>*.do</url-pattern>来过滤请求，</p>
-<p>这样如果我们在页面中的请求中添加后缀名.do就可以避免对静态资源的过滤了，也就不需要对静态资源做特殊处理了</p>
-<p>注:<url-pattern>/</url-pattern>和<url-pattern>/*</url-pattern>效果是一样的</p>
-<p>/匹配url斜杆下不含后缀</p>
-<p>jsp是动态资源 当前/拦截的时候，图形解析器为jsp的话，会跳转到jsp。</p>
-<p>当/*的时候，它会拦截到所有资源路径。如还是jsp的话，将报404.（因为它相当于访问了静态资源）</p>
-<p><a href="mvc:annotation-driven/">mvc:annotation-driven/</a>拦截所有请求<br><a href="mvc:default-servlet-handler/">mvc:default-servlet-handler/</a>访问静态资源</p>
-<p>/*匹配 url 后缀 .jsp .html</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
   </article>
   
 
@@ -659,7 +662,7 @@ public String method2(ModelMap map ) {
     <ul>
       <li>
         Copyrights &copy;
-        2015-2020
+        2015-2021
         <i class="ri-heart-fill heart_icon"></i> John Doe
       </li>
     </ul>

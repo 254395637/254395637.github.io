@@ -96,6 +96,126 @@
     
     
     <article
+  id="post-Date类"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/06/Date%E7%B1%BB/"
+    >Date类</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/06/Date%E7%B1%BB/" class="article-date">
+  <time datetime="2020-03-06T06:32:45.000Z" itemprop="datePublished">2020-03-06</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="java-Date类"><a href="#java-Date类" class="headerlink" title="java Date类"></a>java Date类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Date date = new Date();日期类</span><br><span class="line">system.out.println(<span class="string">"没有格式化时间"</span>+date);</span><br><span class="line">SimpleDateFormat format = new SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">这里格式化了时间 String str = format.format(date);</span><br></pre></td></tr></table></figure>
+<h3 id="插入数据库时的时间"><a href="#插入数据库时的时间" class="headerlink" title="插入数据库时的时间"></a>插入数据库时的时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Timestamp timePara = new Timestamp(new Date().getTime());这个date的子类</span><br><span class="line"></span><br><span class="line">Date date ;</span><br><span class="line">所以设置的时候可以将这个类设置为date的属性,不会丢失时间数</span><br></pre></td></tr></table></figure>
+
+<h3 id="注解形式的插入时间"><a href="#注解形式的插入时间" class="headerlink" title="注解形式的插入时间"></a>注解形式的插入时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@DateTimeFormat(pattern=<span class="string">"yyyy-MM-dd"</span>)//页面写入数据库时格式化</span><br><span class="line">Date datetime;</span><br><span class="line">这个是前端插入数据库</span><br><span class="line"></span><br><span class="line">这个是后端给前端响应 但是它只能实现@Responsebody</span><br><span class="line">@JsonFormat(pattern = <span class="string">"yyyy-MM-dd"</span>,timezone=<span class="string">"GMT+8"</span>)</span><br><span class="line">可以自动格式化时间</span><br></pre></td></tr></table></figure>
+
+<h3 id="用Thymeleaf插入时间"><a href="#用Thymeleaf插入时间" class="headerlink" title="用Thymeleaf插入时间"></a>用Thymeleaf插入时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如果引用的是对象 那么 date.getDate()</span><br><span class="line"><span class="string">"#dates.format(date,'dd/MMM/yyyy HH:mm')"</span></span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-标签"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/01/%E6%A0%87%E7%AD%BE/"
+    >标签&lt;url-pattern&gt;</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/01/%E6%A0%87%E7%AD%BE/" class="article-date">
+  <time datetime="2020-03-01T02:07:17.000Z" itemprop="datePublished">2020-03-01</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>我们知道在写<url-pattern>时有一种通配符的使用写法，即*</url-pattern></p>
+<p>1.当我使用<url-pattern>/*</url-pattern>时，我们可以匹配所有的请求，即所有的请求都会经过该标签对应的Servlet</p>
+<p>此时就需要注意静态资源的请求，因为当我们使用<a href="http://localhost:8080/we/login.html时，依然会匹配该Servlet，" target="_blank" rel="noopener">http://localhost:8080/we/login.html时，依然会匹配该Servlet，</a></p>
+<p>而很多静态资源其实是不需要经过Servlet的，例如：js，css，html，jsp，img等静态资源文件，此时就需要在该Servlet中对静态资源做特殊处理</p>
+<p>2.如果配有如下两个<url-pattern>标签时，URL地址为<a href="http://localhost:8080/we/index时又是如何匹配的呢？" target="_blank" rel="noopener">http://localhost:8080/we/index时又是如何匹配的呢？</a></url-pattern></p>
+<p>url-pattern/index url-pattern</p>
+<p>url-pattern/*url-pattern</p>
+<p>上边我们已经说过，/*可以匹配所有的请求，而/index也可以匹配我们的URL地址，此时URL地址会自动且优先的进行精确匹配，即/index，</p>
+<p>且只匹配一次，也就是说一旦匹配到一个Servlet即执行该Servlet不再对其他Servlet进行匹配，</p>
+<p>当我们输入一个<a href="http://localhost:8080/we/login时，由于此时匹配不到/login所以只能匹配/*了" target="_blank" rel="noopener">http://localhost:8080/we/login时，由于此时匹配不到/login所以只能匹配/*了</a></p>
+<p>3.在Servlet Path部分我们还可以使用更精确的匹配，例如：</p>
+<p><url-pattern>/index/login</url-pattern>匹配<a href="http://localhost:8080/we/index/login" target="_blank" rel="noopener">http://localhost:8080/we/index/login</a></p>
+<p><url-pattern>/index/logout</url-pattern>匹配<a href="http://localhost:8080/we/index/logout" target="_blank" rel="noopener">http://localhost:8080/we/index/logout</a></p>
+<p>此时/index/login和/index/logout才是我们的Servlet Path</p>
+<p> 4.我们可以通过使用<url-pattern>*.do</url-pattern>来过滤请求，</p>
+<p>这样如果我们在页面中的请求中添加后缀名.do就可以避免对静态资源的过滤了，也就不需要对静态资源做特殊处理了</p>
+<p>注:<url-pattern>/</url-pattern>和<url-pattern>/*</url-pattern>效果是一样的</p>
+<p>/匹配url斜杆下不含后缀</p>
+<p>jsp是动态资源 当前/拦截的时候，图形解析器为jsp的话，会跳转到jsp。</p>
+<p>当/*的时候，它会拦截到所有资源路径。如还是jsp的话，将报404.（因为它相当于访问了静态资源）</p>
+<p><a href="mvc:annotation-driven/">mvc:annotation-driven/</a>拦截所有请求<br><a href="mvc:default-servlet-handler/">mvc:default-servlet-handler/</a>访问静态资源</p>
+<p>/*匹配 url 后缀 .jsp .html</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-js分页"
   class="article article-type-post"
   itemscope
@@ -282,6 +402,8 @@
 <h3 id="修改表信息"><a href="#修改表信息" class="headerlink" title="修改表信息"></a>修改表信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update 表名 <span class="built_in">set</span> name = <span class="string">"8226942"</span> <span class="built_in">where</span> pass = <span class="string">'123'</span> and name = <span class="string">'原先名字'</span></span><br></pre></td></tr></table></figure>
 <h3 id="删除表信息"><a href="#删除表信息" class="headerlink" title="删除表信息"></a>删除表信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from 表名 <span class="built_in">where</span> name = <span class="string">"?"</span> and <span class="string">"?"</span></span><br></pre></td></tr></table></figure>
 <h3 id="查询信息"><a href="#查询信息" class="headerlink" title="查询信息"></a>查询信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select from 表名 <span class="built_in">where</span> name = <span class="string">"?"</span> and <span class="string">"?"</span></span><br></pre></td></tr></table></figure>
+<h3 id="查询null值信息"><a href="#查询null值信息" class="headerlink" title="查询null值信息"></a>查询null值信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select from 表名 <span class="built_in">where</span> name is null</span><br><span class="line"></span><br><span class="line">update 表名 update name = <span class="string">"xxx"</span> <span class="built_in">where</span> name is null</span><br></pre></td></tr></table></figure>
+
 <h3 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">from</span> 表名 <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="keyword">CONCAT</span>(<span class="string">"aorg1"</span>，<span class="string">"aorg2"</span>) <span class="keyword">concat</span>可以多参数</span><br><span class="line"></span><br><span class="line"><span class="comment">--_下划线为一个占位符</span></span><br><span class="line"><span class="comment">--%百分号为任意个</span></span><br></pre></td></tr></table></figure>
 <table>
 <thead>
@@ -313,8 +435,9 @@
 
 <h3 id="重置自增"><a href="#重置自增" class="headerlink" title="重置自增"></a>重置自增</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 auto_increment= 起始值</span><br></pre></td></tr></table></figure>
 
-<p>生成唯一索引</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 unique <span class="string">"字段名"</span></span><br></pre></td></tr></table></figure>
+<h3 id="生成唯一索引"><a href="#生成唯一索引" class="headerlink" title="生成唯一索引"></a>生成唯一索引</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 unique <span class="string">"字段名"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查询时间范围"><a href="#查询时间范围" class="headerlink" title="查询时间范围"></a>查询时间范围</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select count(1) from 表名 <span class="built_in">where</span> 字段名 <span class="string">'2020-xx-xxxx 时间点'</span> and <span class="string">'指定时间段'</span></span><br><span class="line"></span><br><span class="line">getdate() <span class="comment">#获取当前时间段</span></span><br><span class="line"></span><br><span class="line">DateDiff(dd,<span class="string">'时间字段名'</span>,getdate())=0 表示为当天</span><br><span class="line"></span><br><span class="line">DateDiff(dd,<span class="string">'时间字段名'</span>,getdate())&gt;0 时间字段超过当前时间会为整数，没超过为负数。</span><br></pre></td></tr></table></figure>
 
  
       <!-- reward -->
@@ -508,7 +631,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2015-2020
+        2015-2021
         <i class="ri-heart-fill heart_icon"></i> John Doe
       </li>
     </ul>
