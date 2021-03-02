@@ -70,7 +70,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">341</span>
+            <span class="post-count">367</span>
         </span>
     </span>
 
@@ -135,6 +135,8 @@
 <h3 id="生成唯一索引"><a href="#生成唯一索引" class="headerlink" title="生成唯一索引"></a>生成唯一索引</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 unique <span class="string">"字段名"</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="查询时间范围"><a href="#查询时间范围" class="headerlink" title="查询时间范围"></a>查询时间范围</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select count(1) from 表名 <span class="built_in">where</span> 字段名 <span class="string">'2020-xx-xxxx 时间点'</span> and <span class="string">'指定时间段'</span></span><br><span class="line"></span><br><span class="line">getdate() <span class="comment">#获取当前时间段</span></span><br><span class="line"></span><br><span class="line">DateDiff(dd,<span class="string">'时间字段名'</span>,getdate())=0 表示为当天</span><br><span class="line"></span><br><span class="line">DateDiff(dd,<span class="string">'时间字段名'</span>,getdate())&gt;0 时间字段超过当前时间会为整数，没超过为负数。</span><br></pre></td></tr></table></figure>
+
+<h3 id="SqlServer"><a href="#SqlServer" class="headerlink" title="SqlServer"></a>SqlServer</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">设置自增主键</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> USER_JOB_EXE_REC <span class="keyword">ADD</span> <span class="keyword">ID</span> <span class="built_in">INT</span> <span class="keyword">IDENTITY</span> (<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> 字段 <span class="built_in">INT</span> <span class="keyword">IDENTITY</span> (<span class="number">1</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
 
  
       <!-- reward -->

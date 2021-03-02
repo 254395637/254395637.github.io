@@ -96,6 +96,56 @@
     
     
     <article
+  id="post-Nginx"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/10/16/Nginx/"
+    >Nginx</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/10/16/Nginx/" class="article-date">
+  <time datetime="2020-10-16T11:23:55.000Z" itemprop="datePublished">2020-10-16</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//中文官方文档</span><br><span class="line">https://www.nginx.cn/doc/index.html</span><br><span class="line">//开放80端口</span><br><span class="line">iptables -I INPUT -p tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
+
+<h3 id="反向代理匹配规则"><a href="#反向代理匹配规则" class="headerlink" title="反向代理匹配规则"></a>反向代理匹配规则</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">//前端匹配</span><br><span class="line">devServer: &#123;</span><br><span class="line">        /* 自动打开浏览器 */</span><br><span class="line">        // open: <span class="literal">true</span>,</span><br><span class="line">        /* 设置为0.0.0.0则所有的地址均能访问 */</span><br><span class="line">        host: <span class="string">'0.0.0.0'</span>,</span><br><span class="line">        port: 8080,</span><br><span class="line">        https: <span class="literal">false</span>,</span><br><span class="line">        hotOnly: <span class="literal">false</span>,</span><br><span class="line">        /* 使用代理 */</span><br><span class="line">        proxy: &#123;</span><br><span class="line">            <span class="string">'/api'</span>: &#123;</span><br><span class="line">                /* 目标代理服务器地址 */</span><br><span class="line">                target: <span class="string">'http://localhost:8000/api'</span>,</span><br><span class="line">                /* 允许跨域 */</span><br><span class="line">                changeOrigin: <span class="literal">true</span>,</span><br><span class="line">                pathRewrite:&#123;</span><br><span class="line">                    <span class="string">'^/api'</span>:<span class="string">''</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">前端axios请求为</span><br><span class="line"></span><br><span class="line">this.<span class="variable">$axios</span>(&#123;</span><br><span class="line">	url:<span class="string">'api/login'</span> == target/login</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">localhost:8080/api/login 请求为后端</span><br><span class="line"></span><br><span class="line">nginx配置为</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">        listen       8080;</span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#charset koi8-r;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#access_log  logs/host.access.log  main;</span></span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   D:/vue-jin/dist/;</span><br><span class="line">	       	index  index.html index.htm;</span><br><span class="line">			<span class="comment">#proxy_pass http://localhost:8000;	        </span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment"># api为前端项目名称，带app的访问路径都是访问前端，故此将请求转到前端工程</span></span><br><span class="line">		location /api &#123; </span><br><span class="line">			proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">			proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">			proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">			proxy_set_header X-Forwarded-Proto  <span class="variable">$scheme</span>;</span><br><span class="line">			proxy_pass http://localhost:8000;</span><br><span class="line">		&#125;</span><br><span class="line">		当前端请求了localhost:8080/api/xxxx请求的时候</span><br><span class="line">		反向道理为localhost:8000/api/xxxxx</span><br><span class="line">		</span><br><span class="line">		当proxy_pass http://localhost:8000/;后面加斜杆后</span><br><span class="line">		反向代理为locahost:8000/xxxx</span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-自定义注解"
   class="article article-type-post"
   itemscope
@@ -674,76 +724,13 @@
 </article>
 
     
-    <article
-  id="post-linux命令"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/08/10/linux%E5%91%BD%E4%BB%A4/"
-    >linux命令</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/08/10/linux%E5%91%BD%E4%BB%A4/" class="article-date">
-  <time datetime="2020-08-10T09:00:55.000Z" itemprop="datePublished">2020-08-10</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h4 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-<h4 id="修改权限"><a href="#修改权限" class="headerlink" title="修改权限"></a>修改权限</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 777 公开权限 ./文件夹|文件名</span><br></pre></td></tr></table></figure>
-<h4 id="修改用户组"><a href="#修改用户组" class="headerlink" title="修改用户组"></a>修改用户组</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown 用户</span><br></pre></td></tr></table></figure>
-<h4 id="当前解压"><a href="#当前解压" class="headerlink" title="当前解压"></a>当前解压</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unzip ./文件.zip</span><br><span class="line">tar -xvf ./文件</span><br></pre></td></tr></table></figure>
-<h4 id="压缩命令"><a href="#压缩命令" class="headerlink" title="压缩命令"></a>压缩命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip -r FileName.zip ./文件</span><br></pre></td></tr></table></figure>
-<h4 id="删除命令"><a href="#删除命令" class="headerlink" title="删除命令"></a>删除命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -rf ./</span><br></pre></td></tr></table></figure>
-<h4 id="添加xxx"><a href="#添加xxx" class="headerlink" title="添加xxx"></a>添加xxx</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update </span><br><span class="line"></span><br><span class="line">sudo apt-get install xxx</span><br></pre></td></tr></table></figure>
-<h3 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp 文件 目的</span><br></pre></td></tr></table></figure>
-
-<h3 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv 文件夹 到文件夹</span><br></pre></td></tr></table></figure>
-
-<h3 id="杀死进程"><a href="#杀死进程" class="headerlink" title="杀死进程"></a>杀死进程</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps aux 查看所有进程</span><br><span class="line"><span class="built_in">kill</span> -9 进程id</span><br></pre></td></tr></table></figure>
-
-<h3 id="后台启动jar-加-日志"><a href="#后台启动jar-加-日志" class="headerlink" title="后台启动jar 加 日志"></a>后台启动jar 加 日志</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup java -jar test.jar &gt;test.txt &amp;</span><br></pre></td></tr></table></figure>
-
-
-
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
   </nav>
   
 </section>
