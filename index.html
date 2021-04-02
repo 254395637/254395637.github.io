@@ -107,6 +107,104 @@
     
     
     <article
+  id="post-数据校验注解"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/04/02/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C%E6%B3%A8%E8%A7%A3/"
+    >数据校验注解</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/04/02/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C%E6%B3%A8%E8%A7%A3/" class="article-date">
+  <time datetime="2021-04-02T04:18:54.000Z" itemprop="datePublished">2021-04-02</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Null</span>   被注释的元素必须为 <span class="keyword">null</span>    </span><br><span class="line"><span class="meta">@NotNull</span>    被注释的元素必须不为 <span class="keyword">null</span>    </span><br><span class="line"><span class="meta">@AssertTrue</span>     被注释的元素必须为 <span class="keyword">true</span>    </span><br><span class="line"><span class="meta">@AssertFalse</span>    被注释的元素必须为 <span class="keyword">false</span>    </span><br><span class="line"><span class="meta">@Min</span>(value)     被注释的元素必须是一个数字，其值必须大于等于指定的最小值    </span><br><span class="line"><span class="meta">@Max</span>(value)     被注释的元素必须是一个数字，其值必须小于等于指定的最大值    </span><br><span class="line"><span class="meta">@DecimalMin</span>(value)  被注释的元素必须是一个数字，其值必须大于等于指定的最小值    </span><br><span class="line"><span class="meta">@DecimalMax</span>(value)  被注释的元素必须是一个数字，其值必须小于等于指定的最大值    </span><br><span class="line"><span class="meta">@Size</span>(max=, min=)   被注释的元素的大小必须在指定的范围内    </span><br><span class="line"><span class="meta">@Digits</span> (integer, fraction)     被注释的元素必须是一个数字，其值必须在可接受的范围内    </span><br><span class="line"><span class="meta">@Past</span>   被注释的元素必须是一个过去的日期    </span><br><span class="line"><span class="meta">@Future</span>     被注释的元素必须是一个将来的日期    </span><br><span class="line"><span class="meta">@Pattern</span>(regex=,flag=)  被注释的元素必须符合指定的正则表达式 </span><br><span class="line"></span><br><span class="line"><span class="meta">@NotBlank</span>(message =)   验证字符串非<span class="keyword">null</span>，且长度必须大于<span class="number">0</span>    </span><br><span class="line"><span class="meta">@Email</span>  被注释的元素必须是电子邮箱地址    </span><br><span class="line"><span class="meta">@Length</span>(min=,max=)  被注释的字符串的大小必须在指定的范围内    </span><br><span class="line"><span class="meta">@NotEmpty</span>   被注释的字符串的必须非空    </span><br><span class="line"><span class="meta">@Range</span>(min=,max=,message=)  被注释的元素必须在合适的范围内</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="meta">@NotNull</span>(message=<span class="string">"branchNo不能为空"</span>)</span><br><span class="line"><span class="keyword">private</span> Long branchNo;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NotNull</span>(message=<span class="string">"pid不能为空"</span>)<span class="comment">//判断参数为null</span></span><br><span class="line"><span class="keyword">private</span> Long pid;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NotBlank</span>(message=<span class="string">"simpleName不能为空"</span>)<span class="comment">//判断字符串为null</span></span><br><span class="line"><span class="meta">@Length</span>(min=<span class="number">1</span>, max=<span class="number">32</span>, message=<span class="string">"branchName必须在1-8位之间"</span>)</span><br><span class="line"><span class="keyword">private</span> String branchName;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义一个全局异常注解</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionHandler</span> </span>&#123;</span><br><span class="line">	<span class="meta">@ExceptionHandler</span>(MethodArgumentNotValidException<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">CodeMsg</span> <span class="title">exceptionHeader</span>(<span class="title">MethodArgumentNotValidException</span> <span class="title">e</span>)</span>&#123;</span><br><span class="line">        log.error(e.getMessage(),e);</span><br><span class="line">       <span class="keyword">return</span> CodeMsg.fail(e.getMessage());<span class="comment">//返回result信息</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-图片批量下载打包zip"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/31/%E5%9B%BE%E7%89%87%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD%E6%89%93%E5%8C%85zip/"
+    >图片批量下载打包zip</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/31/%E5%9B%BE%E7%89%87%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD%E6%89%93%E5%8C%85zip/" class="article-date">
+  <time datetime="2021-03-31T02:20:49.000Z" itemprop="datePublished">2021-03-31</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">downloadImages</span><span class="params">(@RequestBody Map&lt;String,Object&gt; params)</span></span>&#123;</span><br><span class="line">	<span class="comment">//获取图片id找到图片地址</span></span><br><span class="line">    String id = Convert.toStr(params.get(<span class="string">"id"</span>));</span><br><span class="line">    <span class="keyword">if</span>(StringUtils.isBlank(id))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CodeMsg(<span class="string">"参数异常"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    String fileName = <span class="string">"图片附件"</span>;</span><br><span class="line">    ZipOutputStream zipOs = <span class="keyword">null</span>;</span><br><span class="line">    InputStream is = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">            zipOs = <span class="keyword">new</span> ZipOutputStream(response.getOutputStream());</span><br><span class="line">            response.setContentType(<span class="string">"application/zip"</span>);<span class="comment">//设置响应内容</span></span><br><span class="line">            response.addHeader(<span class="string">"Content-Disposition"</span>,</span><br><span class="line">                    <span class="string">"attachment;filename="</span> + URLEncoder.encode(fileName, <span class="string">"UTF-8"</span>)+ <span class="string">".zip"</span>);<span class="comment">//返回文件名</span></span><br><span class="line">            List&lt;PatrolResultImageReturn&gt; imageReturns = imagesDao.createLambdaQuery()</span><br><span class="line">                    .andEq(PatrolResultImages::getResaultId, id)</span><br><span class="line">                    .andEq(PatrolResultImages::getIsDelete, <span class="number">0</span>)</span><br><span class="line">                    .select(PatrolResultImageReturn.class, "id", "file_name", "file_url");//忽略</span><br><span class="line">            <span class="keyword">if</span>(imageReturns==<span class="keyword">null</span>||imageReturns.size()==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> CodeMsg(<span class="number">1</span>,<span class="string">"查询不到图片"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        	</span><br><span class="line">            <span class="keyword">for</span>(PatrolResultImageReturn img : imageReturns)&#123;</span><br><span class="line">                <span class="comment">//获取图片输出流</span></span><br><span class="line">                is = <span class="keyword">new</span> URL(img.getFileUrl()).openConnection().getInputStream();</span><br><span class="line">                <span class="comment">//添加zip图片名字</span></span><br><span class="line">                zipOs.putNextEntry(<span class="keyword">new</span> ZipEntry(img.getFileName()));</span><br><span class="line">                <span class="keyword">byte</span>[] buffer= <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2048</span>];</span><br><span class="line">                <span class="keyword">int</span> len;</span><br><span class="line">                <span class="keyword">while</span>((len=is.read(buffer))!=-<span class="number">1</span>) &#123;</span><br><span class="line">                    zipOs.write(buffer, <span class="number">0</span>, len);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//写完讲图片流关闭</span></span><br><span class="line">                is.close();</span><br><span class="line">            &#125;</span><br><span class="line">        	<span class="comment">//关闭流</span></span><br><span class="line">            zipOs.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> CodeMsg.fail(<span class="string">"导出图片失败"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-股票收益"
   class="article article-type-post"
   itemscope
@@ -522,106 +620,6 @@
   <h3 id="定时任务开启-Scheduled"><a href="#定时任务开启-Scheduled" class="headerlink" title="定时任务开启@Scheduled"></a>定时任务开启@Scheduled</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableScheduling</span> 开启注解</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</span><br><span class="line">	<span class="meta">@Scheduled</span>(cron = <span class="string">"0/5 * * * * *"</span>)<span class="comment">//配置时间</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//执行方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="cron"><a href="#cron" class="headerlink" title="cron"></a>cron</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">字段　　允许值　　允许的特殊字符 </span><br><span class="line">秒     　 0-59 　　　　, - * / </span><br><span class="line">分     　 0-59　　　　 , - * / </span><br><span class="line">小时      0-23 　　　　, - * / </span><br><span class="line">日期      1-31 　　　　, - * ? / L W C </span><br><span class="line">月份      1-12 　　　　, - * / </span><br><span class="line">星期      1-7 　　　　  , - * ? / L C <span class="comment"># </span></span><br><span class="line">年     1970-2099 　　, - * /</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">“*”字符被用来指定所有的值。</span><br><span class="line">如：</span><br><span class="line"><span class="string">"*"</span>：字符在分钟的字段域里表示“每分钟”。 </span><br><span class="line">“?”：字符只在日期域和星期域中使用。它被用来指定“非明确的值”。</span><br><span class="line">当你需要通过在这两个域中的一个来指定一些东西的时候，它是有用的。看下面的例子你就会明白。 </span><br><span class="line">月份中的日期和星期中的日期这两个元素时互斥的一起应该通过设置一个问号来表明不想设置那个字段。</span><br><span class="line">“-”：字符被用来指定一个范围。如：“10-12”在小时域意味着“10点、11点、12点”。</span><br><span class="line">“,”：字符被用来指定另外的值。如：“MON,WED,FRI”在星期域里表示”星期一、星期三、星期五”。</span><br><span class="line">“/”：字符用于指定增量。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">例子如下：</span><br><span class="line">0 0 10,14,16 * * ? 每天上午10点，下午2点，4点</span><br><span class="line">0 0/30 9-17 * * ?   朝九晚五工作时间内每半小时</span><br><span class="line">0 0 12 ? * WED 表示每个星期三中午12点 </span><br><span class="line"><span class="string">"0 0 12 * * ?"</span> 每天中午12点触发 </span><br><span class="line"><span class="string">"0 15 10 ? * *"</span> 每天上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 * * ?"</span> 每天上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 * * ? *"</span> 每天上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 * * ? 2005"</span> 2005年的每天上午10:15触发 </span><br><span class="line"><span class="string">"0 * 14 * * ?"</span> 在每天下午2点到下午2:59期间的每1分钟触发 </span><br><span class="line"><span class="string">"0 0/5 14 * * ?"</span> 在每天下午2点到下午2:55期间的每5分钟触发 </span><br><span class="line"><span class="string">"0 0/5 14,18 * * ?"</span> 在每天下午2点到2:55期间和下午6点到6:55期间的每5分钟触发 </span><br><span class="line"><span class="string">"0 0-5 14 * * ?"</span> 在每天下午2点到下午2:05期间的每1分钟触发 </span><br><span class="line"><span class="string">"0 10,44 14 ? 3 WED"</span> 每年三月的星期三的下午2:10和2:44触发 </span><br><span class="line"><span class="string">"0 15 10 ? * MON-FRI"</span> 周一至周五的上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 15 * ?"</span> 每月15日上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 L * ?"</span> 每月最后一日的上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 ? * 6L"</span> 每月的最后一个星期五上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 ? * 6L 2002-2005"</span> 2002年至2005年的每月的最后一个星期五上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 ? * 6#3"</span> 每月的第三个星期五上午10:15触发</span><br></pre></td></tr></table></figure>
-
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-jvm"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/11/26/jvm/"
-    >jvm</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/11/26/jvm/" class="article-date">
-  <time datetime="2020-11-26T08:46:06.000Z" itemprop="datePublished">2020-11-26</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="类装载"><a href="#类装载" class="headerlink" title="类装载"></a>类装载</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.运行时常量池：在方法区中，每个类型都对应一个常量池，存放该类型所用到的所有常量，常量池中存储了诸如文字字符串、<span class="keyword">final</span>变量值、类名和方法名常量。</span><br><span class="line"><span class="number">2</span>.字段信息：字段信息存放类中声明的每一个字段的信息，包括字段的名、类型、修饰符。</span><br><span class="line"><span class="number">3</span>.方法信息：类中声明的每一个方法的信息，包括方法名、返回值类型、参数类型、修饰符、异常、方法的字节码。</span><br><span class="line">(在编译的时候，就已经将方法的局部变量、操作数栈大小等确定并存放在字节码中，在装载的时候，随着类一起装入方法区。) </span><br><span class="line"><span class="number">4</span>.静态变量：类变量，类的所有实例都共享，我们只需知道，在方法区有个静态区，静态区专门存放静态变量和静态块。</span><br><span class="line"><span class="number">5</span>.到类classloader的引用：到该类的类装载器的引用。 </span><br><span class="line"><span class="number">6</span>.到类<span class="class"><span class="keyword">class</span> 的引用：虚拟机为每一个被装载的类型创建一个<span class="title">class</span>实例，用来代表这个被装载的类。</span></span><br></pre></td></tr></table></figure>
-
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-接口和抽象接口的区别"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/11/05/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB/"
-    >接口和抽象接口的区别</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/11/05/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-date">
-  <time datetime="2020-11-05T07:26:07.000Z" itemprop="datePublished">2020-11-05</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">为空实现</span><br><span class="line">在项目中三层架构就是最经典的接口空实现，高内聚低耦合</span><br><span class="line"></span><br><span class="line">当我们这个接口想换一个实现类那么是完全没有影响的。</span><br><span class="line">因为它是空实现</span><br></pre></td></tr></table></figure>
-
-<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">抽象类是一种具体的实现</span><br><span class="line">当我们用抽象类dao时，都需要写一个具体方法。</span><br><span class="line"></span><br><span class="line">那么我将这些抽象类提取出来做为一个抽象类变成一个通用的crud</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.test;</span><br><span class="line"><span class="comment">//通用的crud接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseDao</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">add</span><span class="params">(T c)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"crud增加"</span>);</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">delete</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"crud删除"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> org.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDao</span> <span class="keyword">extends</span> <span class="title">BaseDao</span>&lt;<span class="title">User</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> org.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">OtherDao</span> <span class="keyword">extends</span> <span class="title">BaseDao</span>&lt;<span class="title">Teacher</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> org.test;</span><br><span class="line"><span class="comment">//当成service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> <span class="keyword">extends</span> <span class="title">OtherDao</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//这里的话就是传入一个参数去查出来返回对象数据</span></span><br><span class="line">        System.out.println(<span class="keyword">new</span> test().add(<span class="keyword">new</span> Teacher()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
  
       <!-- reward -->

@@ -107,6 +107,110 @@
     
     
     <article
+  id="post-js样式"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/18/js%E6%A0%B7%E5%BC%8F/"
+    >js样式</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/02/18/js%E6%A0%B7%E5%BC%8F/" class="article-date">
+  <time datetime="2020-02-18T03:26:51.000Z" itemprop="datePublished">2020-02-18</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="通过点击事件增加class"><a href="#通过点击事件增加class" class="headerlink" title="通过点击事件增加class"></a>通过点击事件增加class</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当前如有这个class的话那么点击会删除这个class，</span><br><span class="line">如果没有那么会新增,这个事件也可以通过removeClass来做</span><br><span class="line">$(this).toggleClass(<span class="string">"current"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="下拉框的事件"><a href="#下拉框的事件" class="headerlink" title="下拉框的事件"></a>下拉框的事件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当你点击的事件它的下个节点是隐藏的，那么将会被显示出来。</span><br><span class="line">如果是显示的话，点击就会被隐藏</span><br><span class="line">$(this).next().slideToggle();</span><br></pre></td></tr></table></figure>
+<h3 id="判断当前的class是否存在"><a href="#判断当前的class是否存在" class="headerlink" title="判断当前的class是否存在"></a>判断当前的class是否存在</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当前的class是否存在这个节点 如果存在那么必然不是负一,</span><br><span class="line">这个主要思想放在循环列表判断是否存在</span><br><span class="line">$(this).attr(<span class="string">"class"</span>).indexOf(<span class="string">"current"</span>)!=-1</span><br></pre></td></tr></table></figure>
+<h3 id="循环数据事件"><a href="#循环数据事件" class="headerlink" title="循环数据事件"></a>循环数据事件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$.each(这里是ajax的变量,<span class="keyword">function</span>(下标,变量元素对象)&#123;</span><br><span class="line">	var <span class="variable">$item</span> = 这里可以写<span class="keyword">function</span>(下标，变量元素)</span><br><span class="line">	或者是</span><br><span class="line">	console.log(变量对象.name等等)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">动态生成的标签那么class这些会导致无法使用</span><br><span class="line">那么就要用到delegate事件托管</span><br><span class="line">class=<span class="string">"content"</span>这里是你要托管的那块地方或者全局</span><br><span class="line">class=<span class="string">"content_in_play"</span>为这个class的节点添加点击事件</span><br><span class="line">$(<span class="string">".content"</span>).delegate(<span class="string">".content_in_play"</span>,<span class="string">"click"</span>,<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">	console.log($(this))==.content_in_play</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="优先级处理"><a href="#优先级处理" class="headerlink" title="优先级处理"></a>优先级处理</h3><p>当要增加class并且换上图片时可以用这个东西</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">background-position: -80px -200px !important;</span><br><span class="line">!important</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-css样式"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/17/css%E6%A0%B7%E5%BC%8F/"
+    >css样式</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/02/17/css%E6%A0%B7%E5%BC%8F/" class="article-date">
+  <time datetime="2020-02-17T14:33:35.000Z" itemprop="datePublished">2020-02-17</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="边框设置在内部"><a href="#边框设置在内部" class="headerlink" title="边框设置在内部"></a>边框设置在内部</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box-sizing: border-box;</span><br></pre></td></tr></table></figure>
+<h3 id="超链接下划线隐藏"><a href="#超链接下划线隐藏" class="headerlink" title="超链接下划线隐藏"></a>超链接下划线隐藏</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text-decoration: none;</span><br></pre></td></tr></table></figure>
+<h3 id="文本框点击时背景颜色隐藏"><a href="#文本框点击时背景颜色隐藏" class="headerlink" title="文本框点击时背景颜色隐藏"></a>文本框点击时背景颜色隐藏</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outline: none;</span><br></pre></td></tr></table></figure>
+<h3 id="当文本框点击时可以获取焦点"><a href="#当文本框点击时可以获取焦点" class="headerlink" title="当文本框点击时可以获取焦点"></a>当文本框点击时可以获取焦点</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.centent_in_text .centent_in_text2:focus&#123;</span><br><span class="line">	border-top: 1px solid <span class="comment">#2d78f4;</span></span><br><span class="line">    border-bottom: 1px solid <span class="comment">#2d78f4;</span></span><br><span class="line">    border-left: 1px solid <span class="comment">#2d78f4;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="颜色隐藏"><a href="#颜色隐藏" class="headerlink" title="颜色隐藏"></a>颜色隐藏</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">color:transparent</span><br></pre></td></tr></table></figure>
+<h3 id="超过div范围隐藏"><a href="#超过div范围隐藏" class="headerlink" title="超过div范围隐藏"></a>超过div范围隐藏</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">overflow: hidden;</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-My-New-Post"
   class="article article-type-post"
   itemscope

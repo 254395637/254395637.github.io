@@ -107,6 +107,106 @@
     
     
     <article
+  id="post-jvm"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/26/jvm/"
+    >jvm</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/26/jvm/" class="article-date">
+  <time datetime="2020-11-26T08:46:06.000Z" itemprop="datePublished">2020-11-26</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="类装载"><a href="#类装载" class="headerlink" title="类装载"></a>类装载</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.运行时常量池：在方法区中，每个类型都对应一个常量池，存放该类型所用到的所有常量，常量池中存储了诸如文字字符串、<span class="keyword">final</span>变量值、类名和方法名常量。</span><br><span class="line"><span class="number">2</span>.字段信息：字段信息存放类中声明的每一个字段的信息，包括字段的名、类型、修饰符。</span><br><span class="line"><span class="number">3</span>.方法信息：类中声明的每一个方法的信息，包括方法名、返回值类型、参数类型、修饰符、异常、方法的字节码。</span><br><span class="line">(在编译的时候，就已经将方法的局部变量、操作数栈大小等确定并存放在字节码中，在装载的时候，随着类一起装入方法区。) </span><br><span class="line"><span class="number">4</span>.静态变量：类变量，类的所有实例都共享，我们只需知道，在方法区有个静态区，静态区专门存放静态变量和静态块。</span><br><span class="line"><span class="number">5</span>.到类classloader的引用：到该类的类装载器的引用。 </span><br><span class="line"><span class="number">6</span>.到类<span class="class"><span class="keyword">class</span> 的引用：虚拟机为每一个被装载的类型创建一个<span class="title">class</span>实例，用来代表这个被装载的类。</span></span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-接口和抽象接口的区别"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/05/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB/"
+    >接口和抽象接口的区别</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/05/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-date">
+  <time datetime="2020-11-05T07:26:07.000Z" itemprop="datePublished">2020-11-05</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">为空实现</span><br><span class="line">在项目中三层架构就是最经典的接口空实现，高内聚低耦合</span><br><span class="line"></span><br><span class="line">当我们这个接口想换一个实现类那么是完全没有影响的。</span><br><span class="line">因为它是空实现</span><br></pre></td></tr></table></figure>
+
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">抽象类是一种具体的实现</span><br><span class="line">当我们用抽象类dao时，都需要写一个具体方法。</span><br><span class="line"></span><br><span class="line">那么我将这些抽象类提取出来做为一个抽象类变成一个通用的crud</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.test;</span><br><span class="line"><span class="comment">//通用的crud接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseDao</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">add</span><span class="params">(T c)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"crud增加"</span>);</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">delete</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"crud删除"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> org.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDao</span> <span class="keyword">extends</span> <span class="title">BaseDao</span>&lt;<span class="title">User</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> org.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">OtherDao</span> <span class="keyword">extends</span> <span class="title">BaseDao</span>&lt;<span class="title">Teacher</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> org.test;</span><br><span class="line"><span class="comment">//当成service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> <span class="keyword">extends</span> <span class="title">OtherDao</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//这里的话就是传入一个参数去查出来返回对象数据</span></span><br><span class="line">        System.out.println(<span class="keyword">new</span> test().add(<span class="keyword">new</span> Teacher()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-Nginx"
   class="article article-type-post"
   itemscope
@@ -608,115 +708,6 @@
 
 <p>###快速排序</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public static void quicksort(int arr[],int low,int hight)&#123;</span><br><span class="line">        int i,j,temp,t;</span><br><span class="line">        //当递归到一定的情况时，会出现低位和高位在同一条线上，那么我们直接返回</span><br><span class="line">        <span class="keyword">if</span>(low&gt;hight)&#123;</span><br><span class="line">            <span class="built_in">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        i = low;//低位</span><br><span class="line">        j = hight;//高位</span><br><span class="line">        temp = arr[low];//基准位</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(i&lt;j)&#123;</span><br><span class="line">            <span class="keyword">while</span> (temp&lt;=arr[j]&amp;&amp;i&lt;j) &#123;//当右边的数小于基位数时，会结束循环，否则寻找下一个数</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (temp&gt;=arr[i]&amp;&amp;i&lt;j) &#123;//当左边的数大于基位数时，会结束循环。否则寻找下一个数</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i&lt;j)&#123;//将值互换</span><br><span class="line">                int z = arr[i];</span><br><span class="line">            	arr[i] = arr[j];</span><br><span class="line">            	arr[j] = z;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        //最后将基准为与i和j相等位置的数字交换</span><br><span class="line">        arr[low] = arr[i];//将第一个数换为中间数字</span><br><span class="line">        arr[i] = temp;//中间数为基位数</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        //递归调用左半数组</span><br><span class="line">        quicksort(arr, low, j-1);//</span><br><span class="line">        //递归调用右半数组</span><br><span class="line">        quicksort(arr, j+1, hight);//中间数+1为起始位 higth本身总数就减一了</span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-继承、实现、依赖、关联、聚合、组合的联系与区别"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/09/01/%E7%BB%A7%E6%89%BF%E3%80%81%E5%AE%9E%E7%8E%B0%E3%80%81%E4%BE%9D%E8%B5%96%E3%80%81%E5%85%B3%E8%81%94%E3%80%81%E8%81%9A%E5%90%88%E3%80%81%E7%BB%84%E5%90%88%E7%9A%84%E8%81%94%E7%B3%BB%E4%B8%8E%E5%8C%BA%E5%88%AB/"
-    >继承、实现、依赖、关联、聚合、组合的联系与区别</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/09/01/%E7%BB%A7%E6%89%BF%E3%80%81%E5%AE%9E%E7%8E%B0%E3%80%81%E4%BE%9D%E8%B5%96%E3%80%81%E5%85%B3%E8%81%94%E3%80%81%E8%81%9A%E5%90%88%E3%80%81%E7%BB%84%E5%90%88%E7%9A%84%E8%81%94%E7%B3%BB%E4%B8%8E%E5%8C%BA%E5%88%AB/" class="article-date">
-  <time datetime="2020-09-01T11:57:21.000Z" itemprop="datePublished">2020-09-01</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>###依赖</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public person class&#123;</span><br><span class="line"></span><br><span class="line">	public void get(Student student)&#123;</span><br><span class="line">		student.read();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public Student class&#123;</span><br><span class="line">	public void <span class="function"><span class="title">read</span></span>()&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">当需要另一个类的方法，可以通过这样的依赖关系去获取。</span><br></pre></td></tr></table></figure>
-
-<p>###关联</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//单向关联</span><br><span class="line">public person class&#123;</span><br><span class="line">	private Student student;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public Student class&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">//双向关联</span><br><span class="line">public class Customer  </span><br><span class="line">&#123;  </span><br><span class="line">    private Product[] products;  </span><br><span class="line">    ……  </span><br><span class="line">&#125;  </span><br><span class="line">public class Product  </span><br><span class="line">&#123;  </span><br><span class="line">    private Customer customer;  </span><br><span class="line">    ……  </span><br><span class="line">&#125;</span><br><span class="line">//自关联</span><br><span class="line">public person class&#123;</span><br><span class="line">	private person p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>###聚合</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public person class&#123;</span><br><span class="line">	private Student student;</span><br><span class="line">	public person(Student student)&#123;</span><br><span class="line">		this.student = student;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">public student class&#123;</span><br><span class="line">	String name;</span><br><span class="line">	int age;</span><br><span class="line">	public student(String name,Int age)&#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">		this.age = age;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>###组合</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Person &#123;</span><br><span class="line">    Brain brain;</span><br><span class="line">    public <span class="function"><span class="title">Person</span></span>()&#123;//组合</span><br><span class="line">        brain=new Brain();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Person person=new Person();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line">class Brain&#123;</span><br><span class="line"> </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-shiro"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/08/29/shiro/"
-    >shiro</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/08/29/shiro/" class="article-date">
-  <time datetime="2020-08-29T04:41:54.000Z" itemprop="datePublished">2020-08-29</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="shiro配置config"><a href="#shiro配置config" class="headerlink" title="shiro配置config"></a>shiro配置config</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">public class ShiroConfig &#123;</span><br><span class="line">    @Bean</span><br><span class="line">    public ShiroFilterFactoryBean getShiroFilterFactoryBean(@Qualifier(<span class="string">"SecurityManager"</span>) DefaultWebSecurityManager SecurityManager)&#123;</span><br><span class="line">        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();</span><br><span class="line">        //安全管理器</span><br><span class="line">        shiroFilterFactoryBean.setSecurityManager(SecurityManager);</span><br><span class="line"></span><br><span class="line">        //授权</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Map&lt;String, String&gt; filterMap = new LinkedHashMap&lt;String,String&gt;();</span><br><span class="line">        //访问这个接口需要添加权限</span><br><span class="line">        filterMap.put(<span class="string">"/creatarticle"</span>,<span class="string">"perms[overstory]"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        filterMap.put(<span class="string">"/"</span>,<span class="string">"authc"</span>);</span><br><span class="line">        filterMap.put(<span class="string">"/index"</span>,<span class="string">"authc"</span>);</span><br><span class="line">        //设置跳转登陆请求</span><br><span class="line">        shiroFilterFactoryBean.setLoginUrl(<span class="string">"/tologin"</span>);</span><br><span class="line">        //设置没有权限请求页面</span><br><span class="line">        shiroFilterFactoryBean.setUnauthorizedUrl(<span class="string">"/nopermission"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);</span><br><span class="line">        <span class="built_in">return</span> shiroFilterFactoryBean;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Bean(name = <span class="string">"SecurityManager"</span>)</span><br><span class="line">    public DefaultWebSecurityManager getDefaultWebSecurityManager(@Qualifier(<span class="string">"myRealm"</span>) AdminRealm myRealm)&#123;</span><br><span class="line">        DefaultWebSecurityManager SecurityManager = new DefaultWebSecurityManager();</span><br><span class="line">        SecurityManager.setRealm(myRealm);</span><br><span class="line">        <span class="built_in">return</span> SecurityManager;</span><br><span class="line">    &#125;</span><br><span class="line">    //自己添加的bean</span><br><span class="line">    @Bean(name = <span class="string">"myRealm"</span>)</span><br><span class="line">    public AdminRealm <span class="function"><span class="title">myRealm</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span> new AdminRealm();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="继承AuthorizingRealm"><a href="#继承AuthorizingRealm" class="headerlink" title="继承AuthorizingRealm"></a>继承AuthorizingRealm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public class AdminRealm extends AuthorizingRealm &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    UserService userservice;</span><br><span class="line"></span><br><span class="line">    //授权</span><br><span class="line">    @Override</span><br><span class="line">    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) &#123;</span><br><span class="line">        System.out.println(<span class="string">"授权=&gt;doGetAuthorizationInfo"</span>);</span><br><span class="line"></span><br><span class="line">        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();</span><br><span class="line">        Subject subject = SecurityUtils.getSubject();//获取当前用户</span><br><span class="line">        User user = (User) subject.getPrincipal();</span><br><span class="line">        //给用户添加权限</span><br><span class="line">        info.addStringPermission(user.getPermission());</span><br><span class="line"></span><br><span class="line">        <span class="built_in">return</span> info;</span><br><span class="line">    &#125;</span><br><span class="line">    //认证</span><br><span class="line">    @Override</span><br><span class="line">    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken Token) throws AuthenticationException &#123;</span><br><span class="line">        System.out.println(<span class="string">"认证=&gt;doGetAuthorizationInfo"</span>);</span><br><span class="line"></span><br><span class="line">        UsernamePasswordToken usetToken = (UsernamePasswordToken)Token;</span><br><span class="line">        //查看用户是否存在  重复用主键</span><br><span class="line">        User user = userservice.QueryUser(usetToken.getUsername());</span><br><span class="line">        <span class="keyword">if</span>(user==null)&#123;</span><br><span class="line">            <span class="built_in">return</span> null;</span><br><span class="line">        &#125;</span><br><span class="line">        //将密码返回</span><br><span class="line">        <span class="built_in">return</span> new SimpleAuthenticationInfo(user,user.getUserpasswd(),<span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//登陆</span><br><span class="line">    @RequestMapping(<span class="string">"/login"</span>)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public String login(@RequestBody User user)&#123;</span><br><span class="line"></span><br><span class="line">        UsernamePasswordToken Token = new UsernamePasswordToken(user.getUsername(), user.getUserpasswd());</span><br><span class="line">        Subject subject = SecurityUtils.getSubject();</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            subject.login(Token);//将返回来的密码做比对</span><br><span class="line">            <span class="keyword">if</span>(subject.isAuthenticated())&#123;</span><br><span class="line">                System.out.println(user.getUsername()+<span class="string">"认证成功"</span>);</span><br><span class="line">                <span class="built_in">return</span> <span class="string">"success"</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                Token.clear();</span><br><span class="line">                System.out.println(user.getUsername()+<span class="string">"认证失败"</span>);</span><br><span class="line">                <span class="built_in">return</span> <span class="string">"error"</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;catch (UnknownAccountException e)&#123;</span><br><span class="line">            //log.info(username+<span class="string">"验证失败，用户名不存在"</span>);</span><br><span class="line">            System.out.println(<span class="string">"验证失败，用户名不存在"</span>);</span><br><span class="line">        &#125;catch (IncorrectCredentialsException e)&#123;</span><br><span class="line">            //log.info(username+<span class="string">"验证失败，密码错误"</span>);</span><br><span class="line">            System.out.println(<span class="string">"验证失败，密码错误"</span>);</span><br><span class="line">        &#125; catch (AuthenticationException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> <span class="string">"error"</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>###权限</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">anon:无需认证（登录）可以访问</span><br><span class="line">authc:必须认证才可以访问</span><br><span class="line">user:只要登录过，并且记住了密码，如果设置了rememberMe的功能可以直接访问</span><br><span class="line">perms:该资源必须得到资源权限才可以访问</span><br><span class="line">role:该资源必须得到角色的权限才可以访问</span><br></pre></td></tr></table></figure>
- 
       <!-- reward -->
       
     </div>

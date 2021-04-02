@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    数据库 |  叶枫
+    图片批量下载打包zip |  叶枫
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -55,7 +55,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-数据库"
+  id="post-图片批量下载打包zip"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -66,22 +66,22 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  数据库
+  图片批量下载打包zip
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/02/19/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
-  <time datetime="2020-02-19T07:34:54.000Z" itemprop="datePublished">2020-02-19</time>
+      <a href="/2021/03/31/%E5%9B%BE%E7%89%87%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD%E6%89%93%E5%8C%85zip/" class="article-date">
+  <time datetime="2021-03-31T02:20:49.000Z" itemprop="datePublished">2021-03-31</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">461</span>
+            <span class="post-count">219</span>
         </span>
     </span>
 
@@ -90,7 +90,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
+            <span class="post-count">1 min</span>
         </span>
     </span>
 </div>
@@ -105,51 +105,9 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h3 id="清空自增自动删表"><a href="#清空自增自动删表" class="headerlink" title="清空自增自动删表"></a>清空自增自动删表</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TRUNCATE 表名</span><br></pre></td></tr></table></figure>
-<h3 id="增加学生"><a href="#增加学生" class="headerlink" title="增加学生"></a>增加学生</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into 表名 (name,age,address)values(<span class="string">"254395637"</span>,<span class="string">"16"</span>,<span class="string">"揭阳"</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="修改表信息"><a href="#修改表信息" class="headerlink" title="修改表信息"></a>修改表信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update 表名 <span class="built_in">set</span> name = <span class="string">"8226942"</span> <span class="built_in">where</span> pass = <span class="string">'123'</span> and name = <span class="string">'原先名字'</span></span><br></pre></td></tr></table></figure>
-<h3 id="删除表信息"><a href="#删除表信息" class="headerlink" title="删除表信息"></a>删除表信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from 表名 <span class="built_in">where</span> name = <span class="string">"?"</span> and <span class="string">"?"</span></span><br></pre></td></tr></table></figure>
-<h3 id="查询信息"><a href="#查询信息" class="headerlink" title="查询信息"></a>查询信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select from 表名 <span class="built_in">where</span> name = <span class="string">"?"</span> and <span class="string">"?"</span></span><br></pre></td></tr></table></figure>
-<h3 id="查询null值信息"><a href="#查询null值信息" class="headerlink" title="查询null值信息"></a>查询null值信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select from 表名 <span class="built_in">where</span> name is null</span><br><span class="line"></span><br><span class="line">update 表名 update name = <span class="string">"xxx"</span> <span class="built_in">where</span> name is null</span><br></pre></td></tr></table></figure>
-
-<h3 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">from</span> 表名 <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="keyword">CONCAT</span>(<span class="string">"aorg1"</span>，<span class="string">"aorg2"</span>) <span class="keyword">concat</span>可以多参数</span><br><span class="line"></span><br><span class="line"><span class="comment">--_下划线为一个占位符</span></span><br><span class="line"><span class="comment">--%百分号为任意个</span></span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th align="center">条件</th>
-<th>语句</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">查看包含小明</td>
-<td>%小明%</td>
-</tr>
-<tr>
-<td align="center">查询含有小明开头的</td>
-<td>小明%</td>
-</tr>
-<tr>
-<td align="center">查看为只有小字开头为俩个字符的</td>
-<td>小_</td>
-</tr>
-</tbody></table>
-<h3 id="查询空字段"><a href="#查询空字段" class="headerlink" title="查询空字段"></a>查询空字段</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> article <span class="keyword">where</span> ARTICLETITLE = <span class="string">''</span> </span><br><span class="line"><span class="comment">--查询不为null</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> article <span class="keyword">where</span> ARTICLETITLE != <span class="string">''</span></span><br></pre></td></tr></table></figure>
+  <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">downloadImages</span><span class="params">(@RequestBody Map&lt;String,Object&gt; params)</span></span>&#123;</span><br><span class="line">	<span class="comment">//获取图片id找到图片地址</span></span><br><span class="line">    String id = Convert.toStr(params.get(<span class="string">"id"</span>));</span><br><span class="line">    <span class="keyword">if</span>(StringUtils.isBlank(id))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CodeMsg(<span class="string">"参数异常"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    String fileName = <span class="string">"图片附件"</span>;</span><br><span class="line">    ZipOutputStream zipOs = <span class="keyword">null</span>;</span><br><span class="line">    InputStream is = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">            zipOs = <span class="keyword">new</span> ZipOutputStream(response.getOutputStream());</span><br><span class="line">            response.setContentType(<span class="string">"application/zip"</span>);<span class="comment">//设置响应内容</span></span><br><span class="line">            response.addHeader(<span class="string">"Content-Disposition"</span>,</span><br><span class="line">                    <span class="string">"attachment;filename="</span> + URLEncoder.encode(fileName, <span class="string">"UTF-8"</span>)+ <span class="string">".zip"</span>);<span class="comment">//返回文件名</span></span><br><span class="line">            List&lt;PatrolResultImageReturn&gt; imageReturns = imagesDao.createLambdaQuery()</span><br><span class="line">                    .andEq(PatrolResultImages::getResaultId, id)</span><br><span class="line">                    .andEq(PatrolResultImages::getIsDelete, <span class="number">0</span>)</span><br><span class="line">                    .select(PatrolResultImageReturn.class, "id", "file_name", "file_url");//忽略</span><br><span class="line">            <span class="keyword">if</span>(imageReturns==<span class="keyword">null</span>||imageReturns.size()==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> CodeMsg(<span class="number">1</span>,<span class="string">"查询不到图片"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        	</span><br><span class="line">            <span class="keyword">for</span>(PatrolResultImageReturn img : imageReturns)&#123;</span><br><span class="line">                <span class="comment">//获取图片输出流</span></span><br><span class="line">                is = <span class="keyword">new</span> URL(img.getFileUrl()).openConnection().getInputStream();</span><br><span class="line">                <span class="comment">//添加zip图片名字</span></span><br><span class="line">                zipOs.putNextEntry(<span class="keyword">new</span> ZipEntry(img.getFileName()));</span><br><span class="line">                <span class="keyword">byte</span>[] buffer= <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2048</span>];</span><br><span class="line">                <span class="keyword">int</span> len;</span><br><span class="line">                <span class="keyword">while</span>((len=is.read(buffer))!=-<span class="number">1</span>) &#123;</span><br><span class="line">                    zipOs.write(buffer, <span class="number">0</span>, len);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//写完讲图片流关闭</span></span><br><span class="line">                is.close();</span><br><span class="line">            &#125;</span><br><span class="line">        	<span class="comment">//关闭流</span></span><br><span class="line">            zipOs.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> CodeMsg.fail(<span class="string">"导出图片失败"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-
-<h3 id="查看表结构"><a href="#查看表结构" class="headerlink" title="查看表结构"></a>查看表结构</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span> 表名</span><br><span class="line"></span><br><span class="line"><span class="keyword">desc</span> 表名  <span class="comment">--表结构</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">index</span> <span class="keyword">from</span> 表名 <span class="comment">--显示表的索引</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">test</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> categoryid <span class="keyword">desc</span> <span class="comment">--降序</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">test</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> categoryid <span class="keyword">asc</span> <span class="comment">--升序</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="重置自增"><a href="#重置自增" class="headerlink" title="重置自增"></a>重置自增</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 auto_increment= 起始值</span><br></pre></td></tr></table></figure>
-
-<h3 id="生成唯一索引"><a href="#生成唯一索引" class="headerlink" title="生成唯一索引"></a>生成唯一索引</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 unique <span class="string">"字段名"</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="查询时间范围"><a href="#查询时间范围" class="headerlink" title="查询时间范围"></a>查询时间范围</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select count(1) from 表名 <span class="built_in">where</span> 字段名 <span class="string">'2020-xx-xxxx 时间点'</span> and <span class="string">'指定时间段'</span></span><br><span class="line"></span><br><span class="line">getdate() <span class="comment">#获取当前时间段</span></span><br><span class="line"></span><br><span class="line">DateDiff(dd,<span class="string">'时间字段名'</span>,getdate())=0 表示为当天</span><br><span class="line"></span><br><span class="line">DateDiff(dd,<span class="string">'时间字段名'</span>,getdate())&gt;0 时间字段超过当前时间会为整数，没超过为负数。</span><br></pre></td></tr></table></figure>
-
-<h3 id="SqlServer"><a href="#SqlServer" class="headerlink" title="SqlServer"></a>SqlServer</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">设置自增主键</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> USER_JOB_EXE_REC <span class="keyword">ADD</span> <span class="keyword">ID</span> <span class="built_in">INT</span> <span class="keyword">IDENTITY</span> (<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> 字段 <span class="built_in">INT</span> <span class="keyword">IDENTITY</span> (<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">查找前一天</span><br><span class="line">dateadd(day, -1, CONVERT (VARCHAR, GETDATE( ),23))</span><br><span class="line">day表示天数，-1表示常量,第三个参数获取当前时间</span><br><span class="line">意思就是当前时间减去一天</span><br></pre></td></tr></table></figure>
-
-<h4 id="SqlServer-4-0包找不到"><a href="#SqlServer-4-0包找不到" class="headerlink" title="SqlServer 4.0包找不到"></a>SqlServer 4.0包找不到</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sqljdbc4的下载地址（百度网盘）：https://pan.baidu.com/s/1ZdVJmRZCoc6uLs3T9QmMjw　　提取码：dshx</span><br><span class="line"></span><br><span class="line">mvn install:install-file -Dfile=sqljdbc4-4.0.jar -DgroupId=com.microsoft.sqlserver -DartifactId=sqljdbc4 -Dversion=4.0 -Dpackaging=jar</span><br><span class="line"></span><br><span class="line">修改命令</span><br></pre></td></tr></table></figure>
 
  
       <!-- reward -->
@@ -213,7 +171,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://47.110.124.167/2020/02/19/%E6%95%B0%E6%8D%AE%E5%BA%93/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://47.110.124.167/2021/03/31/%E5%9B%BE%E7%89%87%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD%E6%89%93%E5%8C%85zip/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -224,19 +182,19 @@
    
   <nav class="article-nav">
     
-      <a href="/2020/02/19/%E8%BF%87%E6%BB%A4%E5%99%A8%E6%8B%A6%E6%88%AA/" class="article-nav-link">
+      <a href="/2021/04/02/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C%E6%B3%A8%E8%A7%A3/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            SpringMvc过滤器拦截
+            数据校验注解
           
         </div>
       </a>
     
     
-      <a href="/2020/02/18/js%E6%A0%B7%E5%BC%8F/" class="article-nav-link">
+      <a href="/2021/02/24/%E8%82%A1%E7%A5%A8%E6%94%B6%E7%9B%8A/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">js样式</div>
+        <div class="article-nav-title">股票收益</div>
       </a>
     
   </nav>
