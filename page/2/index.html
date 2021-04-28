@@ -107,6 +107,56 @@
     
     
     <article
+  id="post-定时任务"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/12/08/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"
+    >定时任务</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/12/08/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="article-date">
+  <time datetime="2020-12-08T02:32:17.000Z" itemprop="datePublished">2020-12-08</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="定时任务开启-Scheduled"><a href="#定时任务开启-Scheduled" class="headerlink" title="定时任务开启@Scheduled"></a>定时任务开启@Scheduled</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableScheduling</span> 开启注解</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</span><br><span class="line">	<span class="meta">@Scheduled</span>(cron = <span class="string">"0/5 * * * * *"</span>)<span class="comment">//配置时间</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//执行方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="cron"><a href="#cron" class="headerlink" title="cron"></a>cron</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">字段　　允许值　　允许的特殊字符 </span><br><span class="line">秒     　 0-59 　　　　, - * / </span><br><span class="line">分     　 0-59　　　　 , - * / </span><br><span class="line">小时      0-23 　　　　, - * / </span><br><span class="line">日期      1-31 　　　　, - * ? / L W C </span><br><span class="line">月份      1-12 　　　　, - * / </span><br><span class="line">星期      1-7 　　　　  , - * ? / L C <span class="comment"># </span></span><br><span class="line">年     1970-2099 　　, - * /</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">“*”字符被用来指定所有的值。</span><br><span class="line">如：</span><br><span class="line"><span class="string">"*"</span>：字符在分钟的字段域里表示“每分钟”。 </span><br><span class="line">“?”：字符只在日期域和星期域中使用。它被用来指定“非明确的值”。</span><br><span class="line">当你需要通过在这两个域中的一个来指定一些东西的时候，它是有用的。看下面的例子你就会明白。 </span><br><span class="line">月份中的日期和星期中的日期这两个元素时互斥的一起应该通过设置一个问号来表明不想设置那个字段。</span><br><span class="line">“-”：字符被用来指定一个范围。如：“10-12”在小时域意味着“10点、11点、12点”。</span><br><span class="line">“,”：字符被用来指定另外的值。如：“MON,WED,FRI”在星期域里表示”星期一、星期三、星期五”。</span><br><span class="line">“/”：字符用于指定增量。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">例子如下：</span><br><span class="line">0 0 10,14,16 * * ? 每天上午10点，下午2点，4点</span><br><span class="line">0 0/30 9-17 * * ?   朝九晚五工作时间内每半小时</span><br><span class="line">0 0 12 ? * WED 表示每个星期三中午12点 </span><br><span class="line"><span class="string">"0 0 12 * * ?"</span> 每天中午12点触发 </span><br><span class="line"><span class="string">"0 15 10 ? * *"</span> 每天上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 * * ?"</span> 每天上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 * * ? *"</span> 每天上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 * * ? 2005"</span> 2005年的每天上午10:15触发 </span><br><span class="line"><span class="string">"0 * 14 * * ?"</span> 在每天下午2点到下午2:59期间的每1分钟触发 </span><br><span class="line"><span class="string">"0 0/5 14 * * ?"</span> 在每天下午2点到下午2:55期间的每5分钟触发 </span><br><span class="line"><span class="string">"0 0/5 14,18 * * ?"</span> 在每天下午2点到2:55期间和下午6点到6:55期间的每5分钟触发 </span><br><span class="line"><span class="string">"0 0-5 14 * * ?"</span> 在每天下午2点到下午2:05期间的每1分钟触发 </span><br><span class="line"><span class="string">"0 10,44 14 ? 3 WED"</span> 每年三月的星期三的下午2:10和2:44触发 </span><br><span class="line"><span class="string">"0 15 10 ? * MON-FRI"</span> 周一至周五的上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 15 * ?"</span> 每月15日上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 L * ?"</span> 每月最后一日的上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 ? * 6L"</span> 每月的最后一个星期五上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 ? * 6L 2002-2005"</span> 2002年至2005年的每月的最后一个星期五上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 ? * 6#3"</span> 每月的第三个星期五上午10:15触发</span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-jvm"
   class="article article-type-post"
   itemscope
@@ -658,56 +708,6 @@
 <h3 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">AtomicReference&lt;Thread&gt; reference = <span class="keyword">new</span> AtomicReference&lt;Thread&gt;();</span><br><span class="line"><span class="keyword">int</span> temp = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lock</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Thread thread = Thread.currentThread();</span><br><span class="line">    System.out.println(thread.getName()+<span class="string">" =&gt;上锁"</span>);</span><br><span class="line">    <span class="keyword">do</span>&#123;</span><br><span class="line">        <span class="comment">//System.out.println("正在进入自旋锁");</span></span><br><span class="line">    &#125;<span class="keyword">while</span> (!reference.compareAndSet(<span class="keyword">null</span>, thread));<span class="comment">//当期望为null时，</span></span><br><span class="line">    System.out.println(thread.hashCode());</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unlock</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Thread thread = Thread.currentThread();</span><br><span class="line">    System.out.println(thread.getName()+<span class="string">" =&gt;解锁"</span>);</span><br><span class="line">    reference.compareAndSet(thread,<span class="keyword">null</span>);</span><br><span class="line">    System.out.println(thread.hashCode());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//一个线程取到锁，那么另一个线程进来的话取锁就会一直等待循环。直到a线程解锁后，b线程才能取到锁</span></span><br><span class="line"><span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">    test.lock();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        TimeUnit.SECONDS.sleep(<span class="number">2</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    test.unlock();</span><br><span class="line">&#125;,<span class="string">"a"</span>).start();</span><br><span class="line"></span><br><span class="line">TimeUnit.SECONDS.sleep(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">    test.lock();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        TimeUnit.SECONDS.sleep(<span class="number">2</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    test.unlock();</span><br><span class="line">&#125;,<span class="string">"b"</span>).start();</span><br><span class="line"></span><br><span class="line"><span class="comment">//因为首先进来的时候是为null的，将进来的线程丢进去。而其他线程进来的时候发现这个已经不是null了，所以就一直自旋，其他线程进来也是一直自旋。只要为期望的线程类，就可以修改为null这样就做到了解锁。当解锁完，其他线程就可以有机会脱离自旋锁。（无序排队）</span></span><br></pre></td></tr></table></figure>
 
  
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-排序"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/09/02/%E6%8E%92%E5%BA%8F/"
-    >排序</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/09/02/%E6%8E%92%E5%BA%8F/" class="article-date">
-  <time datetime="2020-09-02T07:33:17.000Z" itemprop="datePublished">2020-09-02</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>###冒泡</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int arr[] = &#123;32,25,-98,42,-56,111,25&#125;;</span><br><span class="line">int t ;</span><br><span class="line">int f = arr.length-1;</span><br><span class="line"><span class="keyword">while</span>(f&gt;0)&#123;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0;i&lt;f;i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] &gt; arr[i + 1]) &#123;</span><br><span class="line">            t = arr[i + 1];</span><br><span class="line">            arr[i + 1] = arr[i];</span><br><span class="line">            arr[i] = t;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    f--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>###快速排序</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public static void quicksort(int arr[],int low,int hight)&#123;</span><br><span class="line">        int i,j,temp,t;</span><br><span class="line">        //当递归到一定的情况时，会出现低位和高位在同一条线上，那么我们直接返回</span><br><span class="line">        <span class="keyword">if</span>(low&gt;hight)&#123;</span><br><span class="line">            <span class="built_in">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        i = low;//低位</span><br><span class="line">        j = hight;//高位</span><br><span class="line">        temp = arr[low];//基准位</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(i&lt;j)&#123;</span><br><span class="line">            <span class="keyword">while</span> (temp&lt;=arr[j]&amp;&amp;i&lt;j) &#123;//当右边的数小于基位数时，会结束循环，否则寻找下一个数</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (temp&gt;=arr[i]&amp;&amp;i&lt;j) &#123;//当左边的数大于基位数时，会结束循环。否则寻找下一个数</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i&lt;j)&#123;//将值互换</span><br><span class="line">                int z = arr[i];</span><br><span class="line">            	arr[i] = arr[j];</span><br><span class="line">            	arr[j] = z;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        //最后将基准为与i和j相等位置的数字交换</span><br><span class="line">        arr[low] = arr[i];//将第一个数换为中间数字</span><br><span class="line">        arr[i] = temp;//中间数为基位数</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        //递归调用左半数组</span><br><span class="line">        quicksort(arr, low, j-1);//</span><br><span class="line">        //递归调用右半数组</span><br><span class="line">        quicksort(arr, j+1, hight);//中间数+1为起始位 higth本身总数就减一了</span><br></pre></td></tr></table></figure> 
       <!-- reward -->
       
     </div>

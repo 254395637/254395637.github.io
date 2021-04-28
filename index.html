@@ -107,6 +107,86 @@
     
     
     <article
+  id="post-SpringCloud基于nacos"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/04/25/SpringCloud%E5%9F%BA%E4%BA%8Enacos/"
+    >SpringCloud基于nacos</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/04/25/SpringCloud%E5%9F%BA%E4%BA%8Enacos/" class="article-date">
+  <time datetime="2021-04-25T09:35:42.000Z" itemprop="datePublished">2021-04-25</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="配置nacos"><a href="#配置nacos" class="headerlink" title="配置nacos"></a>配置nacos</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//forezp.blog.csdn.net/article/details/115632826</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="GatWay使用"><a href="#GatWay使用" class="headerlink" title="GatWay使用"></a>GatWay使用</h3><h4 id="网关配置"><a href="#网关配置" class="headerlink" title="网关配置"></a>网关配置</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">5000</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">gateway</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:8848</span> <span class="comment">#nacos服务地址</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">gateway_route</span> <span class="comment">#路由的id,没有规定规则但要求唯一,建议配合服务名</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">http://localhost:8763</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/hi</span> <span class="comment"># 路径为/hi/** 也就是说/hi/xxx任意匹配,前提得找的到请求 /foo/&#123;segment&#125;</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">After=2021-04-25T17:42:47.789+08:00[Asia/Shanghai]</span> <span class="comment">#这个还有before Between</span></span><br><span class="line">            <span class="comment"># Between=2017-01-20T17:42:47.789+08:00[Asia/Shanghai], 2017-01-21T17:42:47.789+08:00[Asia/Shanghai]</span></span><br></pre></td></tr></table></figure>
+
+<p>当访问127.0.0.1:5000时，会匹配gatway的路由配置进行转向。这里的path为127.0.0.1:5000/hi那么就会转向为<a href="http://localhost:8763/hi" target="_blank" rel="noopener">http://localhost:8763/hi</a></p>
+<p>当设置时间的话，后面为亚洲 上海时间点。在这个时间之后请求会转发到<a href="http://localhost:8763" target="_blank" rel="noopener">http://localhost:8763</a></p>
+<p>如为Between时间的话,那么只要在俩个时间的范围内都会转发请求</p>
+<h4 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">5000</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">gateway</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:8848</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">gateway_route</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://provider</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/hi</span></span><br></pre></td></tr></table></figure>
+
+<p>这里的uri: lb://中的lb代表的意思是loadbalance 也就是负载均衡的意思。</p>
+<p>lb://后面的名字为服务的名字，如多个端口的服务名字一样的话，那么默认就为轮询访问服务端口。</p>
+<p>如果调用的是消费者服务使用Feign负载均衡，远程调用其他提供服务。</p>
+<h4 id="SetPath-GatewayFilter-Factory"><a href="#SetPath-GatewayFilter-Factory" class="headerlink" title="SetPath GatewayFilter Factory"></a>SetPath GatewayFilter Factory</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">setpath_route</span></span><br><span class="line">        <span class="attr">uri:</span> <span class="string">http://example.org</span></span><br><span class="line">        <span class="attr">predicates:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Path=/foo/&#123;segment&#125;</span></span><br><span class="line">        <span class="attr">filters:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">SetPath=/&#123;segment&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>{segment}断言，当访问ip:端口/foo/{segment}，过滤器会放问成断言路径</p>
+<h4 id="AddRequestHeader-GatewayFilter-Factory"><a href="#AddRequestHeader-GatewayFilter-Factory" class="headerlink" title="AddRequestHeader GatewayFilter Factory"></a>AddRequestHeader GatewayFilter Factory</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">add_request_header_route</span></span><br><span class="line">        <span class="attr">uri:</span> <span class="string">http://example.org</span></span><br><span class="line">        <span class="attr">filters:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddRequestHeader=X-Request-Foo,</span> <span class="string">Bar</span></span><br></pre></td></tr></table></figure>
+
+<p>请求网关加上X-Request-Foo请求头</p>
+<h4 id="AddRequestParameter-GatewayFilter-Factory"><a href="#AddRequestParameter-GatewayFilter-Factory" class="headerlink" title="AddRequestParameter GatewayFilter Factory"></a>AddRequestParameter GatewayFilter Factory</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">add_request_parameter_route</span></span><br><span class="line">        <span class="attr">uri:</span> <span class="string">http://example.org</span></span><br><span class="line">        <span class="attr">filters:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddRequestParameter=foo,</span> <span class="string">bar</span></span><br></pre></td></tr></table></figure>
+
+<p>请求加上请求参数为foo值为bar</p>
+<h4 id="PrefixPath-GatewayFilter-Factory"><a href="#PrefixPath-GatewayFilter-Factory" class="headerlink" title="PrefixPath GatewayFilter Factory"></a>PrefixPath GatewayFilter Factory</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">prefixpath_route</span></span><br><span class="line">        <span class="attr">uri:</span> <span class="string">http://example.org</span></span><br><span class="line">        <span class="attr">filters:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">PrefixPath=/mypath</span></span><br></pre></td></tr></table></figure>
+
+<p>请求<a href="http://example.org/hi的时候会转换成http://example.org/mypath/hi" target="_blank" rel="noopener">http://example.org/hi的时候会转换成http://example.org/mypath/hi</a></p>
+<h4 id="StripPrefix-GatewayFilter-Factory"><a href="#StripPrefix-GatewayFilter-Factory" class="headerlink" title="StripPrefix GatewayFilter Factory"></a>StripPrefix GatewayFilter Factory</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">nameRoot</span></span><br><span class="line">        <span class="attr">uri:</span> <span class="string">http://nameservice</span></span><br><span class="line">        <span class="attr">predicates:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Path=/name/**</span></span><br><span class="line">        <span class="attr">filters:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">StripPrefix=2</span></span><br></pre></td></tr></table></figure>
+
+<p>请求<a href="http://nameservice/name/xxxx/aaaa/ddd会转换成http://nameservice/aaaa/ddd" target="_blank" rel="noopener">http://nameservice/name/xxxx/aaaa/ddd会转换成http://nameservice/aaaa/ddd</a></p>
+<p>去掉上俩层</p>
+<h4 id="Redis-RateLimiter"><a href="#Redis-RateLimiter" class="headerlink" title="Redis RateLimiter"></a>Redis RateLimiter</h4><p>令牌桶算法</p>
+<p>进来的请求拿到令牌进行转发，没有令牌的则为请求失败。</p>
+<p>实现思路：准备一个队列用来保存令牌，另外通过一个线程池定期生成令牌放到队列中，每来一个请求，就从队列中获取一个令牌，并继续执行。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">5000</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">gateway</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:8848</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">gateway_route</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://consumer</span></span><br><span class="line">          <span class="comment">#uri: http://localhost:8763</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/hi/&#123;segment&#125;</span></span><br><span class="line">          <span class="attr">filters:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">RequestRateLimiter</span></span><br><span class="line">              <span class="attr">args:</span></span><br><span class="line">                <span class="attr">key-resolver:</span> <span class="string">'#&#123;@hostAddrKeyResolver&#125;'</span></span><br><span class="line">                <span class="attr">redis-rate-limiter.replenishRate:</span> <span class="number">1</span> <span class="comment">#令牌桶每秒填充平均速率</span></span><br><span class="line">                <span class="attr">redis-rate-limiter.burstCapacity:</span> <span class="number">3</span> <span class="comment">#令牌存储最大数量</span></span><br></pre></td></tr></table></figure>
+
+<p>一秒启动10个线程，那么理论来就是成功只会为3+1，剩下的请求都是无效的</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-数据校验注解"
   class="article article-type-post"
   itemscope
@@ -570,56 +650,6 @@
     <div class="article-entry" itemprop="articleBody">
        
   <h3 id="获取对象"><a href="#获取对象" class="headerlink" title="获取对象"></a>获取对象</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#获取反射对象</span><br><span class="line">Class&lt;?&gt; z = <span class="keyword">new</span> test().getClass();</span><br><span class="line"></span><br><span class="line">Method[] methods = z.getMethods(); #获取所有共有方法 继承的方法</span><br><span class="line">Method[] declaredMethods = z.getDeclaredMethods(); # 获取所有方法包括私有</span><br><span class="line">    </span><br><span class="line">Field[] fields = z.getFields(); #获取所有共有属性</span><br><span class="line">Field[] declaredFields = z.getDeclaredFields(); #获取所有公有属性</span><br><span class="line"></span><br><span class="line">Constructor&lt;?&gt;[] constructors = z.getConstructors();#获取构造方法</span><br><span class="line">Constructor&lt;?&gt;[] declaredConstructors = z.getDeclaredConstructors();</span><br></pre></td></tr></table></figure>
-
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-定时任务"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/12/08/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"
-    >定时任务</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/12/08/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="article-date">
-  <time datetime="2020-12-08T02:32:17.000Z" itemprop="datePublished">2020-12-08</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="定时任务开启-Scheduled"><a href="#定时任务开启-Scheduled" class="headerlink" title="定时任务开启@Scheduled"></a>定时任务开启@Scheduled</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableScheduling</span> 开启注解</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</span><br><span class="line">	<span class="meta">@Scheduled</span>(cron = <span class="string">"0/5 * * * * *"</span>)<span class="comment">//配置时间</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//执行方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="cron"><a href="#cron" class="headerlink" title="cron"></a>cron</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">字段　　允许值　　允许的特殊字符 </span><br><span class="line">秒     　 0-59 　　　　, - * / </span><br><span class="line">分     　 0-59　　　　 , - * / </span><br><span class="line">小时      0-23 　　　　, - * / </span><br><span class="line">日期      1-31 　　　　, - * ? / L W C </span><br><span class="line">月份      1-12 　　　　, - * / </span><br><span class="line">星期      1-7 　　　　  , - * ? / L C <span class="comment"># </span></span><br><span class="line">年     1970-2099 　　, - * /</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">“*”字符被用来指定所有的值。</span><br><span class="line">如：</span><br><span class="line"><span class="string">"*"</span>：字符在分钟的字段域里表示“每分钟”。 </span><br><span class="line">“?”：字符只在日期域和星期域中使用。它被用来指定“非明确的值”。</span><br><span class="line">当你需要通过在这两个域中的一个来指定一些东西的时候，它是有用的。看下面的例子你就会明白。 </span><br><span class="line">月份中的日期和星期中的日期这两个元素时互斥的一起应该通过设置一个问号来表明不想设置那个字段。</span><br><span class="line">“-”：字符被用来指定一个范围。如：“10-12”在小时域意味着“10点、11点、12点”。</span><br><span class="line">“,”：字符被用来指定另外的值。如：“MON,WED,FRI”在星期域里表示”星期一、星期三、星期五”。</span><br><span class="line">“/”：字符用于指定增量。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">例子如下：</span><br><span class="line">0 0 10,14,16 * * ? 每天上午10点，下午2点，4点</span><br><span class="line">0 0/30 9-17 * * ?   朝九晚五工作时间内每半小时</span><br><span class="line">0 0 12 ? * WED 表示每个星期三中午12点 </span><br><span class="line"><span class="string">"0 0 12 * * ?"</span> 每天中午12点触发 </span><br><span class="line"><span class="string">"0 15 10 ? * *"</span> 每天上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 * * ?"</span> 每天上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 * * ? *"</span> 每天上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 * * ? 2005"</span> 2005年的每天上午10:15触发 </span><br><span class="line"><span class="string">"0 * 14 * * ?"</span> 在每天下午2点到下午2:59期间的每1分钟触发 </span><br><span class="line"><span class="string">"0 0/5 14 * * ?"</span> 在每天下午2点到下午2:55期间的每5分钟触发 </span><br><span class="line"><span class="string">"0 0/5 14,18 * * ?"</span> 在每天下午2点到2:55期间和下午6点到6:55期间的每5分钟触发 </span><br><span class="line"><span class="string">"0 0-5 14 * * ?"</span> 在每天下午2点到下午2:05期间的每1分钟触发 </span><br><span class="line"><span class="string">"0 10,44 14 ? 3 WED"</span> 每年三月的星期三的下午2:10和2:44触发 </span><br><span class="line"><span class="string">"0 15 10 ? * MON-FRI"</span> 周一至周五的上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 15 * ?"</span> 每月15日上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 L * ?"</span> 每月最后一日的上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 ? * 6L"</span> 每月的最后一个星期五上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 ? * 6L 2002-2005"</span> 2002年至2005年的每月的最后一个星期五上午10:15触发 </span><br><span class="line"><span class="string">"0 15 10 ? * 6#3"</span> 每月的第三个星期五上午10:15触发</span><br></pre></td></tr></table></figure>
 
  
       <!-- reward -->
