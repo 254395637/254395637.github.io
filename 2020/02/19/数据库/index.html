@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">516</span>
+            <span class="post-count">545</span>
         </span>
     </span>
 
@@ -150,6 +150,10 @@
 <h3 id="SqlServer"><a href="#SqlServer" class="headerlink" title="SqlServer"></a>SqlServer</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">设置自增主键</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> USER_JOB_EXE_REC <span class="keyword">ADD</span> <span class="keyword">ID</span> <span class="built_in">INT</span> <span class="keyword">IDENTITY</span> (<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> 字段 <span class="built_in">INT</span> <span class="keyword">IDENTITY</span> (<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">查找前一天</span><br><span class="line">dateadd(day, -1, CONVERT (VARCHAR, GETDATE( ),23))</span><br><span class="line">day表示天数，-1表示常量,第三个参数获取当前时间</span><br><span class="line">意思就是当前时间减去一天</span><br></pre></td></tr></table></figure>
 
 <h4 id="SqlServer-4-0包找不到"><a href="#SqlServer-4-0包找不到" class="headerlink" title="SqlServer 4.0包找不到"></a>SqlServer 4.0包找不到</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sqljdbc4的下载地址（百度网盘）：https://pan.baidu.com/s/1ZdVJmRZCoc6uLs3T9QmMjw　　提取码：dshx</span><br><span class="line"></span><br><span class="line">mvn install:install-file -Dfile=sqljdbc4-4.0.jar -DgroupId=com.microsoft.sqlserver -DartifactId=sqljdbc4 -Dversion=4.0 -Dpackaging=jar</span><br><span class="line"></span><br><span class="line">修改命令</span><br></pre></td></tr></table></figure>
+
+<h3 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date_format( create_time, <span class="string">'%Y-%m-%d'</span> ) 时间格式化 省略时分秒</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询为null"><a href="#查询为null" class="headerlink" title="查询为null"></a>查询为null</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#select * from 表名 where 字段名 is NULL</span></span><br></pre></td></tr></table></figure>
 
  
       <!-- reward -->

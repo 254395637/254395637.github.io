@@ -107,6 +107,58 @@
     
     
     <article
+  id="post-Git命令"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/05/12/Git%E5%91%BD%E4%BB%A4/"
+    >Git命令</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/05/12/Git%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time datetime="2021-05-12T03:22:53.000Z" itemprop="datePublished">2021-05-12</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">git add <span class="string">"文件名"</span></span><br><span class="line"></span><br><span class="line">git add . <span class="comment">#添加仓库文件</span></span><br><span class="line"></span><br><span class="line">git commit -m <span class="string">"提示语句"</span></span><br><span class="line"></span><br><span class="line">git remote add origin https://gitee.com/yefengzii/CloudData.git</span><br><span class="line"></span><br><span class="line">git remote -v //查看远程仓库地址</span><br><span class="line"></span><br><span class="line">git push origin master</span><br><span class="line"></span><br><span class="line"><span class="comment"># 覆盖主分支</span></span><br><span class="line">git push --force origin master</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#分支的管理</span></span><br><span class="line">git checkout -b dev <span class="comment">#创建并切换到dev分支</span></span><br><span class="line"></span><br><span class="line">git branch <span class="comment">#查看分支 ，新建分支git branch 分支名</span></span><br><span class="line"></span><br><span class="line">git checkout master <span class="comment">#切换分支到master</span></span><br><span class="line"></span><br><span class="line">git merge dev -m<span class="string">"合并分支到主干"</span> <span class="comment">#合并分支dev到master</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#把主干代码同步到分支</span></span><br><span class="line"></span><br><span class="line">git checkout dev <span class="comment">#切换到分支</span></span><br><span class="line"></span><br><span class="line">git merge master -m<span class="string">"合并主干到分支"</span></span><br><span class="line"><span class="comment">#如果出现 fatal: refusing to merge unrelated histories，</span></span><br><span class="line"><span class="comment">#意思是这两个分支没有共同的祖先，需要这样去合并或者拉取</span></span><br><span class="line">git merge dev --allow-unrelated-histories</span><br><span class="line"></span><br><span class="line">git branch -a <span class="comment">#查看所有分支</span></span><br><span class="line"></span><br><span class="line">git fetch origin dev:dev <span class="comment">#把远程分支dev同步到本地分支dev</span></span><br><span class="line"></span><br><span class="line">git branch -d dev <span class="comment">#删除dev分支</span></span><br><span class="line"></span><br><span class="line">git push origin -d dev <span class="comment">#删除远程的dev分支</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-SpringCloud基于nacos"
   class="article article-type-post"
   itemscope
@@ -602,54 +654,6 @@
     <div class="article-entry" itemprop="articleBody">
        
   <h3 id="匹配规则"><a href="#匹配规则" class="headerlink" title="匹配规则"></a>匹配规则</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">\d: 匹配一个数字字符。等价于[0-9] </span><br><span class="line">\D: 匹配一个非数字字符。等价于^ [0-9]</span><br><span class="line">\w：匹配任何字类字符，包括下划线。与<span class="string">"[A-Za-z0-9_]"</span>等效。[\\w[^_]]去掉下划线</span><br><span class="line">\s: 匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ \f\n\r\t\v] </span><br><span class="line">. ：匹配除换行符 \n 之外的任何单字符。要匹配 . ，请使用 . 。</span><br><span class="line">*：匹配前面的子表达式零次或多次。要匹配 * 字符，请使用 *。</span><br><span class="line">+：匹配前面的子表达式一次或多次。要匹配 + 字符，请使用 +。 </span><br><span class="line">|:将两个匹配条件进行逻辑“或”（Or）运算</span><br><span class="line">[0-9]&#123;6&#125;:匹配连续6个0-9之间的数字 </span><br><span class="line">\d+：匹配至少一个0-9之间的数字</span><br><span class="line"></span><br><span class="line">String str = <span class="string">"123456"</span>;</span><br><span class="line">String regex = <span class="string">"[0-9]&#123;3,5&#125;"</span>匹配0-9 为3到5个字符</span><br><span class="line">String regex = <span class="string">"1[2345][1-36-9]&#123;9&#125;"</span>匹配第一位为1,第二位为2 3 4 5,后面9位为1到3 6到9则匹配成功</span><br><span class="line">String str = <span class="string">"12a6B985Ccv65"</span>;</span><br><span class="line">str.splict(<span class="string">"[a-zA-z]"</span>)匹配为字母进行分组</span><br><span class="line">str.replace(<span class="string">"[a-zA-Z]"</span>,<span class="string">"%"</span>)匹配到字母将起来替换</span><br><span class="line">regex[1-9&amp;&amp;[^56]] 匹配1到9 减去56 也也可以 5-8</span><br><span class="line"></span><br><span class="line">String str4 = <span class="string">"254395637@qq.com"</span>;</span><br><span class="line">String regex = <span class="string">"[\\w&amp;&amp;[^_]]+@[\\w]+\\.[com]+"</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">String regex = <span class="string">"(https[.[^\"]]+)"</span>;</span><br><span class="line">String str5 = <span class="string">"&lt;img alt=\"每日最新单曲推荐\" src=\"https://img1.kuwo.cn/star/userpl2015/10/13/1607999825895_132026710_150.jpg\" class=\"pic\" data-v-71f1ac8b=\"\" data-src=\"https://img1.kuwo.cn/star/userpl2015/10/13/1607999825895_132026710_150.jpg\" lazy=\"loaded\"&gt;"</span>;	</span><br><span class="line">Pattern pattern = Pattern.compile(regex);</span><br><span class="line">Matcher matcher = pattern.matcher(str5);</span><br><span class="line"><span class="keyword">while</span> (matcher.find()) &#123;</span><br><span class="line">	System.out.println(matcher.group(1));</span><br><span class="line">&#125;</span><br><span class="line">String regex = <span class="string">"http(.+[\\.jpg\\.png])"</span>; 匹配图片</span><br></pre></td></tr></table></figure>
-
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-反射"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/12/16/%E5%8F%8D%E5%B0%84/"
-    >反射</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/12/16/%E5%8F%8D%E5%B0%84/" class="article-date">
-  <time datetime="2020-12-16T05:26:35.000Z" itemprop="datePublished">2020-12-16</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="获取对象"><a href="#获取对象" class="headerlink" title="获取对象"></a>获取对象</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#获取反射对象</span><br><span class="line">Class&lt;?&gt; z = <span class="keyword">new</span> test().getClass();</span><br><span class="line"></span><br><span class="line">Method[] methods = z.getMethods(); #获取所有共有方法 继承的方法</span><br><span class="line">Method[] declaredMethods = z.getDeclaredMethods(); # 获取所有方法包括私有</span><br><span class="line">    </span><br><span class="line">Field[] fields = z.getFields(); #获取所有共有属性</span><br><span class="line">Field[] declaredFields = z.getDeclaredFields(); #获取所有公有属性</span><br><span class="line"></span><br><span class="line">Constructor&lt;?&gt;[] constructors = z.getConstructors();#获取构造方法</span><br><span class="line">Constructor&lt;?&gt;[] declaredConstructors = z.getDeclaredConstructors();</span><br></pre></td></tr></table></figure>
 
  
       <!-- reward -->
